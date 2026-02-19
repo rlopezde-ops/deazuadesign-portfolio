@@ -1,0 +1,9 @@
+# Private files
+.private/
+
+# OS files
+.DS_Store
+
+# Editor files
+*.swp
+*.swo

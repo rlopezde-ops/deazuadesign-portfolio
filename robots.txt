@@ -1,0 +1,25 @@
+# robots.txt for De Azua Design Portfolio
+
+User-agent: *
+Allow: /
+
+# Prevent indexing of protected case studies
+Disallow: /projects/case-study-expert-workspace.html
+Disallow: /projects/case-study-nextgen-portal.html
+Disallow: /projects/case-study-disney-guest-service.html
+
+# Block common bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap (optional - add if you create one)
+# Sitemap: https://yourdomain.com/sitemap.xml

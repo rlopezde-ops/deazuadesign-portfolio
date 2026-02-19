@@ -1,0 +1,23 @@
+---
+description: Document everything and reference docs before making changes
+alwaysApply: true
+---
+
+# Documentation Rule: Work Smarter, Not Harder
+
+## Before Making Changes
+
+1. **Read `docs/PROJECT_DOCS.md`** to understand project structure, conventions, and patterns.
+2. **Check existing patterns** before adding new ones—avoid rebuilding what already exists.
+
+## When Making Changes
+
+1. **Update `docs/PROJECT_DOCS.md`** whenever you:
+   - Add or change a convention
+   - Add new components, pages, or assets
+   - Establish a new pattern (e.g., hero + card sync)
+2. **Keep docs accurate**—outdated docs are worse than no docs.
+
+## Key Principle
+
+Document so that future changes can be made by **referencing the docs** instead of reverse-engineering or rebuilding. One source of truth.

@@ -4,16 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>De Azua Design | Design Leader</title>
-  <link rel="stylesheet" href="style.css">
+  
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.youtube.com;">
+  <link rel="stylesheet" href="css/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Custom Cursor -->
+  <div class="cursor cursor-dot" aria-hidden="true"></div>
+  <div class="cursor cursor-outline" aria-hidden="true"></div>
+
   <!-- Navigation -->
   <nav class="nav">
     <a href="#" class="nav-logo">
-      <img src="logo.png" alt="De Azua Design" class="logo-img">
+      <img src="assets/images/logo.png" alt="De Azua Design" class="logo-img">
     </a>
     <div class="nav-links">
       <a href="#work">Work</a>
@@ -29,7 +39,10 @@
       <p class="hero-label">Design Leader • 15+ Years Experience</p>
       <h1 class="hero-title">
         Crafting<br>
-        <span class="gradient-text">Experiences</span><br>
+        <span class="gradient-text-wrapper">
+          <span class="hero-cursor-glow" aria-hidden="true"></span>
+          <span class="gradient-text">Experiences</span>
+        </span><br>
         That Matter
       </h1>
       <p class="hero-subtitle">
@@ -47,36 +60,59 @@
     </div>
 
     <div class="card-grid">
-      <!-- Card 1: Asurion Next-Gen Portal (Featured) -->
-      <a href="case-study-nextgen-portal.html" class="case-card featured">
-        <div class="card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+      <!-- Card 1: Asurion Expert Workspace (Featured) -->
+      <a href="projects/case-study-expert-workspace.html" class="case-card featured">
+        <div class="card-image" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
           <div class="card-image-content">
-            <span class="card-icon">🔧</span>
+            <span class="card-icon">🤖</span>
           </div>
         </div>
         <div class="card-content">
-          <span class="card-client">Asurion / uBreakiFix</span>
-          <h3 class="card-title">Next-Gen Portal</h3>
-          <p class="card-description">Rebuilding the core operating system for 700+ repair stores—transforming how experts check in customers, manage repairs, and run their business.</p>
-          <div class="card-meta">
-            <span class="card-role">Design Lead</span>
-            <span class="card-year">2023–Present</span>
+          <div class="card-header">
+            <span class="card-client">Asurion</span>
+            <span class="card-tag">Featured work</span>
           </div>
-          <p class="card-impact">"Led a team of 4 designers to replace a decade of legacy systems in under 2 years."</p>
+          <h3 class="card-title">Expert Workspace</h3>
+          <p class="card-description">Redesigning the primary tool for 10,000+ help desk and claims experts—a conversational, AI-powered workspace that makes every customer interaction feel simple, personal, and white-glove.</p>
+          <div class="card-meta">
+            <span class="card-role">Sr. Manager, Product Design</span>
+            <span class="card-year">2024–Present</span>
+          </div>
         </div>
       </a>
 
-      <!-- Card 2: Asurion In-Store Kiosk -->
-      <a href="case-study-instore-kiosk.html" class="case-card">
+      <!-- Card 2: Asurion Next-Gen Portal (Featured) -->
+      <a href="projects/case-study-nextgen-portal.html" class="case-card featured">
+        <div class="card-image has-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <img src="assets/images/projects/nextgen/next-gen-hero-2200x900.png" alt="Next-Gen Portal dashboard">
+        </div>
+        <div class="card-content">
+          <div class="card-header">
+            <span class="card-client">Asurion</span>
+            <span class="card-tag">Featured work</span>
+          </div>
+          <h3 class="card-title">Next-Gen Portal</h3>
+          <p class="card-description">Rebuilding the core operating system for 680+ repair stores nationwide—transforming how experts check in customers, manage repairs, and run their business.</p>
+          <div class="card-meta">
+            <span class="card-role">Sr. Manager, Product Design</span>
+            <span class="card-year">2023–Present</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3: Asurion In-Store Kiosk -->
+      <a href="projects/case-study-instore-kiosk.html" class="case-card">
         <div class="card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
           <div class="card-image-content">
             <span class="card-icon">📱</span>
           </div>
         </div>
         <div class="card-content">
-          <span class="card-client">Asurion</span>
+          <div class="card-header">
+            <span class="card-client">Asurion</span>
+          </div>
           <h3 class="card-title">In-Store Claims Kiosk</h3>
-          <p class="card-description">Bridging the gap between repair stores and claims systems—giving customers a way to file claims in under 3 minutes.</p>
+          <p class="card-description">Reducing claim resolution from 45 minutes to under 10—helping 10,000+ customers per month self-serve at repair stores.</p>
           <div class="card-meta">
             <span class="card-role">Principal Designer</span>
             <span class="card-year">2024</span>
@@ -84,15 +120,15 @@
         </div>
       </a>
 
-      <!-- Card 3: Disney Guest Service Suite -->
-      <a href="case-study-disney-guest-service.html" class="case-card">
-        <div class="card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-          <div class="card-image-content">
-            <span class="card-icon">🏰</span>
-          </div>
+      <!-- Card 4: Disney Guest Service Suite -->
+      <a href="projects/case-study-disney-guest-service.html" class="case-card">
+        <div class="card-image has-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+          <img src="assets/images/projects/gss/mobile-floating-gss.jpeg" alt="Disney Guest Service Suite mobile interface">
         </div>
         <div class="card-content">
-          <span class="card-client">Disney Parks & Experiences</span>
+          <div class="card-header">
+            <span class="card-client">Disney Parks & Experiences</span>
+          </div>
           <h3 class="card-title">Guest Service Suite</h3>
           <p class="card-description">Replacing 60+ disconnected apps with one responsive tool—improving Cast Member efficiency by 25% across 5 parks.</p>
           <div class="card-meta">
@@ -102,33 +138,15 @@
         </div>
       </a>
 
-      <!-- Card 4: Universal Halloween Horror Nights -->
-      <a href="case-study-halloween-horror-nights.html" class="case-card">
-        <div class="card-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-          <div class="card-image-content">
-            <span class="card-icon">🎃</span>
-          </div>
-        </div>
-        <div class="card-content">
-          <span class="card-client">Universal Orlando</span>
-          <h3 class="card-title">Halloween Horror Nights</h3>
-          <p class="card-description">Mobile-first e-commerce redesign that broke attendance records and drove double-digit growth in online ticket sales.</p>
-          <div class="card-meta">
-            <span class="card-role">UI/UX Art Director</span>
-            <span class="card-year">2018–2019</span>
-          </div>
-        </div>
-      </a>
-
       <!-- Card 5: Club Wyndham Vacation Planner -->
-      <a href="case-study-vacation-planner.html" class="case-card">
-        <div class="card-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-          <div class="card-image-content">
-            <span class="card-icon">✈️</span>
-          </div>
+      <a href="projects/case-study-vacation-planner.html" class="case-card">
+        <div class="card-image has-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+          <img src="assets/images/projects/wyndham/mobile-floating-explore-resorts.jpeg" alt="Club Wyndham Vacation Planner mobile interface">
         </div>
         <div class="card-content">
-          <span class="card-client">Travel + Leisure Co</span>
+          <div class="card-header">
+            <span class="card-client">Travel + Leisure Co</span>
+          </div>
           <h3 class="card-title">Vacation Planner</h3>
           <p class="card-description">Trip planning tool helping 809,000+ vacation club owners discover their dream destinations across 270+ resorts worldwide.</p>
           <div class="card-meta">
@@ -138,20 +156,22 @@
         </div>
       </a>
 
-      <!-- Card 6: Asurion Expert Workspace -->
-      <a href="case-study-expert-workspace.html" class="case-card">
-        <div class="card-image" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
+      <!-- Card 6: Universal Halloween Horror Nights -->
+      <a href="projects/case-study-halloween-horror-nights.html" class="case-card">
+        <div class="card-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
           <div class="card-image-content">
-            <span class="card-icon">🤖</span>
+            <span class="card-icon">🎃</span>
           </div>
         </div>
         <div class="card-content">
-          <span class="card-client">Asurion</span>
-          <h3 class="card-title">Expert Workspace</h3>
-          <p class="card-description">AI-powered call center and messaging platform helping tech support experts solve customer issues with guided steps and intelligent scripts.</p>
+          <div class="card-header">
+            <span class="card-client">Universal Orlando</span>
+          </div>
+          <h3 class="card-title">Halloween Horror Nights</h3>
+          <p class="card-description">Mobile-first e-commerce redesign that broke attendance records and drove double-digit growth in online ticket sales.</p>
           <div class="card-meta">
-            <span class="card-role">Sr. Manager, Product Design</span>
-            <span class="card-year">2024–Present</span>
+            <span class="card-role">UI/UX Art Director</span>
+            <span class="card-year">2018–2019</span>
           </div>
         </div>
       </a>
@@ -166,16 +186,13 @@
       <div class="about-grid">
         <div class="about-text">
           <p class="about-intro">
-            I'm a design leader based in <strong>Orlando, Florida</strong>, where some of the world's most visited experiences are created.
+            I'm a product design leader who focuses on <strong>outcomes, not activity</strong>. I build teams that understand the why, take ownership of the how, and ship work that actually moves the business. Craft matters—but only when it's in service of real users and real results.
           </p>
           <p>
-            For over 15 years, I've led teams at the intersection of brand, product, and technology—building digital experiences that serve millions of users while honoring business goals.
+            I lead by example. I give direct feedback, set high standards, and put my team first—removing noise, creating focus, and leveling people up through the work itself. Healthy teams outperform clever process every time.
           </p>
           <p>
-            My work spans enterprise-scale systems: internal tools for 60,000+ Disney Cast Members, e-commerce for Universal's flagship events, vacation planning for 800K+ club owners, and the operating system powering 700+ Asurion repair stores.
-          </p>
-          <p>
-            I believe great design leadership means building cultures where craft thrives, stakeholders are partners, and users always come first.
+            I write openly about design, leadership, and growth on my Substack and LinkedIn. If you're looking for a leader who values accountability, momentum, and humans over hype, we should talk.
           </p>
         </div>
         <div class="about-expertise">
@@ -210,7 +227,7 @@
   <!-- Testimonial -->
   <section class="testimonial-section">
     <blockquote class="testimonial">
-      <p>"Ricardo has developed a customer-centric approach that builds a brand reputation with authenticity."</p>
+      <p>Ricardo has developed a customer-centric approach that builds a brand reputation with authenticity.</p>
       <cite>— Erik Dubois, VP Marketing at Zaner-Bloser</cite>
     </blockquote>
   </section>
@@ -223,15 +240,15 @@
         Currently leading product design at Asurion. Open to conversations about design leadership, collaboration, and new opportunities.
       </p>
       <div class="connect-links">
-        <a href="https://www.linkedin.com/in/ricardodeazua/" target="_blank" class="connect-link">
+        <a href="https://www.linkedin.com/in/ricardodeazua/" target="_blank" rel="noopener noreferrer" class="connect-link">
           <span class="link-icon">in</span>
           LinkedIn
         </a>
-        <a href="https://dribbble.com/rlopezde" target="_blank" class="connect-link">
+        <a href="https://dribbble.com/rlopezde" target="_blank" rel="noopener noreferrer" class="connect-link">
           <span class="link-icon">◉</span>
           Dribbble
         </a>
-        <a href="mailto:hello@deazuadesign.com" class="connect-link">
+        <a href="#" class="connect-link" id="emailLink" onclick="return false;">
           <span class="link-icon">✉</span>
           Email
         </a>
@@ -244,6 +261,20 @@
     <p>© 2026 De Azua Design. Designed with intention.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Obfuscated email to prevent bot harvesting
+    (function() {
+      const el = document.getElementById('emailLink');
+      if (el) {
+        const u = 'hello';
+        const d = 'deazuadesign.com';
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.location.href = 'mai' + 'lto:' + u + '@' + d;
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

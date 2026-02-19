@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Expert Workspace | De Azua Design</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/case-study.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="cursor cursor-dot" aria-hidden="true"></div>
+  <div class="cursor cursor-outline" aria-hidden="true"></div>
+
+  <!-- Password Protection Modal -->
+  <div class="password-overlay" id="passwordOverlay">
+    <div class="password-modal">
+      <div class="password-modal-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <h3 class="password-modal-title">Protected Content</h3>
+      <p class="password-modal-description">This case study contains confidential work. Please enter the password to continue.</p>
+      <form class="password-form" id="passwordForm">
+        <div class="password-input-wrapper">
+          <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" autocomplete="off">
+        </div>
+        <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
+        <button type="submit" class="password-submit">Unlock</button>
+      </form>
+      <a href="../index.html#work" class="password-back">← Back to Work</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">
+      <img src="../assets/images/logo.png" alt="De Azua Design" class="logo-img">
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#connect">Connect</a>
+    </div>
+  </nav>
+
+  <!-- Case Study Hero -->
+  <section class="case-hero">
+    <div class="case-hero-gradient" style="background: 
+      radial-gradient(ellipse 80% 60% at 20% 40%, rgba(99, 102, 241, 0.4) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 80%, rgba(0, 245, 212, 0.2) 0%, transparent 50%);"></div>
+    <div class="case-hero-content">
+      <a href="../index.html#work" class="case-back">← Back to Work</a>
+      <p class="case-client">Asurion</p>
+      <h1 class="case-title">Expert Workspace</h1>
+      <p class="case-intro">
+        Redesigning the primary tool for 10,000+ help desk and claims experts—a conversational, AI-powered workspace that makes every customer interaction feel simple, personal, and white-glove.
+      </p>
+      
+      <div class="case-meta">
+        <div class="meta-item">
+          <p class="meta-label">Role</p>
+          <p class="meta-value">Sr. Manager, Product Design</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Timeline</p>
+          <p class="meta-value">2024 – Present</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Platform</p>
+          <p class="meta-value">Web (Call Center & Messaging)</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Status</p>
+          <p class="meta-value">In Progress</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prototype Preview -->
+  <div class="case-content">
+    <div class="image-placeholder image-hero fade-in-section">
+      <div class="image-placeholder-content">
+        <div class="image-placeholder-icon">🎬</div>
+        <p>Prototype video coming soon</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vision Section -->
+  <div class="case-content-narrow">
+    <section class="case-section fade-in-section">
+      <p class="case-section-title">The Vision</p>
+      <h3>Less typey, more talkey</h3>
+      <p>
+        Asurion's help desk and claims experts handle millions of customer interactions every year—troubleshooting tech issues, filing insurance claims, and resolving problems across chat and voice. Their current tools are fragmented, require too much manual work, and make it hard to deliver the fast, personal service customers expect.
+      </p>
+      <p>
+        Expert Workspace reimagines this experience. When an expert connects with a customer, the system works quietly in the background—bringing together the right tools, the right insights, and the right next steps. It should feel like a single, thoughtful conversation backed by deep expertise, showing customers that we know them and we're here to help.
+      </p>
+    </section>
+  </div>
+
+  <!-- Guiding Principles -->
+  <div class="case-content">
+    <p class="case-section-title fade-in-section" style="text-align: center; margin-bottom: var(--space-lg);">Guiding Principles</p>
+    <div class="highlight-grid fade-in-section">
+      <div class="highlight-card">
+        <div class="highlight-icon">👁️</div>
+        <h4 class="highlight-title">See What You Need</h4>
+        <p class="highlight-text">Guidance, tools, and next steps in one clear workspace—so experts stay focused on the conversation, not the system.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🤝</div>
+        <h4 class="highlight-title">Know the Customer</h4>
+        <p class="highlight-text">Instantly recognize who we're helping and what they need—delivering a personalized, white-glove experience from the first message.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">✨</div>
+        <h4 class="highlight-title">Build Clarity</h4>
+        <p class="highlight-text">Plain, friendly language and transparent AI recommendations—clarity turns complexity into confidence.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">⚡</div>
+        <h4 class="highlight-title">Remove Friction</h4>
+        <p class="highlight-text">Automate the busywork so experts can focus on real human connection—the quality that defines Asurion's service.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">📈</div>
+        <h4 class="highlight-title">Improve Together</h4>
+        <p class="highlight-text">A platform that learns from millions of interactions while coaching experts in the moment to build confidence and sharpen skills.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- My Role -->
+  <div class="case-content-narrow">
+    <section class="case-section fade-in-section">
+      <p class="case-section-title">My Role</p>
+      <h3>Defining the future of expert tools</h3>
+      <p>
+        I'm leading design strategy for Expert Workspace—defining the principles and vision that will shape how 10,000+ help desk and claims experts interact with customers every day. This means setting the direction for an AI-powered platform that needs to feel simple on the surface while being sophisticated underneath.
+      </p>
+      <p>
+        I work closely with product, engineering, and operations leadership to align on strategy, validate concepts with frontline experts, and ensure we're building tools that genuinely improve the customer experience—not just automate it.
+      </p>
+      
+      <div class="role-list">
+        <span class="role-tag">0→1 Design Leadership</span>
+        <span class="role-tag">Team Building</span>
+        <span class="role-tag">Service Design</span>
+        <span class="role-tag">User Research</span>
+        <span class="role-tag">Design Systems</span>
+        <span class="role-tag">Stakeholder Workshops</span>
+        <span class="role-tag">Strategy & Vision</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- Next Project -->
+  <section class="next-project">
+    <p class="next-project-label">Next Project</p>
+    <h2 class="next-project-title">Next-Gen Portal</h2>
+    <a href="case-study-nextgen-portal.html" class="next-project-link">
+      View Case Study <span>→</span>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 De Azua Design. Designed with intention.</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Password Protection
+      const overlay = document.getElementById('passwordOverlay');
+      const form = document.getElementById('passwordForm');
+      const input = document.getElementById('passwordInput');
+      const error = document.getElementById('passwordError');
+      const CORRECT_PASSWORD = 'exwo';
+      const STORAGE_KEY = 'pw_expert_workspace';
+      
+      // Check if already unlocked
+      if (sessionStorage.getItem(STORAGE_KEY) === 'unlocked') {
+        overlay.classList.add('hidden');
+      } else {
+        input.focus();
+      }
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (input.value === CORRECT_PASSWORD) {
+          sessionStorage.setItem(STORAGE_KEY, 'unlocked');
+          overlay.classList.add('hidden');
+        } else {
+          input.classList.add('error');
+          error.classList.add('visible');
+          input.value = '';
+          setTimeout(() => {
+            input.classList.remove('error');
+          }, 400);
+        }
+      });
+      
+      input.addEventListener('input', () => {
+        error.classList.remove('visible');
+      });
+
+      // Scroll animations
+      const sections = document.querySelectorAll('.fade-in-section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
+</body>
+</html>
