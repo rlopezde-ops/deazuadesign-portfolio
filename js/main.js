@@ -2,6 +2,13 @@
    Ricardo De Azua Portfolio - Interactions
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   Feature Flags
+   -------------------------------------------------------------------------- */
+const FEATURE_FLAGS = {
+  testimonialSection: false  // Set to true when ready with new quotes and design
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize custom cursor
   initCustomCursor();
@@ -20,7 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize hero title interactions (gradient shift)
   initHeroTitleEffects();
+  
+  // Apply feature flags
+  applyFeatureFlags();
 });
+
+function applyFeatureFlags() {
+  if (!FEATURE_FLAGS.testimonialSection) {
+    const testimonial = document.querySelector('.testimonial-section');
+    if (testimonial) testimonial.style.display = 'none';
+  }
+}
 
 /* --------------------------------------------------------------------------
    Custom Cursor
@@ -104,9 +121,10 @@ function initCustomCursor() {
    -------------------------------------------------------------------------- */
 function initScrollAnimations() {
   // Add fade-in class to elements we want to animate
-  const animatedElements = document.querySelectorAll(
-    '.case-card, .expertise-item, .about-text p, .testimonial'
-  );
+  const testimonialSelector = FEATURE_FLAGS.testimonialSection ? '.testimonial' : '';
+  const animatedSelectors = ['.case-card', '.expertise-item', '.about-text p'].filter(Boolean);
+  if (testimonialSelector) animatedSelectors.push(testimonialSelector);
+  const animatedElements = document.querySelectorAll(animatedSelectors.join(', '));
   
   animatedElements.forEach(el => {
     el.classList.add('fade-in');

@@ -113,6 +113,14 @@ Passwords are stored in sessionStorage—users enter once per browser session.
 
 ---
 
+## Feature Flags
+
+| Flag | Location | Purpose |
+|------|----------|---------|
+| `testimonialSection` | `js/main.js` → `FEATURE_FLAGS` | Hides homepage testimonial. Set to `true` when new quotes and design are ready. |
+
+---
+
 ## Local Development
 
 ```bash
