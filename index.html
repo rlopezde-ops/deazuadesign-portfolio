@@ -9,10 +9,11 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.youtube.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.youtube.com;">
   <link rel="stylesheet" href="css/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -194,6 +195,9 @@
           <p>
             I write openly about design, leadership, and growth on my Substack and LinkedIn. If you're looking for a leader who values accountability, momentum, and humans over hype, we should talk.
           </p>
+          <p>
+            <a href="leadership.html" class="about-leadership-link">Learn more about how I lead <span class="arrow">→</span></a>
+          </p>
         </div>
         <div class="about-expertise">
           <h3 class="expertise-title">Expertise</h3>
@@ -225,7 +229,7 @@
   </section>
 
   <!-- Testimonial -->
-  <section class="testimonial-section">
+  <section id="homepage-testimonial" class="testimonial-section">
     <blockquote class="testimonial">
       <p>Ricardo has developed a customer-centric approach that builds a brand reputation with authenticity.</p>
       <cite>— Erik Dubois, VP Marketing at Zaner-Bloser</cite>

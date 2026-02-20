@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function applyFeatureFlags() {
   if (!FEATURE_FLAGS.testimonialSection) {
-    const testimonial = document.querySelector('.testimonial-section');
+    const testimonial = document.getElementById('homepage-testimonial');
     if (testimonial) testimonial.style.display = 'none';
   }
 }

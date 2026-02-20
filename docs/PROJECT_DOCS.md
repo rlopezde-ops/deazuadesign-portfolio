@@ -9,6 +9,7 @@ Single source of truth for structure, conventions, and patterns. **Reference thi
 ```
 deazuadesign-portfolio/
 ├── index.html              # Homepage with work cards
+├── leadership.html         # Leadership philosophy page (linked from About)
 ├── assets/
 │   └── images/
 │       ├── logo.png
@@ -88,6 +89,10 @@ Both must stay in sync. See "Hero Image Pattern" below.
 6. Next project CTA
 7. Footer
 
+### Leadership Page
+
+Standalone page at `leadership.html` (root level). Linked from the About section on the homepage. Uses same design system as case studies: `case-hero`, `case-section`, `highlight-grid`, `highlight-card`, `testimonial`, `next-project`. Four themed sections: Building Teams, Ownership & Clarity, Growth & Innovation, Driving Impact. Each section includes a testimonial quote from check-ins.
+
 ---
 
 ## CSS Classes Reference
@@ -96,6 +101,8 @@ Both must stay in sync. See "Hero Image Pattern" below.
 |-------|----------|---------|
 | `case-image image-hero` | case-study.css | Hero image container (450px height) |
 | `card-image has-image` | main.css | Homepage card with image |
+| `about-leadership-link` | main.css | About section link to leadership.html |
+| `leadership-cta-links` | main.css | Dual CTA container on leadership page |
 | `feature-image has-image` | case-study.css | Feature block with image |
 | `image-placeholder` | case-study.css | Placeholder when no image yet |
 
@@ -110,6 +117,18 @@ Both must stay in sync. See "Hero Image Pattern" below.
 | Disney Guest Service Suite | `case-study-disney-guest-service.html` | `genie` |
 
 Passwords are stored in sessionStorage—users enter once per browser session.
+
+---
+
+## Iconoir Icons
+
+Icons are provided by [Iconoir](https://iconoir.com/) (1500+ SVG icons, MIT license). Loaded via `@import` in `main.css` from the CDN.
+
+**Usage:** `<i class="iconoir-{icon-name}"></i>`
+
+- Browse icons: [iconoir.com](https://iconoir.com/)
+- Icons inherit font size and `color` (styled via CSS mask)
+- Example: `<i class="iconoir-hand-brake"></i>`
 
 ---
 
