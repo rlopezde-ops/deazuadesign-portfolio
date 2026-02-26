@@ -15,6 +15,15 @@ deazuadesign-portfolio/
 │       ├── logo.png
 │       └── projects/
 │           ├── gss/        # Disney Guest Service Suite
+│           ├── claims/     # In-Store Claims Kiosk
+│           │   ├── claims-hero-2200x900.png
+│           │   ├── claims-feature-block-compliance-1200x700.png   # Challenge 01
+│           │   ├── claims-feature-block-disconnected-1200x700.png # Challenge 02
+│           │   ├── claims-feature-block-repair-2-1200x700.png     # Challenge 03 (alternate)
+│           │   ├── claims-feature-block-repair-1200x700.png       # Challenge 03
+│           │   ├── claims-feature-block-choose-1200x700.png       # Evolution (Kiosk to Handheld)
+│           │   ├── claims-feature-block-service design-1200x700.png # Process (Service design)
+│           │   └── claims-feature-block-pilot-1200x700.png        # Process (Store pilot)
 │           ├── nextgen/    # Next-Gen Portal
 │           │   ├── next-gen-hero-2200x900.png
 │           │   ├── next-gen-feature-block-1200x700.png  # Final design

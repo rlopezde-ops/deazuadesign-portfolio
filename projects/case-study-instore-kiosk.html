@@ -70,11 +70,8 @@
 
   <!-- Hero Image -->
   <div class="case-content">
-    <div class="image-placeholder image-hero">
-      <div class="image-placeholder-content">
-        <div class="image-placeholder-icon">🖼️</div>
-        <p>Hero image: Kiosk in retail environment</p>
-      </div>
+    <div class="case-image image-hero">
+      <img src="../assets/images/projects/claims/claims-hero-2200x900.png" alt="In-Store Claims Kiosk hero">
     </div>
   </div>
 
@@ -128,11 +125,8 @@
   <!-- Challenge Feature Blocks -->
   <div class="case-content">
     <div class="feature-block fade-in-section">
-      <div class="feature-image">
-        <div class="feature-image-content">
-          <div class="feature-image-icon">⚖️</div>
-          <p>Regulatory constraints</p>
-        </div>
+      <div class="feature-image has-image">
+        <img src="../assets/images/projects/claims/claims-feature-block-compliance-1200x700.png" alt="Regulatory and compliance barriers in claims">
       </div>
       <div class="feature-text">
         <p class="feature-label">Challenge 01</p>
@@ -144,11 +138,8 @@
     </div>
 
     <div class="feature-block reverse fade-in-section">
-      <div class="feature-image">
-        <div class="feature-image-content">
-          <div class="feature-image-icon">🔌</div>
-          <p>Disconnected systems</p>
-        </div>
+      <div class="feature-image has-image">
+        <img src="../assets/images/projects/claims/claims-feature-block-disconnected-1200x700.png" alt="Disconnected systems—store systems don't communicate with claims platform">
       </div>
       <div class="feature-text">
         <p class="feature-label">Challenge 02</p>
@@ -160,11 +151,8 @@
     </div>
 
     <div class="feature-block fade-in-section">
-      <div class="feature-image">
-        <div class="feature-image-content">
-          <div class="feature-image-icon">⏱️</div>
-          <p>Time drain</p>
-        </div>
+      <div class="feature-image has-image">
+        <img src="../assets/images/projects/claims/claims-feature-block-repair-2-1200x700.png" alt="Experts spread thin—time spent on claim issues vs repairs">
       </div>
       <div class="feature-text">
         <p class="feature-label">Challenge 03</p>
@@ -214,11 +202,8 @@
   <!-- Process Feature Block -->
   <div class="case-content">
     <div class="feature-block reverse fade-in-section">
-      <div class="feature-image">
-        <div class="feature-image-content">
-          <div class="feature-image-icon">🗺️</div>
-          <p>Service blueprint</p>
-        </div>
+      <div class="feature-image has-image">
+        <img src="../assets/images/projects/claims/claims-feature-block-service%20design-1200x700.png" alt="Service design blueprint used to align stakeholders">
       </div>
       <div class="feature-text">
         <p class="feature-label">Process</p>
@@ -230,11 +215,8 @@
     </div>
 
     <div class="feature-block fade-in-section">
-      <div class="feature-image">
-        <div class="feature-image-content">
-          <div class="feature-image-icon">🧪</div>
-          <p>Pilot store setup</p>
-        </div>
+      <div class="feature-image has-image">
+        <img src="../assets/images/projects/claims/claims-feature-block-pilot-1200x700.png" alt="In-store pilot setup for tabletop vs standing kiosk">
       </div>
       <div class="feature-text">
         <p class="feature-label">Process</p>
@@ -248,11 +230,33 @@
 
   <!-- Solution Hero -->
   <div class="case-content">
-    <div class="image-placeholder image-hero fade-in-section">
-      <div class="image-placeholder-content">
-        <div class="image-placeholder-icon">✨</div>
-        <p>Final design: Tablet kiosk interface</p>
+    <section class="video-section fade-in-section" aria-label="Final design video">
+      <div class="video-card" id="videoTrigger" data-video-id="d3XT4VLOe7c" role="button" tabindex="0" aria-label="Play final design video">
+        <div class="video-card-content">
+          <div class="video-play-btn" aria-hidden="true">
+            <div class="video-play-icon"></div>
+          </div>
+          <p class="video-card-label">Final design: Tablet kiosk interface</p>
+        </div>
       </div>
+    </section>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-overlay" id="videoModalOverlay"></div>
+    <div class="video-modal-wrapper">
+      <div class="video-modal-header">
+        <div class="video-modal-info">
+          <h4 class="video-modal-title">In-Store Claims Kiosk: Final Design</h4>
+          <p class="video-modal-description">Walkthrough of the tablet kiosk experience used for in-store claim self-service.</p>
+        </div>
+        <button class="video-modal-close" id="videoModalClose" aria-label="Close video"></button>
+      </div>
+      <div class="video-modal-player">
+        <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p class="video-modal-hint">Press <kbd>Esc</kbd> to close</p>
     </div>
   </div>
 
@@ -291,11 +295,8 @@
     </div>
 
     <div class="feature-block fade-in-section">
-      <div class="feature-image">
-        <div class="feature-image-content">
-          <div class="feature-image-icon">📱</div>
-          <p>Handheld tablet experience</p>
-        </div>
+      <div class="feature-image has-image">
+        <img src="../assets/images/projects/claims/claims-feature-block-choose-1200x700.png" alt="Evolution from kiosk to handheld tablet experience">
       </div>
       <div class="feature-text">
         <p class="feature-label">Evolution</p>
@@ -393,6 +394,54 @@
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
       sections.forEach(section => observer.observe(section));
+
+      // Video Modal Functionality
+      const videoTrigger = document.getElementById('videoTrigger');
+      const videoModal = document.getElementById('videoModal');
+      const videoModalOverlay = document.getElementById('videoModalOverlay');
+      const videoModalClose = document.getElementById('videoModalClose');
+      const videoIframe = document.getElementById('videoIframe');
+
+      if (videoTrigger && videoModal && videoIframe && videoModalOverlay && videoModalClose) {
+        const videoId = videoTrigger.dataset.videoId;
+
+        const openModal = () => {
+          // mute=1 is required for autoplay in modern browsers (Chrome, Safari, Firefox)
+          videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1`;
+          videoModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        };
+
+        const closeModal = () => {
+          videoModal.classList.remove('active');
+          setTimeout(() => {
+            videoIframe.src = '';
+          }, 300); // Wait for animation
+          document.body.style.overflow = '';
+        };
+
+        // Open modal (click + keyboard)
+        videoTrigger.addEventListener('click', openModal);
+        videoTrigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal();
+          }
+        });
+
+        // Close on overlay click
+        videoModalOverlay.addEventListener('click', closeModal);
+
+        // Close on button click
+        videoModalClose.addEventListener('click', closeModal);
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+            closeModal();
+          }
+        });
+      }
     });
   </script>
 </body>
