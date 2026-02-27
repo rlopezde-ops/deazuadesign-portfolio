@@ -65,6 +65,10 @@ Both must stay in sync. See "Hero Image Pattern" below.
 - **From `index.html`**: `assets/images/projects/{project}/filename.ext`
 - **From `projects/*.html`**: `../assets/images/projects/{project}/filename.ext`
 
+### iOS Safe Area Support
+
+All pages must include `viewport-fit=cover` in the viewport meta tag so `env(safe-area-inset-*)` resolves correctly on notch devices (Dynamic Island, etc.).
+
 ### Hero Image Pattern
 
 **Case study hero** (in `projects/case-study-*.html`):

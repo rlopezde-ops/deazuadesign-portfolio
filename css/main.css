@@ -175,6 +175,7 @@ q {
   justify-content: space-between;
   align-items: center;
   padding: var(--space-md) var(--space-xl);
+  padding-top: calc(var(--space-md) + env(safe-area-inset-top, 0px));
   z-index: 100;
   background: linear-gradient(180deg, var(--bg-primary) 0%, transparent 100%);
 }
@@ -330,6 +331,12 @@ q {
 @media (prefers-reduced-motion: reduce) {
   .hero-floating-icons {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-float-icon--ease-curve {
+    top: calc(var(--icon-y, 55%) + 80px);
   }
 }
 
@@ -942,6 +949,7 @@ a.case-card {
 @media (max-width: 768px) {
   .nav {
     padding: var(--space-sm) var(--space-md);
+    padding-top: calc(var(--space-sm) + env(safe-area-inset-top, 0px));
   }
   
   .nav-links {
