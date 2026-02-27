@@ -28,6 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize hero title interactions (gradient shift)
   initHeroTitleEffects();
   
+  // Initialize hero floating icons (scroll opacity + cursor parallax)
+  initHeroFloatingIcons();
+  
+  // Initialize password visibility toggle (for protected case studies)
+  initPasswordToggle();
+  
   // Apply feature flags
   applyFeatureFlags();
 });
@@ -37,6 +43,43 @@ function applyFeatureFlags() {
     const testimonial = document.getElementById('homepage-testimonial');
     if (testimonial) testimonial.style.display = 'none';
   }
+}
+
+/* --------------------------------------------------------------------------
+   Password Visibility Toggle (WCAG-compliant)
+   -------------------------------------------------------------------------- */
+function initPasswordToggle() {
+  const toggle = document.getElementById('passwordToggle');
+  const input = document.getElementById('passwordInput');
+  const statusEl = document.getElementById('passwordStatus');
+  const form = document.getElementById('passwordForm');
+
+  if (!toggle || !input || !form) return;
+
+  const iconEl = toggle.querySelector('i');
+  if (!iconEl) return;
+
+  toggle.addEventListener('click', () => {
+    const isVisible = input.type === 'text';
+    input.type = isVisible ? 'password' : 'text';
+    toggle.setAttribute('aria-pressed', !isVisible);
+    toggle.setAttribute('title', isVisible ? 'Show password' : 'Hide password');
+    iconEl.className = isVisible ? 'iconoir-eye' : 'iconoir-eye-closed';
+    iconEl.setAttribute('aria-hidden', 'true');
+
+    if (statusEl) {
+      statusEl.textContent = isVisible ? 'Your password is hidden.' : 'Your password is shown.';
+    }
+  });
+
+  form.addEventListener('submit', () => {
+    if (input.type === 'text') {
+      input.type = 'password';
+      toggle.setAttribute('aria-pressed', 'false');
+      toggle.setAttribute('title', 'Show password');
+      iconEl.className = 'iconoir-eye';
+    }
+  }, true);
 }
 
 /* --------------------------------------------------------------------------
@@ -295,4 +338,58 @@ function initHeroTitleEffects() {
   wrapper.addEventListener('mouseenter', handleMouseEnter);
   wrapper.addEventListener('mouseleave', handleMouseLeave);
   wrapper.addEventListener('mousemove', handleMouseMove);
+}
+
+/* --------------------------------------------------------------------------
+   Hero Floating Icons (Scroll Opacity + Cursor Parallax)
+   -------------------------------------------------------------------------- */
+function initHeroFloatingIcons() {
+  const hero = document.querySelector('.hero');
+  const iconsContainer = document.querySelector('.hero-floating-icons');
+
+  if (!hero || !iconsContainer) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const CURSOR_PX_MAX = 6;
+  const LERP_EASE = 0.08;
+
+  let mouseX = 0;
+  let cursorShiftX = 0;
+  let rafId = null;
+
+  function tick() {
+    const rect = hero.getBoundingClientRect();
+    const scrollProgress = Math.max(0, -rect.top / rect.height);
+    const opacity = 0.25 + Math.min(1, scrollProgress / 0.33) * 0.20;
+    hero.style.setProperty('--hero-icons-opacity', String(opacity));
+
+    if (hasFinePointer) {
+      cursorShiftX += (mouseX - cursorShiftX) * LERP_EASE;
+      hero.style.setProperty('--cursor-shift-x', `${cursorShiftX}px`);
+    }
+
+    rafId = requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  });
+
+  if (hasFinePointer) {
+    document.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const normalized = Math.max(-1, Math.min(1, (e.clientX - centerX) / (rect.width / 2)));
+      mouseX = normalized * CURSOR_PX_MAX;
+    });
+  }
+
+  rafId = requestAnimationFrame(tick);
 }

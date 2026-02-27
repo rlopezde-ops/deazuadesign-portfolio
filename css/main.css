@@ -61,7 +61,7 @@
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 10002; /* Above password overlay (10001) so cursor remains visible in modals */
   mix-blend-mode: difference;
 }
 
@@ -159,6 +159,10 @@ img {
   height: auto;
 }
 
+q {
+  quotes: '\201C' '\201D';
+}
+
 /* --------------------------------------------------------------------------
    Navigation
    -------------------------------------------------------------------------- */
@@ -239,6 +243,7 @@ img {
 .hero-gradient {
   position: absolute;
   inset: 0;
+  z-index: -1;
   background: 
     radial-gradient(ellipse 80% 60% at 20% 40%, rgba(181, 126, 220, 0.4) 0%, transparent 60%),
     radial-gradient(ellipse 60% 80% at 80% 20%, rgba(0, 245, 212, 0.25) 0%, transparent 50%),
@@ -259,6 +264,72 @@ img {
   100% {
     transform: scale(1.05) rotate(-1deg);
     opacity: 1;
+  }
+}
+
+/* Hero floating icons - decorative layer behind headline */
+.hero-floating-icons {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-float-icon {
+  position: absolute;
+  left: var(--icon-x, 50%);
+  top: var(--icon-y, 50%);
+  transform: translate(-50%, -50%) translateX(var(--cursor-shift-x, 0));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: var(--hero-icons-opacity, 0.25);
+  color: var(--text-secondary);
+  transition: opacity 0.4s ease;
+}
+
+.hero-float-icon svg {
+  width: 64px;
+  height: 64px;
+  display: block;
+}
+
+.hero-float-icon-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-float-icon--accent {
+  color: var(--primary-light);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-float-icon-inner {
+    animation: heroFloat var(--float-duration, 14s) ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+  }
+}
+
+@keyframes heroFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  25% {
+    transform: translateY(calc(-1 * var(--drift-amplitude, 8px))) rotate(2deg);
+  }
+  50% {
+    transform: translateY(0) rotate(4deg);
+  }
+  75% {
+    transform: translateY(var(--drift-amplitude, 8px)) rotate(-4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-floating-icons {
+    display: none;
   }
 }
 
@@ -691,7 +762,14 @@ a.case-card {
 .expertise-icon {
   font-size: 1.5rem;
   margin-bottom: var(--space-xs);
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+}
+
+.expertise-icon i {
+  font-size: inherit;
+  color: inherit;
 }
 
 .expertise-item h4 {
@@ -730,12 +808,12 @@ a.case-card {
 }
 
 .testimonial p::before {
-  content: '"';
+  content: '\201C';
   color: var(--primary);
 }
 
 .testimonial p::after {
-  content: '"';
+  content: '\201D';
   color: var(--primary);
 }
 
@@ -792,8 +870,14 @@ a.case-card {
 }
 
 .link-icon {
-  font-weight: 700;
-  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.25rem;
+}
+
+.link-icon i {
+  font-size: inherit;
+  color: inherit;
 }
 
 /* --------------------------------------------------------------------------
