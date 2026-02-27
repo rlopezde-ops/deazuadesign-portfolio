@@ -33,9 +33,13 @@
       <h3 class="password-modal-title">Protected Content</h3>
       <p class="password-modal-description">This case study contains confidential work. Please enter the password to continue.</p>
       <form class="password-form" id="passwordForm">
-        <div class="password-input-wrapper">
+        <div class="password-input-wrapper" role="group">
           <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" autocomplete="off">
+          <button type="button" class="password-toggle" id="passwordToggle" aria-pressed="false" aria-controls="passwordInput" aria-label="Show password" title="Show password">
+            <i class="iconoir-eye" aria-hidden="true"></i>
+          </button>
         </div>
+        <div id="passwordStatus" aria-live="assertive" class="visually-hidden"></div>
         <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
         <button type="submit" class="password-submit">Unlock</button>
       </form>
@@ -113,7 +117,7 @@
     <div class="feature-block fade-in-section">
       <div class="feature-image">
         <div class="feature-image-content">
-          <div class="feature-image-icon">📱</div>
+          <div class="feature-image-icon"><i class="iconoir-smartphone-device"></i></div>
           <p>Device constraints diagram</p>
         </div>
       </div>
@@ -157,17 +161,17 @@
   <div class="case-content">
     <div class="highlight-grid fade-in-section">
       <div class="highlight-card">
-        <div class="highlight-icon">💡</div>
+        <div class="highlight-icon"><i class="iconoir-light-bulb-on"></i></div>
         <h4 class="highlight-title">Inform</h4>
         <p class="highlight-text">Ensure staff has access to guest and park information they need to help guests.</p>
       </div>
       <div class="highlight-card">
-        <div class="highlight-icon">✨</div>
+        <div class="highlight-icon"><i class="iconoir-spark"></i></div>
         <h4 class="highlight-title">Simplify</h4>
         <p class="highlight-text">Provide staff with a better view of guest information and quick access from multiple systems.</p>
       </div>
       <div class="highlight-card">
-        <div class="highlight-icon">💪</div>
+        <div class="highlight-icon"><i class="iconoir-shield-check"></i></div>
         <h4 class="highlight-title">Empower</h4>
         <p class="highlight-text">Allow more staff to assist guests in real-time regardless of their device.</p>
       </div>
@@ -209,7 +213,7 @@
     <div class="feature-block fade-in-section">
       <div class="feature-image">
         <div class="feature-image-content">
-          <div class="feature-image-icon">📋</div>
+          <div class="feature-image-icon"><i class="iconoir-clipboard-check"></i></div>
           <p>Interaction history view</p>
         </div>
       </div>
@@ -225,7 +229,7 @@
     <div class="feature-block reverse fade-in-section">
       <div class="feature-image">
         <div class="feature-image-content">
-          <div class="feature-image-icon">📊</div>
+          <div class="feature-image-icon"><i class="iconoir-candlestick-chart"></i></div>
           <p>Multiple view options</p>
         </div>
       </div>
@@ -241,7 +245,7 @@
     <div class="feature-block fade-in-section">
       <div class="feature-image">
         <div class="feature-image-content">
-          <div class="feature-image-icon">⌚</div>
+          <div class="feature-image-icon"><i class="iconoir-wristwatch"></i></div>
           <p>MagicBand scanning</p>
         </div>
       </div>
@@ -257,7 +261,7 @@
     <div class="feature-block reverse fade-in-section">
       <div class="feature-image">
         <div class="feature-image-content">
-          <div class="feature-image-icon">✏️</div>
+          <div class="feature-image-icon"><i class="iconoir-edit-pencil"></i></div>
           <p>Simplified form design</p>
         </div>
       </div>

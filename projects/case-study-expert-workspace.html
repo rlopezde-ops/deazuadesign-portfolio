@@ -33,9 +33,13 @@
       <h3 class="password-modal-title">Protected Content</h3>
       <p class="password-modal-description">This case study contains confidential work. Please enter the password to continue.</p>
       <form class="password-form" id="passwordForm">
-        <div class="password-input-wrapper">
+        <div class="password-input-wrapper" role="group">
           <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" autocomplete="off">
+          <button type="button" class="password-toggle" id="passwordToggle" aria-pressed="false" aria-controls="passwordInput" aria-label="Show password" title="Show password">
+            <i class="iconoir-eye" aria-hidden="true"></i>
+          </button>
         </div>
+        <div id="passwordStatus" aria-live="assertive" class="visually-hidden"></div>
         <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
         <button type="submit" class="password-submit">Unlock</button>
       </form>
@@ -119,27 +123,27 @@
     <p class="case-section-title fade-in-section" style="text-align: center; margin-bottom: var(--space-lg);">Guiding Principles</p>
     <div class="highlight-grid fade-in-section">
       <div class="highlight-card">
-        <div class="highlight-icon">👁️</div>
+        <div class="highlight-icon"><i class="iconoir-eye"></i></div>
         <h4 class="highlight-title">See What You Need</h4>
         <p class="highlight-text">Guidance, tools, and next steps in one clear workspace—so experts stay focused on the conversation, not the system.</p>
       </div>
       <div class="highlight-card">
-        <div class="highlight-icon">🤝</div>
+        <div class="highlight-icon"><i class="iconoir-link"></i></div>
         <h4 class="highlight-title">Know the Customer</h4>
         <p class="highlight-text">Instantly recognize who we're helping and what they need—delivering a personalized, white-glove experience from the first message.</p>
       </div>
       <div class="highlight-card">
-        <div class="highlight-icon">✨</div>
+        <div class="highlight-icon"><i class="iconoir-keyframes"></i></div>
         <h4 class="highlight-title">Build Clarity</h4>
         <p class="highlight-text">Plain, friendly language and transparent AI recommendations—clarity turns complexity into confidence.</p>
       </div>
       <div class="highlight-card">
-        <div class="highlight-icon">⚡</div>
+        <div class="highlight-icon"><i class="iconoir-flash"></i></div>
         <h4 class="highlight-title">Remove Friction</h4>
         <p class="highlight-text">Automate the busywork so experts can focus on real human connection—the quality that defines Asurion's service.</p>
       </div>
       <div class="highlight-card">
-        <div class="highlight-icon">📈</div>
+        <div class="highlight-icon"><i class="iconoir-graph-up"></i></div>
         <h4 class="highlight-title">Improve Together</h4>
         <p class="highlight-text">A platform that learns from millions of interactions while coaching experts in the moment to build confidence and sharpen skills.</p>
       </div>

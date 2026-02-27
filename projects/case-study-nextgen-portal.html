@@ -33,9 +33,13 @@
       <h3 class="password-modal-title">Protected Content</h3>
       <p class="password-modal-description">This case study contains confidential work. Please enter the password to continue.</p>
       <form class="password-form" id="passwordForm">
-        <div class="password-input-wrapper">
+        <div class="password-input-wrapper" role="group">
           <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" autocomplete="off">
+          <button type="button" class="password-toggle" id="passwordToggle" aria-pressed="false" aria-controls="passwordInput" aria-label="Show password" title="Show password">
+            <i class="iconoir-eye" aria-hidden="true"></i>
+          </button>
         </div>
+        <div id="passwordStatus" aria-live="assertive" class="visually-hidden"></div>
         <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
         <button type="submit" class="password-submit">Unlock</button>
       </form>
@@ -202,17 +206,17 @@
   <div class="case-content">
     <div class="highlight-grid fade-in-section">
       <div class="highlight-card">
-        <div class="highlight-icon">🔗</div>
+        <div class="highlight-icon"><i class="iconoir-precision-tool"></i></div>
         <h4 class="highlight-title">Single Source of Truth</h4>
         <p class="highlight-text">Built on Microsoft D365 for parts, pricing, availability, and ordering—no more data silos.</p>
       </div>
       <div class="highlight-card">
-        <div class="highlight-icon">✨</div>
+        <div class="highlight-icon"><i class="iconoir-ease-curve-control-points"></i></div>
         <h4 class="highlight-title">Simplified Experience</h4>
         <p class="highlight-text">Clean interface where technicians easily understand what to do—without 2 weeks of training.</p>
       </div>
       <div class="highlight-card">
-        <div class="highlight-icon">🎨</div>
+        <div class="highlight-icon"><i class="iconoir-component"></i></div>
         <h4 class="highlight-title">Design System Powered</h4>
         <p class="highlight-text">Using Asurion's UI components to reduce dev time and create consistency.</p>
       </div>
