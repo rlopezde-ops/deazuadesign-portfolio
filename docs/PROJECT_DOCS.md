@@ -29,7 +29,13 @@ deazuadesign-portfolio/
 │           │   ├── next-gen-feature-block-1200x700.png  # Final design
 │           │   ├── next-gen-feature-card-1400x440.png  # Service blueprint
 │           │   └── next-gen-feature-card-legacy-1400x440.png  # Legacy system (Challenge 02)
-│           ├── universal/  # Halloween Horror Nights
+│           ├── universal/  # Halloween Horror Nights (legacy)
+│           ├── hhn/       # Halloween Horror Nights
+│           │   ├── hhn-hero-2200x900.png
+│           │   ├── hhn-feature-block-1400x440-2.png
+│           │   ├── hhn-cohesive-brand.png
+│           │   ├── hhn-tickets-new.png
+│           │   └── hhn-tickets-old.png
 │           └── wyndham/    # Vacation Planner
 ├── css/
 │   ├── main.css            # Global styles, variables, layout
