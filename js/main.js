@@ -256,15 +256,15 @@ function initNavScroll() {
   window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
-    // Add background when scrolled
+    // Add background when scrolled (opaque to prevent bleed-through on Safari Dynamic Island)
     if (currentScroll > 100) {
-      nav.style.background = 'rgba(15, 15, 26, 0.95)';
+      nav.style.background = 'rgba(15, 15, 26, 1)';
       nav.style.backdropFilter = 'blur(10px)';
       nav.style.boxShadow = '0 1px 0 rgba(181, 126, 220, 0.1)';
     } else {
-      nav.style.background = 'linear-gradient(180deg, rgba(15, 15, 26, 1) 0%, transparent 100%)';
-      nav.style.backdropFilter = 'none';
-      nav.style.boxShadow = 'none';
+      nav.style.background = '';
+      nav.style.backdropFilter = '';
+      nav.style.boxShadow = '';
     }
     
     lastScroll = currentScroll;
