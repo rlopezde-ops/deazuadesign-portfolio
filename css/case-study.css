@@ -407,10 +407,41 @@
    -------------------------------------------------------------------------- */
 .highlight-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
   margin: var(--space-xl) 0;
 }
+
+/* 4 cards: alternating wide/narrow rows of 2 */
+.highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+1) { grid-column: span 3; }
+.highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+2) { grid-column: span 2; }
+.highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+3) { grid-column: span 2; }
+.highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+4) { grid-column: span 3; }
+
+/* 5 cards: row 1 = wide + narrow, row 2 = 3 equal */
+.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(1) { grid-column: span 4; }
+.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(2) { grid-column: span 2; }
+.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(3),
+.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(4),
+.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(5) { grid-column: span 2; }
+
+/* 6+ cards: alternating wide/narrow rows of 2 */
+.highlight-grid:has(.highlight-card:nth-child(6)) {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+1) { grid-column: span 3; }
+.highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+2) { grid-column: span 2; }
+.highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+3) { grid-column: span 2; }
+.highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+4) { grid-column: span 3; }
 
 .highlight-card {
   background: var(--bg-card);
@@ -422,27 +453,16 @@
   overflow: hidden;
 }
 
-.highlight-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--transition-base);
-}
-
 .highlight-card:hover {
   transform: translateY(-4px);
   border-color: rgba(181, 126, 220, 0.2);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-.highlight-card:hover::before {
-  transform: scaleX(1);
+.highlight-card:active {
+  transform: translateY(-1px);
+  border-color: rgba(181, 126, 220, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
 }
 
 .highlight-icon {
@@ -530,6 +550,37 @@
 .impact-label {
   font-size: 0.9375rem;
   color: var(--text-secondary);
+}
+
+/* Impact icons: same gradient as impact text values */
+.impact-value i[class^='iconoir-']::before,
+.impact-value i[class*=' iconoir-']::before {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%) !important;
+  width: 1em;
+  height: 1em;
+}
+
+.impact-value i[class^='iconoir-'],
+.impact-value i[class*=' iconoir-'] {
+  font-size: 1em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* SVG fallback for impact icons when no solid variant exists.
+   Use with mask-image set via inline style, e.g. mask-image: url('data:image/svg+xml,...') */
+.impact-value .impact-icon--svg {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  vertical-align: middle;
 }
 
 /* --------------------------------------------------------------------------
@@ -1221,5 +1272,9 @@
   
   .highlight-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .highlight-grid:has(.highlight-card:nth-child(4)) .highlight-card {
+    grid-column: auto;
   }
 }

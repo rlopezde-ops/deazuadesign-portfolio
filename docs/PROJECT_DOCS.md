@@ -175,6 +175,14 @@ Icons are provided by [Iconoir](https://iconoir.com/) (1500+ SVG icons, MIT lice
 
 **Icon mapping:** Emojis have been replaced with Iconoir icons across the site. Placeholder cards (Expert Workspace, Halloween Horror Nights) and their image-placeholder sections keep emojis. Key mappings: `design-nib` (Brand), `color-filter` (Product), `community` (Culture), `spark` (Craft), `chat-bubble`, `shield-check`, `archery`, `link`, `leaf`, `flash`, `graph-up`, `search`, `user`, `umbrella`, `plus`, `light-bulb-on`, `wristwatch`, `edit-pencil`, `clipboard-check`, `candlestick-chart`, `smartphone-device`, `component`, `precision-tool`, `ease-curve-control-points`, `keyframes`, `eye`, `page`, `book-stack`, `linkedin`, `dribbble`, `mail`.
 
+### Impact Section Icons
+
+Impact cards (`.impact-section .impact-card .impact-value`) use Iconoir icons with the same accent gradient as numeric values. Prefer `-solid` variants for KPI/impact semantics.
+
+- **Gradient:** Icons inside `.impact-value` automatically get `linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%)` via CSS override on the Iconoir `::before` pseudo-element.
+- **Fallback:** When no solid variant exists, use `.impact-icon--svg` with `mask-image` set via inline style to show a custom SVG with the gradient.
+- **HHN example:** Broke attendance records → `iconoir-medal-1st-solid`; Increased mobile traffic & sales → `iconoir-stats-up-square-solid`.
+
 ### Hero Floating Icons (Homepage Only)
 
 Decorative inline SVG icons float around the hero headline "Crafting Experiences That Matter" on the homepage. Implemented in `index.html`, `main.css`, and `main.js` via `initHeroFloatingIcons()`.
