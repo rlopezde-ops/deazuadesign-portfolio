@@ -15,6 +15,11 @@ deazuadesign-portfolio/
 │       ├── logo.png
 │       └── projects/
 │           ├── gss/        # Disney Guest Service Suite
+│           │   ├── disney-gss-hero-2200x900.png           # Hero
+│           │   ├── gss-feature-card-guest-interaction.png  # Guest Interaction History
+│           │   ├── gss-feature-card-magic bands.png       # MagicBands & Media
+│           │   ├── gss-feature-card-dropdowns.png         # Challenge 01 (Not Responsive)
+│           │   ├── gss-feature-card-data-entry.png        # Simplified Data Entry
 │           ├── claims/     # In-Store Claims Kiosk
 │           │   ├── claims-hero-2200x900.png
 │           │   ├── claims-feature-block-compliance-1200x700.png   # Challenge 01
@@ -37,6 +42,13 @@ deazuadesign-portfolio/
 │           │   ├── hhn-tickets-new.png
 │           │   └── hhn-tickets-old.png
 │           └── wyndham/    # Vacation Planner
+│               ├── cw-hero-2200x900-2.png
+│               ├── cw-explore-resort-feature-1200x700.png  # Solution hero (Final design)
+│               ├── cw-explore-resort-member.png           # Member experience
+│               ├── cw-explore-resort-prospect.png         # Prospect experience
+│               ├── cw-feature-card-discoverability.png    # Challenge 01
+│               ├── cw-feature-card-education-gap.png      # Challenge 02
+│               └── cw-feature-card-inventory.png         # Challenge 03
 ├── css/
 │   ├── main.css            # Global styles, variables, layout
 │   └── case-study.css      # Case study page styles

@@ -7,3 +7,6 @@
 # Editor files
 *.swp
 *.swo
+
+# Large source files (GitHub 100MB limit)
+*.psd
