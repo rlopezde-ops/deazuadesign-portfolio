@@ -544,11 +544,14 @@ q {
 .how-i-lead-footer {
   max-width: 1200px;
   margin: var(--space-2xl) auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
 .how-i-lead-footer .testimonial {
-  margin-bottom: var(--space-lg);
+  margin: 0 auto var(--space-lg);
 }
 
 @media (max-width: 900px) {
@@ -914,6 +917,11 @@ a.case-card {
   padding: var(--space-3xl) var(--space-xl);
   display: flex;
   justify-content: center;
+}
+
+/* Leadership page: testimonials hidden for now (remove to restore) */
+.leadership-page .case-content-narrow:has(.testimonial-section) {
+  display: none;
 }
 
 .testimonial {
