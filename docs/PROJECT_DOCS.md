@@ -8,7 +8,7 @@ Single source of truth for structure, conventions, and patterns. **Reference thi
 
 ```
 deazuadesign-portfolio/
-├── index.html              # Homepage with work cards
+├── index.html              # Homepage: Work, How I Lead, About, Testimonial, Connect
 ├── leadership.html         # Leadership philosophy page (linked from About)
 ├── assets/
 │   └── images/
@@ -122,9 +122,17 @@ All pages must include `viewport-fit=cover` in the viewport meta tag so `env(saf
 6. Next project CTA
 7. Footer
 
+### Homepage How I Lead Section
+
+Condensed version of the leadership page, inserted between Work and About. Layout: centered—heading "How I Lead" with intro paragraph ("I build teams…") centered below it, then 4 highlight cards (Building Teams, Ownership & Clarity, Growth & Innovation, Driving Impact) in a 2x2 grid with the same spacing as case study cards (`gap: var(--space-lg)`). Below the cards: one testimonial quote and a link to the full leadership page. Uses `highlight-card` from case-study.css. Classes: `how-i-lead-section`, `how-i-lead-intro-text`, `how-i-lead-cards`, `how-i-lead-footer`.
+
+### Homepage About Section
+
+Content on the left, image on the right (mirrors How I Lead layout). Uses `about-grid` with `about-text` and `about-image-placeholder`. The placeholder shows "Photo coming soon" until a real image is added. To add a photo: replace the placeholder content with `<img src="assets/images/ricardo.jpg" alt="Ricardo De Azua">` — the container styles support `object-fit: cover`.
+
 ### Leadership Page
 
-Standalone page at `leadership.html` (root level). Linked from the About section on the homepage. Uses same design system as case studies: `case-hero`, `case-section`, `highlight-grid`, `highlight-card`, `testimonial`, `next-project`. Four themed sections: Building Teams, Ownership & Clarity, Growth & Innovation, Driving Impact. Each section includes a testimonial quote from check-ins.
+Standalone page at `leadership.html` (root level). Linked from the About section and How I Lead section on the homepage. Uses same design system as case studies: `case-hero`, `case-section`, `highlight-grid`, `highlight-card`, `testimonial`, `next-project`. Four themed sections: Building Teams, Ownership & Clarity, Growth & Innovation, Driving Impact. Each section includes a testimonial quote from check-ins.
 
 ### Typographic Quotes (Semantic + Accessible)
 
@@ -146,8 +154,11 @@ Use semantic HTML for all quotations. Never use raw straight `"` for visible quo
 | `case-quote` | case-study.css | Block quote callout (use with `<blockquote>`) |
 | `case-image image-hero` | case-study.css | Hero image container (450px height) |
 | `card-image has-image` | main.css | Homepage card with image |
-| `about-leadership-link` | main.css | About section link to leadership.html |
+| `about-leadership-link` | main.css | About/How I Lead link to leadership.html |
 | `leadership-cta-links` | main.css | Dual CTA container on leadership page |
+| `how-i-lead-section` | main.css | Homepage condensed How I Lead section (centered layout) |
+| `how-i-lead-cards` | main.css | 2x2 grid of highlight cards (same gap as case study cards) |
+| `about-image-placeholder` | main.css | About section photo placeholder (replace content with img when ready) |
 | `feature-image has-image` | case-study.css | Feature block with image |
 | `image-placeholder` | case-study.css | Placeholder when no image yet |
 

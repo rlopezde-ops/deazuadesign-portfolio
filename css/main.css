@@ -510,6 +510,54 @@ q {
 }
 
 /* --------------------------------------------------------------------------
+   How I Lead Section
+   -------------------------------------------------------------------------- */
+.how-i-lead-section {
+  padding: var(--space-3xl) var(--space-xl);
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.how-i-lead-section .section-header {
+  max-width: 1200px;
+  margin: 0 auto var(--space-3xl);
+}
+
+.how-i-lead-intro-text {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: var(--space-md) auto 0;
+  text-align: center;
+}
+
+.how-i-lead-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.how-i-lead-footer {
+  max-width: 1200px;
+  margin: var(--space-2xl) auto 0;
+  text-align: center;
+}
+
+.how-i-lead-footer .testimonial {
+  margin-bottom: var(--space-lg);
+}
+
+@media (max-width: 900px) {
+  .how-i-lead-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Case Cards
    -------------------------------------------------------------------------- */
 a.case-card {
@@ -757,6 +805,56 @@ a.case-card {
   gap: var(--space-sm);
 }
 
+.about-image-placeholder {
+  background: var(--bg-card);
+  border: 1px solid rgba(181, 126, 220, 0.15);
+  border-radius: var(--radius-xl);
+  min-height: 320px;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-image-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(181, 126, 220, 0.08) 0%, rgba(0, 245, 212, 0.05) 100%);
+}
+
+.about-image-placeholder-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-xl);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.about-image-placeholder-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-sm);
+  opacity: 0.4;
+  display: block;
+}
+
+.about-image-placeholder-icon i {
+  font-size: inherit;
+  color: inherit;
+}
+
+.about-image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
 .expertise-title {
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -983,6 +1081,7 @@ a.case-card {
   }
   
   .work-section,
+  .how-i-lead-section,
   .about-section,
   .testimonial-section,
   .connect-section {
@@ -999,6 +1098,18 @@ a.case-card {
   
   .about-grid {
     gap: var(--space-xl);
+  }
+
+  .connect-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+  }
+
+  .connect-link {
+    justify-content: center;
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.875rem;
   }
 }
 
