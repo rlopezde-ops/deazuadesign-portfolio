@@ -751,6 +751,12 @@ a.case-card {
   transform: translateX(4px);
 }
 
+.about-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
 .expertise-title {
   font-family: var(--font-display);
   font-size: 1.5rem;

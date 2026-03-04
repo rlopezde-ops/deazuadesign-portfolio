@@ -8,7 +8,7 @@
    -------------------------------------------------------------------------- */
 .case-hero {
   position: relative;
-  min-height: 70vh;
+  min-height: calc(70vh - 56px);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -87,6 +87,10 @@
   animation: fadeInUp 0.6s ease forwards 0.4s;
 }
 
+.case-hero-resume-link {
+  margin-top: 24px;
+}
+
 .case-meta {
   display: flex;
   flex-wrap: wrap;
@@ -129,6 +133,10 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 0 var(--space-xl);
+}
+
+.case-hero + .case-content-narrow {
+  padding-top: 24px;
 }
 
 /* --------------------------------------------------------------------------

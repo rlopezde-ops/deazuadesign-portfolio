@@ -34,9 +34,11 @@ deazuadesign-portfolio/
 │           │   ├── next-gen-feature-block-1200x700.png  # Final design
 │           │   ├── next-gen-feature-card-1400x440.png  # Service blueprint
 │           │   └── next-gen-feature-card-legacy-1400x440.png  # Legacy system (Challenge 02)
+│           ├── expert-workspace/  # Asurion Expert Workspace
+│           │   └── asurion-expert-workspace.png  # Hero
 │           ├── universal/  # Halloween Horror Nights (legacy)
 │           ├── hhn/       # Halloween Horror Nights
-│           │   ├── hhn-hero-2200x900.png
+│           │   ├── hhn-hero-2200x900-2.png
 │           │   ├── hhn-feature-block-1400x440-2.png
 │           │   ├── hhn-cohesive-brand.png
 │           │   ├── hhn-tickets-new.png
@@ -185,7 +187,7 @@ Icons are provided by [Iconoir](https://iconoir.com/) (1500+ SVG icons, MIT lice
 - Container classes: `expertise-icon`, `highlight-icon`, `feature-image-icon`, `link-icon`
 - `highlight-icon` (larger cards): 48px, color `#A0A0B8`, stroke-width 1
 
-**Icon mapping:** Emojis have been replaced with Iconoir icons across the site. Placeholder cards (Expert Workspace, Halloween Horror Nights) and their image-placeholder sections keep emojis. Key mappings: `design-nib` (Brand), `color-filter` (Product), `community` (Culture), `spark` (Craft), `chat-bubble`, `shield-check`, `archery`, `link`, `leaf`, `flash`, `graph-up`, `search`, `user`, `umbrella`, `plus`, `light-bulb-on`, `wristwatch`, `edit-pencil`, `clipboard-check`, `candlestick-chart`, `smartphone-device`, `component`, `precision-tool`, `ease-curve-control-points`, `keyframes`, `eye`, `page`, `book-stack`, `linkedin`, `dribbble`, `mail`.
+**Icon mapping:** Emojis have been replaced with Iconoir icons across the site. Placeholder cards (Halloween Horror Nights when no hero image) and their image-placeholder sections keep emojis. Key mappings: `design-nib` (Brand), `color-filter` (Product), `community` (Culture), `spark` (Craft), `chat-bubble`, `shield-check`, `archery`, `link`, `leaf`, `flash`, `graph-up`, `search`, `user`, `umbrella`, `plus`, `light-bulb-on`, `wristwatch`, `edit-pencil`, `clipboard-check`, `candlestick-chart`, `smartphone-device`, `component`, `precision-tool`, `ease-curve-control-points`, `keyframes`, `eye`, `page`, `book-stack`, `linkedin`, `dribbble`, `mail`.
 
 ### Impact Section Icons
 
