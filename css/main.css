@@ -1100,9 +1100,13 @@ a.case-card {
     gap: var(--space-xl);
   }
 
+  .about-image-placeholder {
+    aspect-ratio: 1 / 1;
+  }
+
   .connect-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-sm);
   }
 
@@ -1110,6 +1114,7 @@ a.case-card {
     justify-content: center;
     padding: var(--space-sm) var(--space-md);
     font-size: 0.875rem;
+    width: 100%;
   }
 }
 

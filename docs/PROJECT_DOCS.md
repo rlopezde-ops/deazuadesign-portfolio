@@ -232,7 +232,7 @@ Decorative inline SVG icons float around the hero headline "Crafting Experiences
 
 | Flag | Location | Purpose |
 |------|----------|---------|
-| `testimonialSection` | `js/main.js` → `FEATURE_FLAGS` | Hides homepage testimonial. Set to `true` when new quotes and design are ready. |
+| (none) | `js/main.js` → `FEATURE_FLAGS` | Reserved for future use. |
 
 ---
 

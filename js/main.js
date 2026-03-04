@@ -5,9 +5,7 @@
 /* --------------------------------------------------------------------------
    Feature Flags
    -------------------------------------------------------------------------- */
-const FEATURE_FLAGS = {
-  testimonialSection: false  // Set to true when ready with new quotes and design
-};
+const FEATURE_FLAGS = {};
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize custom cursor
@@ -39,10 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function applyFeatureFlags() {
-  if (!FEATURE_FLAGS.testimonialSection) {
-    const testimonial = document.getElementById('homepage-testimonial');
-    if (testimonial) testimonial.style.display = 'none';
-  }
+  // Reserved for future feature flags
 }
 
 /* --------------------------------------------------------------------------
@@ -164,9 +159,7 @@ function initCustomCursor() {
    -------------------------------------------------------------------------- */
 function initScrollAnimations() {
   // Add fade-in class to elements we want to animate
-  const testimonialSelector = FEATURE_FLAGS.testimonialSection ? '.testimonial' : '';
-  const animatedSelectors = ['.case-card', '.expertise-item', '.about-text p'].filter(Boolean);
-  if (testimonialSelector) animatedSelectors.push(testimonialSelector);
+  const animatedSelectors = ['.case-card', '.expertise-item', '.about-text p'];
   const animatedElements = document.querySelectorAll(animatedSelectors.join(', '));
   
   animatedElements.forEach(el => {
