@@ -75,7 +75,7 @@ deazuadesign-portfolio/
 
 When adding or updating a **hero image** on a case study page:
 
-1. **Case study page** (`projects/case-study-*.html`): Add/update the hero image in the `<!-- Hero Image -->` section.
+1. **Case study page** (`projects/case-study-*.html`): Add/update the hero image inside `case-hero-content` (between `case-intro` and `case-meta`).
 2. **Homepage** (`index.html`): Update the matching work card to use the same image.
 
 Both must stay in sync. See "Hero Image Pattern" below.
@@ -93,11 +93,15 @@ All pages must include `viewport-fit=cover` in the viewport meta tag so `env(saf
 
 **Case study hero** (in `projects/case-study-*.html`):
 
+The hero image lives **inside** `case-hero-content`, between the subtitle (`case-intro`) and the metadata (`case-meta`). The `case-hero-content` container is 1100px max-width (matching `case-content`) while text elements (`case-back`, `case-client`, `case-title`, `case-intro`, `case-meta`, `case-meta-extended`) are constrained to 900px max-width.
+
 ```html
-<div class="case-content">
+<div class="case-hero-content">
+  <!-- title, subtitle... -->
   <div class="case-image image-hero">
     <img src="../assets/images/projects/nextgen/next-gen-hero-2200x900.png" alt="Next-Gen Portal dashboard hero">
   </div>
+  <div class="case-meta">...</div>
 </div>
 ```
 
@@ -116,11 +120,10 @@ All pages must include `viewport-fit=cover` in the viewport meta tag so `env(saf
 
 1. Password overlay (if protected)
 2. Nav
-3. Case hero (title, intro, case-meta, case-meta-extended)
-4. Hero image
-5. Sections (Challenge, Design Principles, Approach, Solution, Leadership Challenge, etc.)
-6. Next project CTA
-7. Footer
+3. Case hero (title, intro, **hero image**, case-meta, case-meta-extended)
+4. Sections (Challenge, Design Principles, Approach, Solution, Leadership Challenge, etc.)
+5. Next project CTA
+6. Footer
 
 ### Case Study Hero Metadata Pattern
 
