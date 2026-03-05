@@ -116,11 +116,31 @@ All pages must include `viewport-fit=cover` in the viewport meta tag so `env(saf
 
 1. Password overlay (if protected)
 2. Nav
-3. Case hero (title, intro, meta)
+3. Case hero (title, intro, case-meta, case-meta-extended)
 4. Hero image
-5. Sections (Challenge, Approach, Solution, etc.)
+5. Sections (Challenge, Design Principles, Approach, Solution, Leadership Challenge, etc.)
 6. Next project CTA
 7. Footer
+
+### Case Study Hero Metadata Pattern
+
+The hero contains two metadata rows, both inside `case-hero-content`:
+
+- **`case-meta`** — Horizontal flex row with short values (Role, Timeline, Team, Platform). Uses `meta-label` (0.75rem, uppercase, muted) + `meta-value` (600 weight, Space Grotesk, white).
+- **`case-meta-extended`** — 2-column grid below `case-meta` for longer-form values (My Focus, Key Challenge). Uses the same `meta-label` / `meta-value` classes with a separating top border. Collapses to 1 column at 768px.
+
+```html
+<div class="case-meta-extended">
+  <div class="meta-item">
+    <p class="meta-label">My Focus</p>
+    <p class="meta-value">...</p>
+  </div>
+  <div class="meta-item">
+    <p class="meta-label">Key Challenge</p>
+    <p class="meta-value">...</p>
+  </div>
+</div>
+```
 
 ### Homepage How I Lead Section
 
@@ -153,6 +173,8 @@ Use semantic HTML for all quotations. Never use raw straight `"` for visible quo
 | `hero-float-icon--accent` | main.css | Accent icon (primary-light color; same 64px size) |
 | `case-quote` | case-study.css | Block quote callout (use with `<blockquote>`) |
 | `case-image image-hero` | case-study.css | Hero image container (450px height) |
+| `case-meta-extended` | case-study.css | 2-column grid for My Focus + Key Challenge in hero (collapses to 1-col at 768px) |
+| `password-contact` | case-study.css | Muted mailto text link in password modal ("Need the password? Contact me") |
 | `card-image has-image` | main.css | Homepage card with image |
 | `about-leadership-link` | main.css | About/How I Lead link to leadership.html |
 | `leadership-cta-links` | main.css | Dual CTA container on leadership page |
@@ -168,11 +190,13 @@ Use semantic HTML for all quotations. Never use raw straight `"` for visible quo
 
 | Case Study | Page | Password |
 |------------|------|----------|
-| Expert Workspace | `case-study-expert-workspace.html` | `exwo` |
-| Next-Gen Portal | `case-study-nextgen-portal.html` | `portal` |
-| Disney Guest Service Suite | `case-study-disney-guest-service.html` | `genie` |
+| Expert Workspace | `case-study-expert-workspace.html` | `velvet` |
+| Next-Gen Portal | `case-study-nextgen-portal.html` | `velvet` |
+| Disney Guest Service Suite | `case-study-disney-guest-service.html` | `velvet` |
 
-Passwords are stored in sessionStorage—users enter once per browser session.
+Passwords are stored in sessionStorage—users enter once per browser session. Each page has a unique `STORAGE_KEY` so sessions are independent.
+
+**Contact link:** Each modal includes a "Need the password? Contact me" mailto link after the "Back to Work" button: `mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password.` Styled with `.password-contact` class in `case-study.css`.
 
 **Password visibility toggle:** An eye icon (Iconoir `iconoir-eye` / `iconoir-eye-closed`) lets users show or hide the password. Implemented in `main.js` via `initPasswordToggle()`. Follows WCAG: `aria-pressed`, `aria-controls`, constant `aria-label="Show password"`, optional live region. Input is restored to `type="password"` before form submit to avoid autocomplete saving plain text.
 

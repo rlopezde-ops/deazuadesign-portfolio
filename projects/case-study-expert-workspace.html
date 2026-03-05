@@ -44,6 +44,7 @@
         <button type="submit" class="password-submit">Unlock</button>
       </form>
       <a href="../index.html#work" class="password-back">← Back to Work</a>
+      <a href="mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password." class="password-contact">Need the password? Contact me</a>
     </div>
   </div>
 
@@ -91,6 +92,17 @@
           <p class="meta-value">In Progress</p>
         </div>
       </div>
+
+      <div class="case-meta-extended">
+        <div class="meta-item">
+          <p class="meta-label">My Focus</p>
+          <p class="meta-value">Establishing the product vision, defining design principles, and building the AI guidance methodology that will shape how the system communicates with experts</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Key Challenge</p>
+          <p class="meta-value">Cutting through 18 months of sales-driven product decisions to establish a user-centered vision — in the middle of a leadership and org structure transition</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -111,6 +123,23 @@
       </p>
       <p>
         Expert Workspace reimagines this experience. When an expert connects with a customer, the system works quietly in the background—bringing together the right tools, the right insights, and the right next steps. It should feel like a single, thoughtful conversation backed by deep expertise, showing customers that we know them and we're here to help.
+      </p>
+    </section>
+  </div>
+
+  <!-- The Leadership Challenge -->
+  <div class="case-content-narrow">
+    <section class="case-section fade-in-section">
+      <p class="case-section-title">The Leadership Challenge</p>
+      <h3>Resetting direction after 18 months of drift</h3>
+      <p>
+        Expert Workspace had been shaped by sales priorities for over a year. The product team was conflict-averse and reactive — caught between internal stakeholder pressure and a tool that wasn't working for the experts using it every day.
+      </p>
+      <p>
+        I started by defining a clear product vision and design principles, aligned design and product leadership around them, then took them to customer solution and sales enablement to build broader organizational buy-in from the top down rather than waiting for alignment to trickle up from PMs.
+      </p>
+      <p>
+        The work is still early, but the direction is set and the first launches — shift summaries, post-call coaching, and end-of-shift performance recaps — will give experts visibility into their own performance for the first time.
       </p>
     </section>
   </div>
@@ -193,7 +222,7 @@
       const form = document.getElementById('passwordForm');
       const input = document.getElementById('passwordInput');
       const error = document.getElementById('passwordError');
-      const CORRECT_PASSWORD = 'exwo';
+      const CORRECT_PASSWORD = 'velvet';
       const STORAGE_KEY = 'pw_expert_workspace';
       
       // Check if already unlocked

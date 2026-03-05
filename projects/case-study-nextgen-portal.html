@@ -44,6 +44,7 @@
         <button type="submit" class="password-submit">Unlock</button>
       </form>
       <a href="../index.html#work" class="password-back">← Back to Work</a>
+      <a href="mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password." class="password-contact">Need the password? Contact me</a>
     </div>
   </div>
 
@@ -89,6 +90,17 @@
         <div class="meta-item">
           <p class="meta-label">Platform</p>
           <p class="meta-value">Web Application</p>
+        </div>
+      </div>
+
+      <div class="case-meta-extended">
+        <div class="meta-item">
+          <p class="meta-label">My Focus</p>
+          <p class="meta-value">Design lead — vision setting, design principles, cross-functional alignment, and execution from concept through launch</p>
+        </div>
+        <div class="meta-item">
+          <p class="meta-label">Key Challenge</p>
+          <p class="meta-value">Replacing a system with a decade of operational maturity without recreating its complexity — and changing how design was perceived in the organization along the way</p>
         </div>
       </div>
     </div>
@@ -150,6 +162,46 @@
         <p class="feature-description">
           New technicians needed 2 weeks of training before they could work independently—because the system wasn't intuitive and most actions were manual. Changing repair statuses, selecting client programs, applying the right pricing—all required memorizing steps instead of the system guiding you through them.
         </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Principles -->
+  <div class="case-content-narrow">
+    <section class="case-section fade-in-section">
+      <p class="case-section-title">Design Principles</p>
+      <h3>The north star for every tradeoff</h3>
+      <p>
+        Early in the project I created a set of design principles and aligned the full cross-functional team around them. They became the north star for every feature decision and tradeoff conversation — and they're still guiding the product today.
+      </p>
+    </section>
+  </div>
+  <div class="case-content">
+    <div class="highlight-grid fade-in-section">
+      <div class="highlight-card">
+        <div class="highlight-icon"><i class="iconoir-scale-frame-enlarge"></i></div>
+        <h4 class="highlight-title">Adaptable and Scalable</h4>
+        <p class="highlight-text">Adapt to business needs and quickly ramp up new programs and offerings that increase value for customers.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon"><i class="iconoir-compass"></i></div>
+        <h4 class="highlight-title">Guided and Helpful</h4>
+        <p class="highlight-text">Guide store experts through their tasks so they don't require much training or tenure.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon"><i class="iconoir-flash"></i></div>
+        <h4 class="highlight-title">Simple and Efficient</h4>
+        <p class="highlight-text">Do things faster with fewer clicks and steps.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon"><i class="iconoir-brain"></i></div>
+        <h4 class="highlight-title">Smart and Proactive</h4>
+        <p class="highlight-text">Anticipate what customers or technicians need before they ask.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon"><i class="iconoir-shield-check"></i></div>
+        <h4 class="highlight-title">Reliable</h4>
+        <p class="highlight-text">The system can be trusted to do its job, so technicians can focus on theirs.</p>
       </div>
     </div>
   </div>
@@ -273,6 +325,23 @@
     </section>
   </div>
 
+  <!-- The Leadership Challenge -->
+  <div class="case-content-narrow">
+    <section class="case-section fade-in-section">
+      <p class="case-section-title">The Leadership Challenge</p>
+      <h3>Changing how design was perceived</h3>
+      <p>
+        The hardest part of Next-Gen Portal wasn't the design — it was the organizational dynamics surrounding it.
+      </p>
+      <p>
+        The product and operations teams wanted to rebuild what stores already had, feature for feature. That instinct was understandable, but recreating a decade of accumulated complexity wasn't going to solve the problems technicians faced every day. Pushing back on that — respectfully, persistently, and with evidence — was one of the most important things I did on this project. The design principles became our shared language for those conversations.
+      </p>
+      <p>
+        Engineering presented a different friction. They operated in a waterfall model, expecting fully resolved designs before writing a single line of code. I advocated continuously for a more iterative approach — ship something real, learn from technicians in actual stores, and adjust. By launch, design had moved from a service function to a strategic partner, regularly consulted on roadmap decisions and executive presentations.
+      </p>
+    </section>
+  </div>
+
   <!-- Impact -->
   <div class="case-content">
     <div class="impact-section fade-in-section">
@@ -340,9 +409,9 @@
   <div class="case-content-narrow">
     <section class="case-section fade-in-section">
       <p class="case-section-title">Reflection</p>
-      <h3>What I learned</h3>
+      <h3>What I'd Do Differently</h3>
       <p>
-        Building a product with a strong foundation—scalable architecture, deep user research with clear jobs to be done, and a modern tech stack—is critical to succeeding in a complex replatforming effort. Equally important: measuring impact as you launch, adapting quickly, and having leadership aligned on design principles from the start.
+        I wish we'd shipped faster and been less risk averse. The caution that came from replacing a mature, decade-old system was understandable — but it slowed our learning. Earlier launches, even imperfect ones, would have given us real signal sooner and let us adjust while we still had room to maneuver. The best design teams aren't the ones that get it right the first time. They're the ones that learn the fastest.
       </p>
     </section>
   </div>
@@ -370,7 +439,7 @@
       const form = document.getElementById('passwordForm');
       const input = document.getElementById('passwordInput');
       const error = document.getElementById('passwordError');
-      const CORRECT_PASSWORD = 'portal';
+      const CORRECT_PASSWORD = 'velvet';
       const STORAGE_KEY = 'pw_nextgen_portal';
       
       // Check if already unlocked

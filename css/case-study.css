@@ -120,6 +120,17 @@
   font-family: var(--font-display);
 }
 
+.case-meta-extended {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards 0.6s;
+}
+
 /* --------------------------------------------------------------------------
    Case Study Content Container
    -------------------------------------------------------------------------- */
@@ -1241,6 +1252,19 @@
   box-shadow: 0 10px 30px rgba(181, 126, 220, 0.3);
 }
 
+.password-contact {
+  display: block;
+  margin-top: var(--space-sm);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  text-align: center;
+  transition: color var(--transition-base);
+}
+
+.password-contact:hover {
+  color: var(--primary);
+}
+
 @media (max-width: 768px) {
   .password-modal {
     padding: var(--space-xl);
@@ -1284,5 +1308,24 @@
   
   .highlight-grid:has(.highlight-card:nth-child(4)) .highlight-card {
     grid-column: auto;
+  }
+
+  .highlight-grid:has(.highlight-card:nth-child(5)) {
+    grid-template-columns: 1fr;
+  }
+  .highlight-grid:has(.highlight-card:nth-child(5)) .highlight-card {
+    grid-column: auto;
+  }
+
+  .highlight-grid:has(.highlight-card:nth-child(6)) {
+    grid-template-columns: 1fr;
+  }
+  .highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card {
+    grid-column: auto;
+  }
+
+  .case-meta-extended {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
   }
 }
