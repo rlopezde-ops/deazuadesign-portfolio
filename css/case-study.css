@@ -426,44 +426,52 @@
 
 /* --------------------------------------------------------------------------
    Highlight Cards - For key points
+   Mobile-first: base = single column, desktop layouts in min-width query
    -------------------------------------------------------------------------- */
 .highlight-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
   margin: var(--space-xl) 0;
 }
 
-/* 4 cards: alternating wide/narrow rows of 2 */
-.highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) {
-  grid-template-columns: repeat(5, 1fr);
+@media (min-width: 769px) {
+  .highlight-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  /* 4 cards: alternating wide/narrow rows of 2 */
+  .highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+1) { grid-column: span 3; }
+  .highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+2) { grid-column: span 2; }
+  .highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+3) { grid-column: span 2; }
+  .highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+4) { grid-column: span 3; }
+
+  /* 5 cards: row 1 = wide + narrow, row 2 = 3 equal */
+  .highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(1) { grid-column: span 4; }
+  .highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(2) { grid-column: span 2; }
+  .highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(3),
+  .highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(4),
+  .highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(5) { grid-column: span 2; }
+
+  /* 6+ cards: alternating wide/narrow rows of 2 */
+  .highlight-grid:has(.highlight-card:nth-child(6)) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+1) { grid-column: span 3; }
+  .highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+2) { grid-column: span 2; }
+  .highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+3) { grid-column: span 2; }
+  .highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+4) { grid-column: span 3; }
 }
-
-.highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+1) { grid-column: span 3; }
-.highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+2) { grid-column: span 2; }
-.highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+3) { grid-column: span 2; }
-.highlight-grid:has(.highlight-card:nth-child(4)):not(:has(.highlight-card:nth-child(5))) .highlight-card:nth-child(4n+4) { grid-column: span 3; }
-
-/* 5 cards: row 1 = wide + narrow, row 2 = 3 equal */
-.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) {
-  grid-template-columns: repeat(6, 1fr);
-}
-
-.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(1) { grid-column: span 4; }
-.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(2) { grid-column: span 2; }
-.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(3),
-.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(4),
-.highlight-grid:has(.highlight-card:nth-child(5)):not(:has(.highlight-card:nth-child(6))) .highlight-card:nth-child(5) { grid-column: span 2; }
-
-/* 6+ cards: alternating wide/narrow rows of 2 */
-.highlight-grid:has(.highlight-card:nth-child(6)) {
-  grid-template-columns: repeat(5, 1fr);
-}
-
-.highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+1) { grid-column: span 3; }
-.highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+2) { grid-column: span 2; }
-.highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+3) { grid-column: span 2; }
-.highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card:nth-child(4n+4) { grid-column: span 3; }
 
 .highlight-card {
   background: var(--bg-card);
@@ -1316,28 +1324,6 @@
     border-radius: var(--radius-lg);
   }
   
-  .highlight-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .highlight-grid:has(.highlight-card:nth-child(4)) .highlight-card {
-    grid-column: auto;
-  }
-
-  .highlight-grid:has(.highlight-card:nth-child(5)) {
-    grid-template-columns: 1fr;
-  }
-  .highlight-grid:has(.highlight-card:nth-child(5)) .highlight-card {
-    grid-column: auto;
-  }
-
-  .highlight-grid:has(.highlight-card:nth-child(6)) {
-    grid-template-columns: 1fr;
-  }
-  .highlight-grid:has(.highlight-card:nth-child(6)) .highlight-card {
-    grid-column: auto;
-  }
-
   .case-meta-extended {
     grid-template-columns: 1fr;
     gap: var(--space-md);
