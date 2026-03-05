@@ -322,39 +322,35 @@
   <script src="../js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Password Protection
+      // Password Protection (controlled by FEATURE_FLAGS.caseStudyPasswordProtection in main.js)
       const overlay = document.getElementById('passwordOverlay');
-      const form = document.getElementById('passwordForm');
-      const input = document.getElementById('passwordInput');
-      const error = document.getElementById('passwordError');
-      const CORRECT_PASSWORD = 'velvet';
-      const STORAGE_KEY = 'pw_disney_gss';
-      
-      // Check if already unlocked
-      if (sessionStorage.getItem(STORAGE_KEY) === 'unlocked') {
-        overlay.classList.add('hidden');
+      if (window.PASSWORD_PROTECTION_ENABLED === false) {
+        overlay?.classList.add('hidden');
       } else {
-        input.focus();
-      }
-      
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (input.value === CORRECT_PASSWORD) {
-          sessionStorage.setItem(STORAGE_KEY, 'unlocked');
+        const form = document.getElementById('passwordForm');
+        const input = document.getElementById('passwordInput');
+        const error = document.getElementById('passwordError');
+        const CORRECT_PASSWORD = 'velvet';
+        const STORAGE_KEY = 'pw_disney_gss';
+        if (sessionStorage.getItem(STORAGE_KEY) === 'unlocked') {
           overlay.classList.add('hidden');
         } else {
-          input.classList.add('error');
-          error.classList.add('visible');
-          input.value = '';
-          setTimeout(() => {
-            input.classList.remove('error');
-          }, 400);
+          input.focus();
         }
-      });
-      
-      input.addEventListener('input', () => {
-        error.classList.remove('visible');
-      });
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (input.value === CORRECT_PASSWORD) {
+            sessionStorage.setItem(STORAGE_KEY, 'unlocked');
+            overlay.classList.add('hidden');
+          } else {
+            input.classList.add('error');
+            error.classList.add('visible');
+            input.value = '';
+            setTimeout(() => input.classList.remove('error'), 400);
+          }
+        });
+        input.addEventListener('input', () => error.classList.remove('visible'));
+      }
 
       // Scroll animations
       const sections = document.querySelectorAll('.fade-in-section');

@@ -5,7 +5,9 @@
 /* --------------------------------------------------------------------------
    Feature Flags
    -------------------------------------------------------------------------- */
-const FEATURE_FLAGS = {};
+const FEATURE_FLAGS = {
+  caseStudyPasswordProtection: false,  // Set to true when applying to re-enable password modals
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize custom cursor
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function applyFeatureFlags() {
-  // Reserved for future feature flags
+  window.PASSWORD_PROTECTION_ENABLED = FEATURE_FLAGS.caseStudyPasswordProtection;
 }
 
 /* --------------------------------------------------------------------------

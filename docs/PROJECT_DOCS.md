@@ -196,6 +196,8 @@ Use semantic HTML for all quotations. Never use raw straight `"` for visible quo
 
 Passwords are stored in sessionStorage—users enter once per browser session. Each page has a unique `STORAGE_KEY` so sessions are independent.
 
+**Feature flag:** Password protection is controlled by `FEATURE_FLAGS.caseStudyPasswordProtection` in `js/main.js`. When `false`, the overlay is hidden and case studies are viewable without a password. Set to `true` when applying to re-enable.
+
 **Contact link:** Each modal includes a "Need the password? Contact me" mailto link after the "Back to Work" button: `mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password.` Styled with `.password-contact` class in `case-study.css`.
 
 **Password visibility toggle:** An eye icon (Iconoir `iconoir-eye` / `iconoir-eye-closed`) lets users show or hide the password. Implemented in `main.js` via `initPasswordToggle()`. Follows WCAG: `aria-pressed`, `aria-controls`, constant `aria-label="Show password"`, optional live region. Input is restored to `type="password"` before form submit to avoid autocomplete saving plain text.
@@ -256,7 +258,7 @@ Decorative inline SVG icons float around the hero headline "Crafting Experiences
 
 | Flag | Location | Purpose |
 |------|----------|---------|
-| (none) | `js/main.js` → `FEATURE_FLAGS` | Reserved for future use. |
+| `caseStudyPasswordProtection` | `js/main.js` → `FEATURE_FLAGS` | When `false`, password modals are hidden and case studies are viewable without a password. Set to `true` when applying to re-enable protection. |
 
 ---
 
