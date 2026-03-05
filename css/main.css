@@ -149,7 +149,6 @@ body::before {
   pointer-events: none;
   z-index: 1000;
 }
-
 a {
   color: inherit;
   text-decoration: none;
@@ -177,7 +176,12 @@ q {
   align-items: center;
   padding: var(--space-md) var(--space-xl);
   padding-top: calc(var(--space-md) + env(safe-area-inset-top, 0px));
-  z-index: 100;
+  /* IMPORTANT: Must stay above the noise overlay (body::before at z-index 1000).
+     Safari composites the noise overlay above the nav in the Dynamic Island safe area
+     if z-index is <= 1000, causing page content to bleed through behind it. Do NOT
+     lower this value below 1001 or lower the noise overlay — both were tried and
+     reverted. Raising the nav is the correct fix. */
+  z-index: 1001;
   background: var(--bg-primary);
 }
 

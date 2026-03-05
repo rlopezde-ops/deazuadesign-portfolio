@@ -257,6 +257,28 @@ Decorative inline SVG icons float around the hero headline "Crafting Experiences
 
 ---
 
+## Safari Dynamic Island — Nav Constraints
+
+**Do not change these without reading this section first.** This issue has regressed three times.
+
+### Root Cause
+Safari on iPhone with `viewport-fit=cover` composites `position: fixed` elements differently in the Dynamic Island safe area. If the nav's `z-index` is at or below the noise overlay (`body::before`), Safari can render the overlay above the nav in that zone, causing page content to bleed through behind the Dynamic Island.
+
+### Required Setup (all three parts must be in place simultaneously)
+
+1. **`html { background-color: var(--bg-primary) }`** in `css/main.css` — Safari needs an explicit background on `html` (not just `body`) to fill the safe area behind the notch. Without it, the background doesn't propagate into that zone.
+
+2. **`.nav { z-index: 1001 }`** in `css/main.css` — Must be above the noise overlay (`body::before { z-index: 1000 }`). Do NOT lower the noise overlay to fix this — that was tried and reverted. Raise the nav instead.
+
+3. **`initNavScroll()` in `js/main.js`** — Must never set a semi-transparent background. When scrolled: `rgba(15, 15, 26, 1)` (alpha = `1`, not `0.95`). When at top: clear all inline styles so the solid CSS `background: var(--bg-primary)` takes over.
+
+### What NOT to Do
+- Do not set `.nav { z-index }` to anything ≤ 1000
+- Do not set `body::before { z-index }` below 1000 (it was tried; it doesn't fully solve it and reverts other stacking)
+- Do not use any fractional alpha (e.g. `0.95`) on nav backgrounds in JS scroll handlers
+
+---
+
 ## Feature Flags
 
 | Flag | Location | Purpose |

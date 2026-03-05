@@ -243,6 +243,14 @@ function initCardEffects() {
 
 /* --------------------------------------------------------------------------
    Navigation Scroll Effect
+
+   IMPORTANT — Safari Dynamic Island:
+   The nav background must ALWAYS be fully opaque (alpha = 1, not 0.95 or any
+   fractional value). Safari on iPhone with viewport-fit=cover composites
+   semi-transparent fixed elements differently in the Dynamic Island safe area,
+   allowing page content to bleed through. When scrolled, use rgba(15,15,26,1).
+   When at top, clear inline styles so the solid CSS background: var(--bg-primary)
+   takes over. Never set a transparent or semi-transparent background here.
    -------------------------------------------------------------------------- */
 function initNavScroll() {
   const nav = document.querySelector('.nav');
