@@ -17,12 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Custom Cursor -->
-  <div class="cursor cursor-dot" aria-hidden="true"></div>
-  <div class="cursor cursor-outline" aria-hidden="true"></div>
-
   <!-- Password Protection Modal -->
-  <div class="password-overlay" id="passwordOverlay">
+  <div class="password-overlay hidden" id="passwordOverlay">
     <div class="password-modal">
       <div class="password-modal-icon">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -43,8 +39,8 @@
         <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
         <button type="submit" class="password-submit">Unlock</button>
       </form>
-      <a href="../index.html#work" class="password-back">← Back to Work</a>
-      <a href="mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password." class="password-contact">Need the password? <span class="password-contact-link">Contact me</span></a>
+      <a href="../index.html#case-studies" class="password-back">← Back to Case Studies</a>
+      <a href="mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password." class="password-contact">Don't have the password? <span class="password-contact-link">Email me</span></a>
     </div>
   </div>
 
@@ -53,10 +49,21 @@
     <a href="../index.html" class="nav-logo">
       <img src="../assets/images/logo.png" alt="De Azua Design" class="logo-img">
     </a>
-    <div class="nav-links">
-      <a href="../index.html#work">Work</a>
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#connect">Connect</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span class="nav-toggle-bars" aria-hidden="true">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </span>
+    </button>
+    <div class="nav-menu" id="primary-nav">
+      <div class="nav-menu-inner">
+        <div class="nav-links">
+          <a href="../index.html#case-studies">Case Studies</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#connect">Connect</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -67,11 +74,11 @@
       radial-gradient(ellipse 60% 80% at 80% 20%, rgba(118, 75, 162, 0.3) 0%, transparent 50%),
       radial-gradient(ellipse 50% 50% at 50% 80%, rgba(0, 245, 212, 0.15) 0%, transparent 50%);"></div>
     <div class="case-hero-content">
-      <a href="../index.html#work" class="case-back">← Back to Work</a>
+      <a href="../index.html#case-studies" class="case-back">← Back to Case Studies</a>
       <p class="case-client">Asurion</p>
       <h1 class="case-title">Next-Gen Portal</h1>
       <p class="case-intro">
-        Rebuilding the core operating system for 680+ repair stores nationwide—transforming how experts check in customers, manage repairs, and run their business.
+        Rebuilding the core operating system for 680+ repair stores nationwide—transforming how technicians check in customers, manage repairs, and run their business.
       </p>
 
       <div class="case-image image-hero">
@@ -116,7 +123,7 @@
       <p class="case-section-title">The Challenge</p>
       <h3>Replacing 10 years of band-aids in under 2</h3>
       <p>
-        uBreakiFix technicians and experts rely on internal software to do everything—check in customers, diagnose devices, manage repairs, handle payments, and track inventory. The legacy system had been built over a decade with bandaided features, wasn't integrated with Asurion's other systems, and couldn't scale to support growth.
+        uBreakiFix technicians rely on internal software to do everything—check in customers, diagnose devices, manage repairs, handle payments, and track inventory. The legacy system had been built over a decade with bandaided features, wasn't integrated with Asurion's other systems, and couldn't scale to support growth.
       </p>
     </section>
   </div>
@@ -131,7 +138,7 @@
         <p class="feature-label">Challenge 01</p>
         <h4 class="feature-title">Slow & Buggy Legacy System</h4>
         <p class="feature-description">
-          Experts complained the old system was slow, unreliable, and built on outdated tech stacks that couldn't keep pace with business needs.
+          Technicians complained the old system was slow, unreliable, and built on outdated tech stacks that couldn't keep pace with business needs.
         </p>
       </div>
     </div>
@@ -175,7 +182,7 @@
       <div class="highlight-card">
         <div class="highlight-icon"><i class="iconoir-compass"></i></div>
         <h4 class="highlight-title">Guided and Helpful</h4>
-        <p class="highlight-text">Guide store experts through their tasks so they don't require much training or tenure.</p>
+        <p class="highlight-text">Guide store technicians through their tasks so they don't require much training or tenure.</p>
       </div>
       <div class="highlight-card">
         <div class="highlight-icon"><i class="iconoir-flash"></i></div>
@@ -201,10 +208,10 @@
       <p class="case-section-title">The Approach</p>
       <h3>Deep research, early sharing, and relentless focus on jobs to be done</h3>
       <p>
-        I started by deeply understanding our experts' pain points and the business goals of our franchisee network. I visited stores, interviewed experts, owners, and customers throughout the entire process—not just at the beginning.
+        I started by deeply understanding our technicians' pain points and the business goals of our franchisee network. I visited stores, interviewed technicians, owners, and customers throughout the entire process—not just at the beginning.
       </p>
       <p>
-        I pushed the design, product, and engineering teams to share early prototypes and get feedback fast. We built service blueprints for our most common store experiences with product, operations, and engineering. I led workshops with store experts, owners, executives from both Asurion and uBreakiFix, and operations teams.
+        I pushed the design, product, and engineering teams to share early prototypes and get feedback fast. We built service blueprints for our most common store experiences with product, operations, and engineering. I led workshops with store technicians, owners, executives from both Asurion and uBreakiFix, and operations teams.
       </p>
     </section>
   </div>
@@ -271,7 +278,7 @@
         <p class="feature-label">Feature</p>
         <h4 class="feature-title">Better Customer Experiences</h4>
         <p class="feature-description">
-          Price estimate feature for instant quotes, Pay by Link for upsells and deposits over the phone, and improved search so experts find what they need fast.
+          Price estimate feature for instant quotes, Pay by Link for upsells and deposits over the phone, and improved search so technicians find what they need fast.
         </p>
       </div>
     </div>
@@ -311,6 +318,17 @@
         <span class="role-tag">Stakeholder Workshops</span>
         <span class="role-tag">Strategy & Vision</span>
       </div>
+    </section>
+  </div>
+
+  <!-- How We Worked -->
+  <div class="case-content-narrow">
+    <section class="case-section fade-in-section">
+      <p class="case-section-title">How We Worked</p>
+      <h3>Staying aligned across a complex, multi-year effort</h3>
+      <p>
+        Design reviews happened weekly with the full team, creating a regular cadence for critique and alignment. Feedback loops with technicians and field partners were structured through scheduled ride-alongs and monthly check-ins, keeping the team grounded in real workflows. I kept the team engaged by connecting individual contributions to the broader product vision and creating space for designers to take ownership of key experience areas.
+      </p>
     </section>
   </div>
 
@@ -362,7 +380,7 @@
     <section class="video-section fade-in-section">
       <div class="case-content-narrow" style="padding: 0; margin-bottom: var(--space-lg);">
         <p class="case-section-title">See It In Action</p>
-        <h3>Hear from the experts who use it every day</h3>
+        <h3>Hear from the technicians who use it every day</h3>
       </div>
       
       <div class="video-card" id="videoTrigger" data-video-id="nTJC3Lid1MQ">
@@ -425,20 +443,24 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Password Protection (controlled by FEATURE_FLAGS.caseStudyPasswordProtection in main.js)
       const overlay = document.getElementById('passwordOverlay');
+      const form = document.getElementById('passwordForm');
+      const input = document.getElementById('passwordInput');
+      const error = document.getElementById('passwordError');
+      const CORRECT_PASSWORD = 'morecowbell';
+      const STORAGE_KEY = 'pw_case_studies';
+
       if (window.PASSWORD_PROTECTION_ENABLED === false) {
+        /* Overlay stays hidden (default in HTML) */
+      } else if (sessionStorage.getItem(STORAGE_KEY) === 'unlocked') {
         overlay?.classList.add('hidden');
       } else {
-        const form = document.getElementById('passwordForm');
-        const input = document.getElementById('passwordInput');
-        const error = document.getElementById('passwordError');
-        const CORRECT_PASSWORD = 'velvet';
-        const STORAGE_KEY = 'pw_nextgen_portal';
-        if (sessionStorage.getItem(STORAGE_KEY) === 'unlocked') {
-          overlay.classList.add('hidden');
-        } else {
-          input.focus();
-        }
-        form.addEventListener('submit', (e) => {
+        overlay?.classList.remove('hidden');
+        overlay?.classList.add('password-overlay--instant');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => overlay?.classList.remove('password-overlay--instant'));
+        });
+        input?.focus();
+        form?.addEventListener('submit', (e) => {
           e.preventDefault();
           if (input.value === CORRECT_PASSWORD) {
             sessionStorage.setItem(STORAGE_KEY, 'unlocked');
@@ -450,7 +472,7 @@
             setTimeout(() => input.classList.remove('error'), 400);
           }
         });
-        input.addEventListener('input', () => error.classList.remove('visible'));
+        input?.addEventListener('input', () => error.classList.remove('visible'));
       }
 
       // Scroll animations

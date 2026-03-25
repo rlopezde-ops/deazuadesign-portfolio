@@ -8,7 +8,7 @@ Single source of truth for structure, conventions, and patterns. **Reference thi
 
 ```
 deazuadesign-portfolio/
-├── index.html              # Homepage: Work, How I Lead, About, Testimonial, Connect
+├── index.html              # Homepage: Case Studies, How I Lead, About, Testimonial, Connect
 ├── leadership.html         # Leadership philosophy page (linked from About)
 ├── assets/
 │   └── images/
@@ -116,14 +116,25 @@ The hero image lives **inside** `case-hero-content`, between the subtitle (`case
 - Use simple `<img src="..." alt="...">`—no extra attributes.
 - `case-image image-hero` for case study; `card-image has-image` for homepage cards.
 
+### Homepage case studies block
+
+- **Section id:** `case-studies` (anchor `#case-studies`). **Heading:** "Case Studies". **Hero CTA:** "View Case Studies".
+- **Global nav** on all pages: link text **Case Studies**, `href` to `index.html#case-studies` or `#case-studies` from the homepage.
+- **Mobile (`max-width: 768px`):** Horizontal links are replaced by a **hamburger** (`.nav-toggle`) that opens a **full-screen menu** (`.nav-menu` / `#primary-nav`): `position: fixed; inset: 0`, blur + gradient overlay, **staggered link enter**, **subtle simultaneous exit** (small `translateY` + `blur` on links; overlay fades out over **0.75s `ease-out`**, slower than the 0.5s enter). Body scroll lock (`body.nav-menu-open`). **WebKit:** While the menu is open, `initMobileNav()` clears `backdrop-filter` / `-webkit-backdrop-filter` on `.nav` so a parent blur does not clip `position: fixed` children (avoids expanding `.nav` height, which caused logo jump on close). **`syncNavScrollStyles(nav)`** reapplies scrolled nav styles after close or desktop resize; **`initNavScroll()`** skips updates while `nav--open` or `nav--closing` so scroll does not re-apply blur mid-animation. Toggle click treats `nav--closing` as “re-open” so exit transitions stay interruptible. Logic in `initMobileNav()` (`aria-expanded`, `aria-hidden` on the panel only while mobile + closed, **Escape** to close). Markup: `.nav` contains `.nav-logo`, `.nav-toggle`, then `.nav-menu` > `.nav-menu-inner` > `.nav-links`.
+- **Case study pages:** `case-back` and password modal **Back** links point to `../index.html#case-studies` with label **← Back to Case Studies**.
+
+The section keeps the CSS class `work-section` for styling.
+
 ### Case Study Page Structure
 
-1. Password overlay (if protected)
+1. Password overlay (if protected) — markup uses `class="password-overlay hidden"` by default; inline JS removes `hidden` only when protection is on and the user is not unlocked. See **Password-Protected Case Studies**.
 2. Nav
 3. Case hero (title, intro, **hero image**, case-meta, case-meta-extended)
 4. Sections (Challenge, Design Principles, Approach, Solution, Leadership Challenge, etc.)
 5. Next project CTA
 6. Footer
+
+**In-Store Claims Kiosk:** A short **My Role** summary appears immediately after the hero (before The Challenge); the full **My Role** section with `role-list` tags remains later in the page.
 
 ### Case Study Hero Metadata Pattern
 
@@ -147,7 +158,7 @@ The hero contains two metadata rows, both inside `case-hero-content`:
 
 ### Homepage How I Lead Section
 
-Condensed version of the leadership page, inserted between Work and About. Layout: centered—heading "How I Lead" with intro paragraph ("I build teams…") centered below it, then 4 highlight cards (Building Teams, Ownership & Clarity, Growth & Innovation, Driving Impact) in a 2x2 grid with the same spacing as case study cards (`gap: var(--space-lg)`). Below the cards: one testimonial quote and a link to the full leadership page. Uses `highlight-card` from case-study.css. Classes: `how-i-lead-section`, `how-i-lead-intro-text`, `how-i-lead-cards`, `how-i-lead-footer`.
+Condensed version of the leadership page, inserted between Case Studies and About. Layout: centered—heading "How I Lead" with intro paragraph ("I build teams…") centered below it, then 4 highlight cards (Building Teams, Ownership & Clarity, Growth & Innovation, Driving Impact) in a 2x2 grid with the same spacing as case study cards (`gap: var(--space-lg)`). Below the cards: one testimonial quote and a link to the full leadership page. Uses `highlight-card` from case-study.css. Classes: `how-i-lead-section`, `how-i-lead-intro-text`, `how-i-lead-cards`, `how-i-lead-footer`.
 
 ### Homepage About Section
 
@@ -177,7 +188,9 @@ Use semantic HTML for all quotations. Never use raw straight `"` for visible quo
 | `case-quote` | case-study.css | Block quote callout (use with `<blockquote>`) |
 | `case-image image-hero` | case-study.css | Hero image container (450px height) |
 | `case-meta-extended` | case-study.css | 2-column grid for My Focus + Key Challenge in hero (collapses to 1-col at 768px) |
-| `password-contact` | case-study.css | Muted mailto text link in password modal ("Need the password? Contact me") |
+| `password-contact` | case-study.css | Muted mailto text link in password modal ("Don't have the password? Email me") |
+| `password-overlay--instant` | case-study.css | Disables overlay/modal transitions on first reveal (avoids flash-in when removing `hidden`) |
+| `role-tag` | case-study.css | Non-interactive case-study skill labels (smaller radius than CTAs; `cursor: default`; no hover lift) |
 | `card-image has-image` | main.css | Homepage card with image |
 | `about-leadership-link` | main.css | About/How I Lead link to leadership.html |
 | `leadership-cta-links` | main.css | Dual CTA container on leadership page |
@@ -191,21 +204,28 @@ Use semantic HTML for all quotations. Never use raw straight `"` for visible quo
 
 ## Password-Protected Case Studies
 
-| Case Study | Page | Password |
-|------------|------|----------|
-| Expert Workspace | `case-study-expert-workspace.html` | `velvet` |
-| Next-Gen Portal | `case-study-nextgen-portal.html` | `velvet` |
-| Disney Guest Service Suite | `case-study-disney-guest-service.html` | `velvet` |
+| Case Study | Page | Password (in HTML) |
+|------------|------|---------------------|
+| Expert Workspace | `case-study-expert-workspace.html` | `morecowbell` (shared `CORRECT_PASSWORD` constant) |
+| Next-Gen Portal | `case-study-nextgen-portal.html` | Same constant and shared storage key |
+| Disney Guest Service Suite | `case-study-disney-guest-service.html` | Same constant and shared storage key |
 
-Passwords are stored in sessionStorage—users enter once per browser session. Each page has a unique `STORAGE_KEY` so sessions are independent.
+All three pages use **`CORRECT_PASSWORD = 'morecowbell'`** and **`STORAGE_KEY = 'pw_case_studies'`** so one successful unlock covers every protected case study in the session. Change the string in all three inline scripts if you rotate credentials.
 
-**Feature flag:** Password protection is controlled by `FEATURE_FLAGS.caseStudyPasswordProtection` in `js/main.js`. When `false`, the overlay is hidden and case studies are viewable without a password. Set to `true` when applying to re-enable.
+**No flash on load:** The overlay is **`hidden` in HTML by default**. Inline `DOMContentLoaded` logic only removes `hidden` when `PASSWORD_PROTECTION_ENABLED` is not `false` and `sessionStorage` is not yet unlocked. On first reveal, the overlay gets `password-overlay--instant` for one frame so the show animation does not run (avoids a visible “pop-in”).
 
-**Contact link:** Each modal includes a "Need the password? Contact me" mailto link after the "Back to Work" button: `mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password.` Styled with `.password-contact` class in `case-study.css`.
+**Feature flag:** Password protection is controlled by `FEATURE_FLAGS.caseStudyPasswordProtection` in `js/main.js`. When `false`, the overlay stays hidden and case studies are viewable without a password. Set to `true` when applying to re-enable.
+
+**Contact link:** Each modal includes “Don't have the password? Email me” with mailto: `ricardo@deazuadesign.com` (subject pre-filled). Styled with `.password-contact` in `case-study.css`.
 
 **Password visibility toggle:** An eye icon (Iconoir `iconoir-eye` / `iconoir-eye-closed`) lets users show or hide the password. Implemented in `main.js` via `initPasswordToggle()`. Follows WCAG: `aria-pressed`, `aria-controls`, constant `aria-label="Show password"`, optional live region. Input is restored to `type="password"` before form submit to avoid autocomplete saving plain text.
 
-**Z-index:** Custom cursor uses `z-index: 10002` so it remains visible above the password overlay (`z-index: 10001`). Password input uses `caret-color: var(--primary)` for visible text caret.
+**Z-index:** Password overlay uses `z-index: 10001`. Password input uses `caret-color: var(--primary)` for a visible text caret. *(If you revive the custom cursor below, set `.cursor` to `z-index: 10002` so it stays above the overlay.)*
+
+### Case study terminology (internal → external copy)
+
+- **Expert Workspace:** Prefer **agents** (not “experts”) for people in the call center / messaging context; keep product name **Expert Workspace**. Replace internal phrases **customer solution** → **operations**, **sales enablement** → **sales** where they refer to org areas.
+- **Next-Gen Portal:** Prefer **technicians** for store staff (not “experts”).
 
 ---
 
@@ -237,9 +257,54 @@ Impact cards (`.impact-section .impact-card .impact-value`) use Iconoir icons wi
 - **Fallback:** When no solid variant exists, use `.impact-icon--svg` with `mask-image` set via inline style to show a custom SVG with the gradient.
 - **HHN example:** Broke attendance records → `iconoir-medal-1st-solid`; Increased mobile traffic & sales → `iconoir-stats-up-square-solid`.
 
+### Homepage hero: pointer and glow
+
+- **Standard cursor (current):** The site uses the default browser cursor. The custom circular cursor described below is **not** active in the codebase.
+- **Gradient text glow:** `.hero-cursor-glow` inside `.gradient-text-wrapper` follows the pointer over the headline gradient (`initHeroTitleEffects()` in `js/main.js`).
+- **Logo:** `.logo-img` uses `height: 2.5rem` and `.nav-logo` uses `flex-shrink: 0` so the mark scales with root font size / accessibility text sizing.
+
+### Archive: Custom circular cursor (revival reference)
+
+The following was **removed** from the live site but is documented here so it can be reinstated if desired.
+
+**Behavior:** A fixed dot (`.cursor-dot`) followed the pointer instantly; a larger ring (`.cursor-outline`) followed with easing. On `mouseenter`/`mouseleave` of links, buttons, `.case-card`, `.video-card`, `.connect-link`, `.expertise-item`, the outline grew and used `.cursor-hover-link`. On `.gradient-text-wrapper`, the outline used `.cursor-hover`. `mix-blend-mode: difference` on `.cursor`. Hidden on touch (`hover: none` / `pointer: coarse`) and when `prefers-reduced-motion: reduce`. Dot/outline opacity went to `0` when the pointer left the window.
+
+**HTML** — immediately after `<body>` on every page that should show it (e.g. `index.html`, `leadership.html`, each `projects/case-study-*.html`):
+
+```html
+  <div class="cursor cursor-dot" aria-hidden="true"></div>
+  <div class="cursor cursor-outline" aria-hidden="true"></div>
+```
+
+**CSS** (`css/main.css`, typically before the “Reset & Base” block):
+
+- `.cursor` — `position: fixed`, `pointer-events: none`, **`z-index: 10002`** (above password overlay at `10001`), `mix-blend-mode: difference`
+- `.cursor-dot` — small white circle, `transform: translate(-50%, -50%)`
+- `.cursor-outline` — larger ring with border, same transform, short transition on width/height/border-color
+- `.cursor-outline.cursor-hover` / `.cursor-outline.cursor-hover-link` — enlarged ring states
+- `@media (hover: none) and (pointer: coarse)` — `.cursor { display: none }`
+- `@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)` — `* { cursor: none !important; }` (hides the system cursor while the custom cursor is active; remove this rule if you drop the custom cursor again)
+- `@media (prefers-reduced-motion: reduce)` — hide `.cursor`
+
+**JS** (`js/main.js`):
+
+- Function **`initCustomCursor()`** — early return unless `(hover: hover) and (pointer: fine)` and not reduced motion; query `.cursor-dot` and `.cursor-outline`; `mousemove` updates dot; `requestAnimationFrame` loop lerps outline toward pointer; attach hover listeners to `a, button, .case-card, .video-card, .connect-link, .expertise-item` and `.gradient-text-wrapper`; `mouseleave`/`mouseenter` on `document` for window boundary opacity.
+- In the main `DOMContentLoaded` handler, call **`initCustomCursor()`** (often first).
+
+**Caveat:** With `cursor: none` on the password modal, the ring must sit **above** the overlay (`z-index: 10002`) or users see no cursor over the modal. See historical notes in `docs/QA_PASSWORD_MODAL_REVIEW.md`.
+
+### `.highlight-card` (non-interactive)
+
+Principle and “How I Lead” cards use `.highlight-card` without hover lift, shadow change, or `:active` transform—so they do not read as clickable.
+
+### Tags vs CTAs
+
+- **`.role-tag`** — informational chips on case studies; smaller corner radius (`var(--radius-sm)`), `cursor: default`, no hover state.
+- **`.connect-link`** — homepage (and leadership) actions; full pill radius, hover fill and slight lift remain.
+
 ### Hero Floating Icons (Homepage Only)
 
-Decorative inline SVG icons float around the hero headline "Crafting Experiences That Matter" on the homepage. Implemented in `index.html`, `main.css`, and `main.js` via `initHeroFloatingIcons()`.
+Decorative inline SVG icons float around the hero headline on the homepage. Implemented in `index.html`, `main.css`, and `main.js` via `initHeroFloatingIcons()`.
 
 **Icons:** Custom thin-stroke SVGs (exported from Iconoir at `stroke-width: 0.8`). Source files in `assets/images/hero-icons/`: `peace-hand.svg`, `keyframes.svg`, `ease-curve-control-points.svg`, `substract.svg`, `box3d-center.svg`. Inlined in HTML for `currentColor` inheritance.
 
@@ -270,7 +335,7 @@ Safari on iPhone with `viewport-fit=cover` composites `position: fixed` elements
 
 2. **`.nav { z-index: 1001 }`** in `css/main.css` — Must be above the noise overlay (`body::before { z-index: 1000 }`). Do NOT lower the noise overlay to fix this — that was tried and reverted. Raise the nav instead.
 
-3. **`initNavScroll()` in `js/main.js`** — Must never set a semi-transparent background. When scrolled: `rgba(15, 15, 26, 1)` (alpha = `1`, not `0.95`). When at top: clear all inline styles so the solid CSS `background: var(--bg-primary)` takes over.
+3. **`initNavScroll()` / `syncNavScrollStyles()` in `js/main.js`** — Must never set a semi-transparent background. When scrolled: `rgba(15, 15, 26, 1)` (alpha = `1`, not `0.95`), plus `backdrop-filter` / `-webkit-backdrop-filter` and `box-shadow`. When at top: clear those inline styles so the solid CSS `background: var(--bg-primary)` takes over. Scroll handler does not run while the mobile menu is open or closing (see mobile nav above).
 
 ### What NOT to Do
 - Do not set `.nav { z-index }` to anything ≤ 1000

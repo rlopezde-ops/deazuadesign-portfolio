@@ -17,12 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Custom Cursor -->
-  <div class="cursor cursor-dot" aria-hidden="true"></div>
-  <div class="cursor cursor-outline" aria-hidden="true"></div>
-
   <!-- Password Protection Modal -->
-  <div class="password-overlay" id="passwordOverlay">
+  <div class="password-overlay hidden" id="passwordOverlay">
     <div class="password-modal">
       <div class="password-modal-icon">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -43,8 +39,8 @@
         <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
         <button type="submit" class="password-submit">Unlock</button>
       </form>
-      <a href="../index.html#work" class="password-back">← Back to Work</a>
-      <a href="mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password." class="password-contact">Need the password? <span class="password-contact-link">Contact me</span></a>
+      <a href="../index.html#case-studies" class="password-back">← Back to Case Studies</a>
+      <a href="mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password." class="password-contact">Don't have the password? <span class="password-contact-link">Email me</span></a>
     </div>
   </div>
 
@@ -53,10 +49,21 @@
     <a href="../index.html" class="nav-logo">
       <img src="../assets/images/logo.png" alt="De Azua Design" class="logo-img">
     </a>
-    <div class="nav-links">
-      <a href="../index.html#work">Work</a>
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#connect">Connect</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span class="nav-toggle-bars" aria-hidden="true">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </span>
+    </button>
+    <div class="nav-menu" id="primary-nav">
+      <div class="nav-menu-inner">
+        <div class="nav-links">
+          <a href="../index.html#case-studies">Case Studies</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#connect">Connect</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -67,11 +74,11 @@
       radial-gradient(ellipse 60% 80% at 80% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
       radial-gradient(ellipse 50% 50% at 50% 80%, rgba(0, 245, 212, 0.2) 0%, transparent 50%);"></div>
     <div class="case-hero-content">
-      <a href="../index.html#work" class="case-back">← Back to Work</a>
+      <a href="../index.html#case-studies" class="case-back">← Back to Case Studies</a>
       <p class="case-client">Asurion</p>
       <h1 class="case-title">Expert Workspace</h1>
       <p class="case-intro">
-        Redesigning the primary tool for 10,000+ help desk and claims experts—a conversational, AI-powered workspace that makes every customer interaction feel simple, personal, and white-glove.
+        Redesigning the primary tool for 10,000+ help desk and claims agents—a conversational, AI-powered workspace that makes every customer interaction feel simple, personal, and white-glove.
       </p>
 
       <div class="case-image image-hero fade-in-section">
@@ -100,7 +107,7 @@
       <div class="case-meta-extended">
         <div class="meta-item">
           <p class="meta-label">My Focus</p>
-          <p class="meta-value">Establishing the product vision, defining design principles, and building the AI guidance methodology that will shape how the system communicates with experts</p>
+          <p class="meta-value">Establishing the product vision, defining design principles, and building the AI guidance methodology that will shape how the system communicates with agents</p>
         </div>
         <div class="meta-item">
           <p class="meta-label">Key Challenge</p>
@@ -116,10 +123,10 @@
       <p class="case-section-title">The Vision</p>
       <h3>Less typey, more talkey</h3>
       <p>
-        Asurion's help desk and claims experts handle millions of customer interactions every year—troubleshooting tech issues, filing insurance claims, and resolving problems across chat and voice. Their current tools are fragmented, require too much manual work, and make it hard to deliver the fast, personal service customers expect.
+        Asurion's help desk and claims agents handle millions of customer interactions every year—troubleshooting tech issues, filing insurance claims, and resolving problems across chat and voice. Their current tools are fragmented, require too much manual work, and make it hard to deliver the fast, personal service customers expect.
       </p>
       <p>
-        Expert Workspace reimagines this experience. When an expert connects with a customer, the system works quietly in the background—bringing together the right tools, the right insights, and the right next steps. It should feel like a single, thoughtful conversation backed by deep expertise, showing customers that we know them and we're here to help.
+        Expert Workspace reimagines this experience. When an agent connects with a customer, the system works quietly in the background—bringing together the right tools, the right insights, and the right next steps. It should feel like a single, thoughtful conversation backed by deep expertise, showing customers that we know them and we're here to help.
       </p>
     </section>
   </div>
@@ -130,13 +137,24 @@
       <p class="case-section-title">The Leadership Challenge</p>
       <h3>Resetting direction after 18 months of drift</h3>
       <p>
-        Expert Workspace had been shaped by sales priorities for over a year. The product team was conflict-averse and reactive — caught between internal stakeholder pressure and a tool that wasn't working for the experts using it every day.
+        Expert Workspace had been shaped by sales priorities for over a year. The product team was conflict-averse and reactive — caught between internal stakeholder pressure and a tool that wasn't working for the agents using it every day.
       </p>
       <p>
-        I started by defining a clear product vision and design principles, aligned design and product leadership around them, then took them to customer solution and sales enablement to build broader organizational buy-in from the top down rather than waiting for alignment to trickle up from PMs.
+        I started by defining a clear product vision and design principles, aligned design and product leadership around them, then took them to operations and sales to build broader organizational buy-in from the top down rather than waiting for alignment to trickle up from PMs.
       </p>
       <p>
-        The work is still early, but the direction is set and the first launches — shift summaries, post-call coaching, and end-of-shift performance recaps — will give experts visibility into their own performance for the first time.
+        The work is still early, but the direction is set and the first launches — shift summaries, post-call coaching, and end-of-shift performance recaps — will give agents visibility into their own performance for the first time.
+      </p>
+    </section>
+  </div>
+
+  <!-- Design Strategy -->
+  <div class="case-content-narrow">
+    <section class="case-section fade-in-section">
+      <p class="case-section-title">Design Strategy</p>
+      <h3>Connecting near-term launches to long-term vision</h3>
+      <p>
+        Features were prioritized by mapping agent pain points against business impact — starting with the moments that most directly affected performance visibility and coaching quality. The design process combined lightweight discovery sprints with rapid prototyping, keeping the feedback loop tight between agents, team leads, and product. Next steps include expanding the workspace to support real-time coaching prompts and deeper integration with quality assurance workflows.
       </p>
     </section>
   </div>
@@ -148,12 +166,12 @@
       <div class="highlight-card">
         <div class="highlight-icon"><i class="iconoir-eye"></i></div>
         <h4 class="highlight-title">See What You Need</h4>
-        <p class="highlight-text">Guidance, tools, and next steps in one clear workspace—so experts stay focused on the conversation, not the system.</p>
+        <p class="highlight-text">Guidance, tools, and next steps in one clear workspace—so agents stay focused on the conversation, not the system.</p>
       </div>
       <div class="highlight-card">
         <div class="highlight-icon"><i class="iconoir-link"></i></div>
         <h4 class="highlight-title">Know the Customer</h4>
-        <p class="highlight-text">Instantly recognize who we're helping and what they need—delivering a personalized, white-glove experience from the first message.</p>
+        <p class="highlight-text">Instantly recognize who we're helping and what they need—delivering a personalized, high-touch experience from the first message.</p>
       </div>
       <div class="highlight-card">
         <div class="highlight-icon"><i class="iconoir-keyframes"></i></div>
@@ -163,12 +181,12 @@
       <div class="highlight-card">
         <div class="highlight-icon"><i class="iconoir-flash"></i></div>
         <h4 class="highlight-title">Remove Friction</h4>
-        <p class="highlight-text">Automate the busywork so experts can focus on real human connection—the quality that defines Asurion's service.</p>
+        <p class="highlight-text">Automate the busywork so agents can focus on real human connection—the quality that defines Asurion's service.</p>
       </div>
       <div class="highlight-card">
         <div class="highlight-icon"><i class="iconoir-graph-up"></i></div>
         <h4 class="highlight-title">Improve Together</h4>
-        <p class="highlight-text">A platform that learns from millions of interactions while coaching experts in the moment to build confidence and sharpen skills.</p>
+        <p class="highlight-text">A platform that learns from millions of interactions while coaching agents in the moment to build confidence and sharpen skills.</p>
       </div>
     </div>
   </div>
@@ -177,12 +195,12 @@
   <div class="case-content-narrow">
     <section class="case-section fade-in-section">
       <p class="case-section-title">My Role</p>
-      <h3>Defining the future of expert tools</h3>
+      <h3>Defining the future of agent tools</h3>
       <p>
-        I'm leading design strategy for Expert Workspace—defining the principles and vision that will shape how 10,000+ help desk and claims experts interact with customers every day. This means setting the direction for an AI-powered platform that needs to feel simple on the surface while being sophisticated underneath.
+        I'm leading design strategy for Expert Workspace—defining the principles and vision that will shape how 10,000+ help desk and claims agents interact with customers every day. This means setting the direction for an AI-powered platform that needs to feel simple on the surface while being sophisticated underneath.
       </p>
       <p>
-        I work closely with product, engineering, and operations leadership to align on strategy, validate concepts with frontline experts, and ensure we're building tools that genuinely improve the customer experience—not just automate it.
+        I work closely with product, engineering, and operations leadership to align on strategy, validate concepts with frontline agents, and ensure we're building tools that genuinely improve the customer experience—not just automate it.
       </p>
       
       <div class="role-list">
@@ -216,20 +234,24 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Password Protection (controlled by FEATURE_FLAGS.caseStudyPasswordProtection in main.js)
       const overlay = document.getElementById('passwordOverlay');
+      const form = document.getElementById('passwordForm');
+      const input = document.getElementById('passwordInput');
+      const error = document.getElementById('passwordError');
+      const CORRECT_PASSWORD = 'morecowbell';
+      const STORAGE_KEY = 'pw_case_studies';
+
       if (window.PASSWORD_PROTECTION_ENABLED === false) {
+        /* Overlay stays hidden (default in HTML); no modal logic */
+      } else if (sessionStorage.getItem(STORAGE_KEY) === 'unlocked') {
         overlay?.classList.add('hidden');
       } else {
-        const form = document.getElementById('passwordForm');
-        const input = document.getElementById('passwordInput');
-        const error = document.getElementById('passwordError');
-        const CORRECT_PASSWORD = 'velvet';
-        const STORAGE_KEY = 'pw_expert_workspace';
-        if (sessionStorage.getItem(STORAGE_KEY) === 'unlocked') {
-          overlay.classList.add('hidden');
-        } else {
-          input.focus();
-        }
-        form.addEventListener('submit', (e) => {
+        overlay?.classList.remove('hidden');
+        overlay?.classList.add('password-overlay--instant');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => overlay?.classList.remove('password-overlay--instant'));
+        });
+        input?.focus();
+        form?.addEventListener('submit', (e) => {
           e.preventDefault();
           if (input.value === CORRECT_PASSWORD) {
             sessionStorage.setItem(STORAGE_KEY, 'unlocked');
@@ -241,7 +263,7 @@
             setTimeout(() => input.classList.remove('error'), 400);
           }
         });
-        input.addEventListener('input', () => error.classList.remove('visible'));
+        input?.addEventListener('input', () => error.classList.remove('visible'));
       }
 
       // Scroll animations

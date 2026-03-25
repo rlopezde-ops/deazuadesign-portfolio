@@ -54,69 +54,6 @@
 }
 
 /* --------------------------------------------------------------------------
-   Custom Cursor
-   -------------------------------------------------------------------------- */
-.cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 10002; /* Above password overlay (10001) so cursor remains visible in modals */
-  mix-blend-mode: difference;
-}
-
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: #fff;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.cursor-outline {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.15s ease, height 0.15s ease, border-color 0.15s ease;
-}
-
-/* Cursor hover states */
-.cursor-outline.cursor-hover {
-  width: 60px;
-  height: 60px;
-  border-color: var(--primary);
-}
-
-.cursor-outline.cursor-hover-link {
-  width: 50px;
-  height: 50px;
-  border-color: rgba(255, 255, 255, 0.8);
-}
-
-/* Hide custom cursor on touch devices */
-@media (hover: none) and (pointer: coarse) {
-  .cursor {
-    display: none;
-  }
-}
-
-/* Hide default cursor when custom cursor is active (only if no reduced motion preference) */
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  * {
-    cursor: none !important;
-  }
-}
-
-/* Hide custom cursor when user prefers reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .cursor {
-    display: none !important;
-  }
-}
-
-/* --------------------------------------------------------------------------
    Reset & Base
    -------------------------------------------------------------------------- */
 *, *::before, *::after {
@@ -199,11 +136,13 @@ q {
 .nav-logo {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .logo-img {
-  height: 40px;
+  height: 2.5rem;
   width: auto;
+  max-width: min(100%, 200px);
   transition: opacity var(--transition-fast);
   display: block;
 }
@@ -242,6 +181,215 @@ q {
 
 .nav-links a:hover::after {
   width: 100%;
+}
+
+/* Mobile menu toggle — hidden on desktop */
+.nav-toggle {
+  display: none;
+  position: relative;
+  z-index: 3;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  border: 1px solid rgba(181, 126, 220, 0.25);
+  border-radius: var(--radius-md);
+  background: rgba(22, 22, 42, 0.6);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+
+.nav-toggle:hover {
+  border-color: rgba(181, 126, 220, 0.45);
+  background: rgba(30, 30, 56, 0.85);
+}
+
+.nav-toggle-bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 1.25rem;
+}
+
+.nav-toggle-bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 1px;
+  background: currentColor;
+  transform-origin: center;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.nav--open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav--open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav--open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-menu {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu-inner {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Full-screen menu uses position: fixed; JS clears nav backdrop-filter on open
+     so WebKit does not clip fixed children (no nav height expansion = no logo jump). */
+  .nav.nav--open::after {
+    display: none;
+  }
+
+  .nav-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: max(5rem, calc(env(safe-area-inset-top, 0px) + 3.5rem))
+      max(var(--space-lg), env(safe-area-inset-right, 0px))
+      max(var(--space-2xl), env(safe-area-inset-bottom, 0px))
+      max(var(--space-lg), env(safe-area-inset-left, 0px));
+    background:
+      radial-gradient(ellipse 120% 80% at 50% 20%, rgba(181, 126, 220, 0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 60% at 80% 80%, rgba(0, 245, 212, 0.06) 0%, transparent 50%),
+      rgba(10, 10, 18, 0.97);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0.55s;
+  }
+
+  .nav.nav--open .nav-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0s;
+  }
+
+  .nav-menu-inner {
+    justify-content: center;
+    width: 100%;
+    max-width: 24rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xl);
+    width: 100%;
+  }
+
+  .nav-links a {
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 5.5vw, 2rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    opacity: 0;
+    transform: translateY(1.125rem);
+    filter: blur(0px);
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      color var(--transition-fast);
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+
+  .nav.nav--open .nav-links a {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+
+  .nav.nav--open .nav-links a:nth-child(1) {
+    transition-delay: 0.07s;
+  }
+
+  .nav.nav--open .nav-links a:nth-child(2) {
+    transition-delay: 0.14s;
+  }
+
+  .nav.nav--open .nav-links a:nth-child(3) {
+    transition-delay: 0.21s;
+  }
+
+  /* Subtle exit (interruptible CSS transitions): overlay slower than enter (0.75s ease-out);
+     links drift up slightly + blur, no stagger. nav--closing removed after timeout in JS. */
+  .nav.nav--closing .nav-menu {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.75s ease-out,
+      visibility 0s linear 0.75s;
+  }
+
+  .nav.nav--closing .nav-links a {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    filter: blur(4px);
+    transition:
+      opacity 0.35s ease-out,
+      transform 0.35s ease-out,
+      filter 0.35s ease-out;
+    transition-delay: 0s !important;
+  }
+
+  .nav:not(.nav--open) .nav-links a {
+    transition-delay: 0s !important;
+    transition-duration: 0s;
+  }
+
+  .nav-links a:hover {
+    color: var(--primary-light);
+  }
+
+  .nav-logo {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+body.nav-menu-open {
+  overflow: hidden;
+  touch-action: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -784,6 +932,17 @@ a.case-card {
   color: var(--text-secondary);
 }
 
+.about-text p a {
+  color: var(--primary-light);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color var(--transition-fast);
+}
+
+.about-text p a:hover {
+  color: var(--primary);
+}
+
 .about-leadership-link {
   display: inline-flex;
   align-items: center;
@@ -1079,11 +1238,7 @@ a.case-card {
     padding: var(--space-sm) var(--space-md);
     padding-top: calc(var(--space-sm) + env(safe-area-inset-top, 0px));
   }
-  
-  .nav-links {
-    gap: var(--space-md);
-  }
-  
+
   .hero {
     padding: var(--space-2xl) var(--space-md);
   }

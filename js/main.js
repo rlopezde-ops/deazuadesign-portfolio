@@ -10,11 +10,11 @@ const FEATURE_FLAGS = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize custom cursor
-  initCustomCursor();
-  
   // Initialize scroll animations
   initScrollAnimations();
+
+  // Mobile full-screen nav (hamburger)
+  initMobileNav();
   
   // Initialize smooth scroll for nav links
   initSmoothScroll();
@@ -40,6 +40,130 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function applyFeatureFlags() {
   window.PASSWORD_PROTECTION_ENABLED = FEATURE_FLAGS.caseStudyPasswordProtection;
+}
+
+/* --------------------------------------------------------------------------
+   Nav bar styles when scrolled (shared with mobile menu close so state stays correct)
+   -------------------------------------------------------------------------- */
+function syncNavScrollStyles(nav) {
+  if (!nav) return;
+  const currentScroll = window.pageYOffset;
+  if (currentScroll > 100) {
+    nav.style.background = 'rgba(15, 15, 26, 1)';
+    nav.style.backdropFilter = 'blur(10px)';
+    nav.style.webkitBackdropFilter = 'blur(10px)';
+    nav.style.boxShadow = '0 1px 0 rgba(181, 126, 220, 0.1)';
+  } else {
+    nav.style.background = '';
+    nav.style.backdropFilter = '';
+    nav.style.webkitBackdropFilter = '';
+    nav.style.boxShadow = '';
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile navigation (hamburger + full-screen menu)
+   -------------------------------------------------------------------------- */
+function initMobileNav() {
+  const nav = document.querySelector('.nav');
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('primary-nav');
+  if (!nav || !toggle || !menu) return;
+
+  const labelOpen = 'Open menu';
+  const labelClose = 'Close menu';
+  const mqMobile = window.matchMedia('(max-width: 768px)');
+
+  function syncMenuAriaHidden() {
+    if (!mqMobile.matches) {
+      menu.removeAttribute('aria-hidden');
+      return;
+    }
+    menu.setAttribute('aria-hidden', nav.classList.contains('nav--open') ? 'false' : 'true');
+  }
+
+  let closeTimer = null;
+
+  function setOpen(open) {
+    if (closeTimer) {
+      clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+
+    if (open) {
+      nav.classList.remove('nav--closing');
+      nav.classList.add('nav--open');
+      document.body.classList.add('nav-menu-open');
+      /* WebKit: backdrop-filter on .nav creates a containing block for fixed children.
+         Clear while menu is open so .nav-menu can cover the viewport; restore after close. */
+      if (mqMobile.matches) {
+        nav.style.backdropFilter = '';
+        nav.style.webkitBackdropFilter = '';
+      }
+    } else {
+      nav.classList.add('nav--closing');
+      closeTimer = setTimeout(() => {
+        nav.classList.remove('nav--open', 'nav--closing');
+        document.body.classList.remove('nav-menu-open');
+        syncNavScrollStyles(nav);
+        syncMenuAriaHidden();
+        closeTimer = null;
+      }, 800);
+    }
+
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? labelClose : labelOpen);
+    syncMenuAriaHidden();
+  }
+
+  function closeNav() {
+    setOpen(false);
+  }
+
+  function onViewportChange() {
+    if (!mqMobile.matches) {
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+      nav.classList.remove('nav--open', 'nav--closing');
+      document.body.classList.remove('nav-menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', labelOpen);
+      syncNavScrollStyles(nav);
+    }
+    syncMenuAriaHidden();
+  }
+
+  syncMenuAriaHidden();
+  if (typeof mqMobile.addEventListener === 'function') {
+    mqMobile.addEventListener('change', onViewportChange);
+  } else {
+    mqMobile.addListener(onViewportChange);
+  }
+
+  toggle.addEventListener('click', () => {
+    if (!mqMobile.matches) return;
+    /* Re-open while closing: nav--open + nav--closing both set */
+    const willOpen = !nav.classList.contains('nav--open') || nav.classList.contains('nav--closing');
+    setOpen(willOpen);
+    if (willOpen) {
+      const first = menu.querySelector('.nav-links a');
+      if (first) {
+        window.requestAnimationFrame(() => first.focus());
+      }
+    } else {
+      toggle.focus();
+    }
+  });
+
+  menu.querySelectorAll('.nav-links a').forEach((link) => {
+    link.addEventListener('click', () => closeNav());
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('nav--open')) {
+      closeNav();
+      toggle.focus();
+    }
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -77,83 +201,6 @@ function initPasswordToggle() {
       iconEl.className = 'iconoir-eye';
     }
   }, true);
-}
-
-/* --------------------------------------------------------------------------
-   Custom Cursor
-   -------------------------------------------------------------------------- */
-function initCustomCursor() {
-  // Only init on devices with fine pointer (mouse) and no reduced motion preference
-  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  
-  const dot = document.querySelector('.cursor-dot');
-  const outline = document.querySelector('.cursor-outline');
-  
-  if (!dot || !outline) return;
-  
-  let mouseX = 0;
-  let mouseY = 0;
-  let outlineX = 0;
-  let outlineY = 0;
-  
-  // Track mouse position
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    
-    // Dot follows instantly
-    dot.style.left = `${mouseX}px`;
-    dot.style.top = `${mouseY}px`;
-  });
-  
-  // Smooth outline follow with lerp
-  function animateOutline() {
-    // Lerp factor - lower = smoother/slower
-    const ease = 0.15;
-    
-    outlineX += (mouseX - outlineX) * ease;
-    outlineY += (mouseY - outlineY) * ease;
-    
-    outline.style.left = `${outlineX}px`;
-    outline.style.top = `${outlineY}px`;
-    
-    requestAnimationFrame(animateOutline);
-  }
-  animateOutline();
-  
-  // Hover effects on interactive elements
-  const hoverTargets = document.querySelectorAll('a, button, .case-card, .video-card, .connect-link, .expertise-item');
-  const textHoverTargets = document.querySelectorAll('.gradient-text-wrapper');
-  
-  hoverTargets.forEach(target => {
-    target.addEventListener('mouseenter', () => {
-      outline.classList.add('cursor-hover-link');
-    });
-    target.addEventListener('mouseleave', () => {
-      outline.classList.remove('cursor-hover-link');
-    });
-  });
-  
-  textHoverTargets.forEach(target => {
-    target.addEventListener('mouseenter', () => {
-      outline.classList.add('cursor-hover');
-    });
-    target.addEventListener('mouseleave', () => {
-      outline.classList.remove('cursor-hover');
-    });
-  });
-  
-  // Hide cursor when leaving window
-  document.addEventListener('mouseleave', () => {
-    dot.style.opacity = '0';
-    outline.style.opacity = '0';
-  });
-  
-  document.addEventListener('mouseenter', () => {
-    dot.style.opacity = '1';
-    outline.style.opacity = '1';
-  });
 }
 
 /* --------------------------------------------------------------------------
@@ -254,23 +301,12 @@ function initCardEffects() {
    -------------------------------------------------------------------------- */
 function initNavScroll() {
   const nav = document.querySelector('.nav');
-  let lastScroll = 0;
-  
+  if (!nav) return;
+
   window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    // Add background when scrolled (opaque to prevent bleed-through on Safari Dynamic Island)
-    if (currentScroll > 100) {
-      nav.style.background = 'rgba(15, 15, 26, 1)';
-      nav.style.backdropFilter = 'blur(10px)';
-      nav.style.boxShadow = '0 1px 0 rgba(181, 126, 220, 0.1)';
-    } else {
-      nav.style.background = '';
-      nav.style.backdropFilter = '';
-      nav.style.boxShadow = '';
-    }
-    
-    lastScroll = currentScroll;
+    /* Avoid re-applying backdrop-filter while mobile menu is open (breaks fixed overlay). */
+    if (nav.classList.contains('nav--open') || nav.classList.contains('nav--closing')) return;
+    syncNavScrollStyles(nav);
   });
 }
 
@@ -290,7 +326,7 @@ function debounce(func, wait) {
 }
 
 /* --------------------------------------------------------------------------
-   Hero Title Effects (Gradient Shift + Cursor Glow)
+   Hero Title Effects (Gradient shift + mouse-following glow on gradient text)
    -------------------------------------------------------------------------- */
 function initHeroTitleEffects() {
   // Check for reduced motion preference

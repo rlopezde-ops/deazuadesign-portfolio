@@ -18,19 +18,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="leadership-page">
-  <!-- Custom Cursor -->
-  <div class="cursor cursor-dot" aria-hidden="true"></div>
-  <div class="cursor cursor-outline" aria-hidden="true"></div>
-
   <!-- Navigation -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">
       <img src="assets/images/logo.png" alt="De Azua Design" class="logo-img">
     </a>
-    <div class="nav-links">
-      <a href="index.html#work">Work</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#connect">Connect</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span class="nav-toggle-bars" aria-hidden="true">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </span>
+    </button>
+    <div class="nav-menu" id="primary-nav">
+      <div class="nav-menu-inner">
+        <div class="nav-links">
+          <a href="index.html#case-studies">Case Studies</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#connect">Connect</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -207,7 +214,7 @@
   <section class="next-project">
     <p class="next-project-label">Want to see it in action?</p>
     <div class="leadership-cta-links">
-      <a href="index.html#work" class="hero-cta">View Selected Work <span class="arrow">→</span></a>
+      <a href="index.html#case-studies" class="hero-cta">View Case Studies <span class="arrow">→</span></a>
       <a href="index.html#connect" class="connect-link leadership-cta">Let's Connect</a>
     </div>
   </section>

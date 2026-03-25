@@ -18,18 +18,26 @@
 </head>
 <body>
   <!-- Custom Cursor -->
-  <div class="cursor cursor-dot" aria-hidden="true"></div>
-  <div class="cursor cursor-outline" aria-hidden="true"></div>
-
   <!-- Navigation -->
   <nav class="nav">
     <a href="../index.html" class="nav-logo">
       <img src="../assets/images/logo.png" alt="De Azua Design" class="logo-img">
     </a>
-    <div class="nav-links">
-      <a href="../index.html#work">Work</a>
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#connect">Connect</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span class="nav-toggle-bars" aria-hidden="true">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </span>
+    </button>
+    <div class="nav-menu" id="primary-nav">
+      <div class="nav-menu-inner">
+        <div class="nav-links">
+          <a href="../index.html#case-studies">Case Studies</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#connect">Connect</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -40,7 +48,7 @@
       radial-gradient(ellipse 60% 80% at 80% 20%, rgba(254, 225, 64, 0.3) 0%, transparent 50%),
       radial-gradient(ellipse 50% 50% at 50% 80%, rgba(255, 107, 157, 0.2) 0%, transparent 50%);"></div>
     <div class="case-hero-content">
-      <a href="../index.html#work" class="case-back">← Back to Work</a>
+      <a href="../index.html#case-studies" class="case-back">← Back to Case Studies</a>
       <p class="case-client">Universal Orlando</p>
       <h1 class="case-title">Halloween Horror Nights</h1>
       <p class="case-intro">

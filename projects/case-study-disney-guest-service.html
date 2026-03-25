@@ -17,12 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Custom Cursor -->
-  <div class="cursor cursor-dot" aria-hidden="true"></div>
-  <div class="cursor cursor-outline" aria-hidden="true"></div>
-
   <!-- Password Protection Modal -->
-  <div class="password-overlay" id="passwordOverlay">
+  <div class="password-overlay hidden" id="passwordOverlay">
     <div class="password-modal">
       <div class="password-modal-icon">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -43,8 +39,8 @@
         <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
         <button type="submit" class="password-submit">Unlock</button>
       </form>
-      <a href="../index.html#work" class="password-back">← Back to Work</a>
-      <a href="mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password." class="password-contact">Need the password? <span class="password-contact-link">Contact me</span></a>
+      <a href="../index.html#case-studies" class="password-back">← Back to Case Studies</a>
+      <a href="mailto:ricardo@deazuadesign.com?subject=Please%20send%20me%20your%20case%20study%20password." class="password-contact">Don't have the password? <span class="password-contact-link">Email me</span></a>
     </div>
   </div>
 
@@ -53,10 +49,21 @@
     <a href="../index.html" class="nav-logo">
       <img src="../assets/images/logo.png" alt="De Azua Design" class="logo-img">
     </a>
-    <div class="nav-links">
-      <a href="../index.html#work">Work</a>
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#connect">Connect</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span class="nav-toggle-bars" aria-hidden="true">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </span>
+    </button>
+    <div class="nav-menu" id="primary-nav">
+      <div class="nav-menu-inner">
+        <div class="nav-links">
+          <a href="../index.html#case-studies">Case Studies</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#connect">Connect</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -67,7 +74,7 @@
       radial-gradient(ellipse 60% 80% at 80% 20%, rgba(0, 242, 254, 0.3) 0%, transparent 50%),
       radial-gradient(ellipse 50% 50% at 50% 80%, rgba(181, 126, 220, 0.15) 0%, transparent 50%);"></div>
     <div class="case-hero-content">
-      <a href="../index.html#work" class="case-back">← Back to Work</a>
+      <a href="../index.html#case-studies" class="case-back">← Back to Case Studies</a>
       <p class="case-client">Disney Parks & Experiences</p>
       <h1 class="case-title">Guest Service Suite</h1>
       <p class="case-intro">
@@ -321,20 +328,24 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Password Protection (controlled by FEATURE_FLAGS.caseStudyPasswordProtection in main.js)
       const overlay = document.getElementById('passwordOverlay');
+      const form = document.getElementById('passwordForm');
+      const input = document.getElementById('passwordInput');
+      const error = document.getElementById('passwordError');
+      const CORRECT_PASSWORD = 'morecowbell';
+      const STORAGE_KEY = 'pw_case_studies';
+
       if (window.PASSWORD_PROTECTION_ENABLED === false) {
+        /* Overlay stays hidden (default in HTML) */
+      } else if (sessionStorage.getItem(STORAGE_KEY) === 'unlocked') {
         overlay?.classList.add('hidden');
       } else {
-        const form = document.getElementById('passwordForm');
-        const input = document.getElementById('passwordInput');
-        const error = document.getElementById('passwordError');
-        const CORRECT_PASSWORD = 'velvet';
-        const STORAGE_KEY = 'pw_disney_gss';
-        if (sessionStorage.getItem(STORAGE_KEY) === 'unlocked') {
-          overlay.classList.add('hidden');
-        } else {
-          input.focus();
-        }
-        form.addEventListener('submit', (e) => {
+        overlay?.classList.remove('hidden');
+        overlay?.classList.add('password-overlay--instant');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => overlay?.classList.remove('password-overlay--instant'));
+        });
+        input?.focus();
+        form?.addEventListener('submit', (e) => {
           e.preventDefault();
           if (input.value === CORRECT_PASSWORD) {
             sessionStorage.setItem(STORAGE_KEY, 'unlocked');
@@ -346,7 +357,7 @@
             setTimeout(() => input.classList.remove('error'), 400);
           }
         });
-        input.addEventListener('input', () => error.classList.remove('visible'));
+        input?.addEventListener('input', () => error.classList.remove('visible'));
       }
 
       // Scroll animations

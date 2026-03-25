@@ -478,21 +478,8 @@
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   border: 1px solid rgba(181, 126, 220, 0.1);
-  transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
-}
-
-.highlight-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(181, 126, 220, 0.2);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-.highlight-card:active {
-  transform: translateY(-1px);
-  border-color: rgba(181, 126, 220, 0.2);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
 }
 
 .highlight-icon {
@@ -627,16 +614,11 @@
   padding: var(--space-xs) var(--space-md);
   background: rgba(181, 126, 220, 0.1);
   color: var(--primary-light);
-  border-radius: 100px;
+  border-radius: var(--radius-sm);
   font-size: 0.875rem;
   font-weight: 500;
   border: 1px solid rgba(181, 126, 220, 0.2);
-  transition: all var(--transition-base);
-}
-
-.role-tag:hover {
-  background: rgba(181, 126, 220, 0.2);
-  transform: translateY(-2px);
+  cursor: default;
 }
 
 /* --------------------------------------------------------------------------
@@ -1037,6 +1019,15 @@
   opacity: 1;
   visibility: visible;
   transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* No transition on first paint when revealing overlay (avoids flash-in animation) */
+.password-overlay.password-overlay--instant {
+  transition: none;
+}
+
+.password-overlay.password-overlay--instant .password-modal {
+  transition: none;
 }
 
 .password-overlay.hidden {

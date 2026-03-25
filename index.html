@@ -18,19 +18,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Custom Cursor -->
-  <div class="cursor cursor-dot" aria-hidden="true"></div>
-  <div class="cursor cursor-outline" aria-hidden="true"></div>
-
   <!-- Navigation -->
   <nav class="nav">
     <a href="#" class="nav-logo">
       <img src="assets/images/logo.png" alt="De Azua Design" class="logo-img">
     </a>
-    <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#connect">Connect</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span class="nav-toggle-bars" aria-hidden="true">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </span>
+    </button>
+    <div class="nav-menu" id="primary-nav">
+      <div class="nav-menu-inner">
+        <div class="nav-links">
+          <a href="#case-studies">Case Studies</a>
+          <a href="#about">About</a>
+          <a href="#connect">Connect</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -46,24 +53,23 @@
     </div>
     <div class="hero-content">
       <h1 class="hero-title">
-        I Lead Product<br>
-        Teams That<br>
+        I Lead Design Teams Who<br>
         <span class="gradient-text-wrapper">
           <span class="hero-cursor-glow" aria-hidden="true"></span>
           <span class="gradient-text">Ship Work That Matters</span>
         </span>
       </h1>
       <p class="hero-subtitle">
-        15 years building complex, high-stakes products for customers and the people who serve them, driving design cultures where great work is expected.
+        15 years building complex, high-stakes products for customers and the people who serve them, driving design cultures where great work thrives.
       </p>
-      <a href="#work" class="hero-cta">View Selected Work <span class="arrow">→</span></a>
+      <a href="#case-studies" class="hero-cta">View Case Studies <span class="arrow">→</span></a>
     </div>
   </section>
 
-  <!-- Work Section -->
-  <section id="work" class="work-section">
+  <!-- Case Studies Section -->
+  <section id="case-studies" class="work-section">
     <div class="section-header">
-      <h2 class="section-title">Selected Work</h2>
+      <h2 class="section-title">Case Studies</h2>
       <p class="section-subtitle">Case studies from enterprise-scale design leadership</p>
     </div>
 
@@ -79,7 +85,7 @@
             <span class="card-tag">Featured work</span>
           </div>
           <h3 class="card-title">Expert Workspace</h3>
-          <p class="card-description">Redesigning the primary tool for 10,000+ help desk and claims experts—a conversational, AI-powered workspace that makes every customer interaction feel simple, personal, and white-glove.</p>
+          <p class="card-description">Redesigning the primary tool for 10,000+ help desk and claims agents—a conversational, AI-powered workspace that makes every customer interaction feel simple, personal, and white-glove.</p>
           <div class="card-meta">
             <span class="card-role">Sr. Manager, Product Design</span>
             <span class="card-year">2025–Present</span>
@@ -98,7 +104,7 @@
             <span class="card-tag">Featured work</span>
           </div>
           <h3 class="card-title">Next-Gen Portal</h3>
-          <p class="card-description">Rebuilding the core operating system for 680+ repair stores nationwide—transforming how experts check in customers, manage repairs, and run their business.</p>
+          <p class="card-description">Rebuilding the core operating system for 680+ repair stores nationwide—transforming how technicians check in customers, manage repairs, and run their business.</p>
           <div class="card-meta">
             <span class="card-role">Sr. Manager, Product Design</span>
             <span class="card-year">2022–2025</span>
@@ -192,12 +198,12 @@
       <div class="highlight-card">
         <div class="highlight-icon"><i class="iconoir-angle-tool"></i></div>
         <h4 class="highlight-title">Building Teams</h4>
-        <p class="highlight-text">Great design culture doesn't happen by accident — I build it intentionally through open critique, inclusive hiring, and a genuine commitment to psychological safety. Direct feedback and creative risk-taking aren't in tension on my teams. They're expected in equal measure.</p>
+        <p class="highlight-text">Great design culture doesn't happen by accident — I build it intentionally through open critique, inclusive hiring, and a genuine commitment to psychological safety. When someone on my team pushes back on a direction, I take that as a sign the culture is working — not a problem to manage.</p>
       </div>
       <div class="highlight-card">
         <div class="highlight-icon"><i class="iconoir-archery"></i></div>
         <h4 class="highlight-title">Ownership & Clarity</h4>
-        <p class="highlight-text">I communicate goals so clearly that designers can own outcomes, not just tasks. When someone on my team pushes back on a direction, I take that as a sign the culture is working — not a problem to manage.</p>
+        <p class="highlight-text">I set a clear product vision and make sure every designer understands how their work connects to it. I stay close to the craft — reviewing work, shaping direction, and contributing directly when the work calls for it.</p>
       </div>
       <div class="highlight-card">
         <div class="highlight-icon"><i class="iconoir-leaf"></i></div>
@@ -212,7 +218,7 @@
     </div>
     <div class="how-i-lead-footer">
       <blockquote class="testimonial">
-        <p>He bridges business context with design thinking in a way that's incredibly valuable, and he's deeply respected by his team, peers, and leadership.</p>
+        <p>Ricardo bridges business context, user needs, and thoughtful design strategy in a way that brings clarity to the work and confidence to the team. He's deeply respected by his peers, stakeholders, and the people he leads.</p>
         <cite>— Lauren Singer Brolan, Director of Product Design, Capital One</cite>
       </blockquote>
       <p>
@@ -229,13 +235,13 @@
       <div class="about-grid">
         <div class="about-text">
           <p class="about-intro">
-            I design for the people on the front lines — the technician running 12 repairs back to back, the cast member managing a family's once-in-a-lifetime vacation, the agent handling a customer's worst day. Complex, high-stakes products built for experts who depend on them completely. That's where I've done my best work, and where I keep choosing to go.
+            The products I'm most proud of are the ones where getting it wrong wasn't an option — tools built for people whose jobs depended on every pixel being right. Front-line workers, customer-facing teams, operational systems at scale. But the through-line isn't the industry — it's the standard. I bring that same level of rigor to every product I lead, because the people using what we build deserve nothing less.
           </p>
           <p>
             I started as a designer who cared obsessively about craft. Over time I learned that craft without strategy is just taste, and strategy without craft is just a deck. The leader I've become holds both.
           </p>
           <p>
-            I write about design leadership on my Substack, No Barriers to Entry. If you're building something interesting and care deeply about design culture, let's talk.
+            I write about design leadership on my Substack, <a href="https://ricardodeazua.substack.com/" target="_blank" rel="noopener noreferrer">No Barriers to Entry</a>. If you're building something that demands great design and you care deeply about the culture behind it, <a href="mailto:ricardo@deazuadesign.com">let's talk</a>.
           </p>
         </div>
         <div class="about-image-placeholder">
