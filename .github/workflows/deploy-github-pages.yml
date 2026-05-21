@@ -9,10 +9,12 @@
 # Public Spanish repo: no secret needed. Private: SPANISH_REPO_TOKEN (read access).
 name: Deploy GitHub Pages
 
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+ on:
+    push:
+      branches: [main]
+    workflow_dispatch:
+    repository_dispatch:
+      types: [spanish-app-updated]
 
 permissions:
   contents: read
