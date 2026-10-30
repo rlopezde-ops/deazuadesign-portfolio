@@ -10,3 +10,5 @@
 
 # Large source files (GitHub 100MB limit)
 *.psd
+
+**/.claude/worktrees/
