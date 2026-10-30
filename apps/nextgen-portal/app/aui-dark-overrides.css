@@ -1,0 +1,74 @@
+/**
+ * Dark polish for AUI components that still hardcode light surfaces
+ * (legacy Modal). Token-driven components already follow `--aui-*`
+ * from the theme class on <body>.
+ *
+ * AUI ModalInner is a `div[role="dialog"][aria-modal="true"]`.
+ * Slide-out uses `aside` — keep those selectors separate.
+ */
+body.asurion-dark,
+body.partner-dark {
+  color-scheme: dark;
+}
+
+/* —— AUI Modal (portal) —— */
+body.asurion-dark div[role="dialog"][aria-modal="true"],
+body.partner-dark div[role="dialog"][aria-modal="true"] {
+  background-color: var(--aui-elevated-level-02) !important;
+  color: var(--aui-on-surface) !important;
+  border: 1px solid var(--aui-outline-soft);
+  border-radius: var(--aui-border-radius-200);
+  box-shadow: 0 16px 48px var(--aui-fills-drop-shadow);
+  padding: var(--aui-spacing-300) !important;
+}
+
+body.asurion-dark div[role="dialog"][aria-modal="true"] h1,
+body.asurion-dark div[role="dialog"][aria-modal="true"] h2,
+body.partner-dark div[role="dialog"][aria-modal="true"] h1,
+body.partner-dark div[role="dialog"][aria-modal="true"] h2 {
+  color: var(--aui-on-surface) !important;
+}
+
+/* AUI ModalSubTitle hardcodes light-theme neutral */
+body.asurion-dark div[role="dialog"][aria-modal="true"] h3,
+body.partner-dark div[role="dialog"][aria-modal="true"] h3 {
+  color: var(--aui-on-surface-soft) !important;
+}
+
+body.asurion-dark div[role="dialog"][aria-modal="true"] #dialog-content,
+body.partner-dark div[role="dialog"][aria-modal="true"] #dialog-content {
+  color: var(--aui-on-surface-soft);
+}
+
+/* Close control — AUI Icon.SSR uses mask + currentColor with color:"black" */
+body.asurion-dark div[role="dialog"][aria-modal="true"] #modal-dismiss-button,
+body.partner-dark div[role="dialog"][aria-modal="true"] #modal-dismiss-button {
+  background-color: transparent !important;
+  color: var(--aui-on-surface) !important;
+}
+
+body.asurion-dark div[role="dialog"][aria-modal="true"] #modal-dismiss-button:hover,
+body.partner-dark div[role="dialog"][aria-modal="true"] #modal-dismiss-button:hover {
+  background-color: var(--aui-surface-variant) !important;
+}
+
+body.asurion-dark div[role="dialog"][aria-modal="true"] #modal-dismiss-button [data-aui="icon"],
+body.asurion-dark div[role="dialog"][aria-modal="true"] #modal-dismiss-button span,
+body.partner-dark div[role="dialog"][aria-modal="true"] #modal-dismiss-button [data-aui="icon"],
+body.partner-dark div[role="dialog"][aria-modal="true"] #modal-dismiss-button span {
+  color: var(--aui-on-surface) !important;
+  background-color: currentColor !important;
+}
+
+/* Secondary outline button — readable on elevated dark surface */
+body.asurion-dark div[role="dialog"][aria-modal="true"] [data-testid="SecondaryModalButton"],
+body.partner-dark div[role="dialog"][aria-modal="true"] [data-testid="SecondaryModalButton"] {
+  color: var(--aui-on-surface) !important;
+  border-color: var(--aui-outline) !important;
+  background-color: transparent !important;
+}
+
+body.asurion-dark div[role="dialog"][aria-modal="true"] [data-testid="SecondaryModalButton"]:hover,
+body.partner-dark div[role="dialog"][aria-modal="true"] [data-testid="SecondaryModalButton"]:hover {
+  background-color: var(--aui-surface-variant) !important;
+}

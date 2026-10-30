@@ -1,0 +1,25 @@
+.root {
+    align-items: center;
+    background-color: var(--notification-color);
+}
+
+.title {
+    color: var(--mantine-primary-color-contrast);
+    font-weight: var(--mantine-font-weight-heavy);
+    margin-bottom: calc(0.275rem * var(--mantine-scale));
+}
+
+.icon,
+.description,
+.description[data-with-title] {
+    color: var(--mantine-primary-color-contrast);
+}
+
+.closeButton {
+    color: var(--mantine-primary-color-contrast);
+
+    [data-mantine-color-scheme] &:hover {
+        background-color: unset;
+        backdrop-filter: brightness(0.85);
+    }
+}

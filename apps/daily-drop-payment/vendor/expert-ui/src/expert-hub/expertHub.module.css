@@ -1,0 +1,48 @@
+.root {
+    position: relative;
+    flex: 1;
+    flex-direction: column;
+    background: var(--exwo-color-app-bg);
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.assistButton {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 20;
+    line-height: 0;
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    transition:
+        transform 150ms ease,
+        filter 150ms ease;
+}
+
+.assistButton:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+}
+
+.scrollRoot {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.scrollViewport {
+    padding: 2.5rem 3rem 3rem;
+}
+
+.content {
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.topBar {
+    width: 100%;
+    margin-bottom: -0.5rem;
+}

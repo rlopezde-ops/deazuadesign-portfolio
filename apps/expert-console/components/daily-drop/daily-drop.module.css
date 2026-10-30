@@ -1,0 +1,1893 @@
+/*
+ * Daily Drop mirrors the standalone Expert Hub prototype (apps/daily-drop-payment). Colors are
+ * written as literal hex rather than Mantine palette indices because this app's `asurion` tuple is
+ * the upstream `primary` tuple shifted by one, so index-based tokens would drift.
+ */
+
+.page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #1c1a21;
+  color: #e8e6ed;
+  z-index: 40;
+}
+
+/*
+ * Everything on the morning paper except the floating pill — TopBar plus the
+ * phase stage. Wrapping them lets the cold open fade the whole surface in as one
+ * plane once the pill drops (see daily-drop-screen.tsx), while leaving the bare
+ * .page background showing beneath the spotlit pill until then. Transparent, and
+ * a flex column so it passes .page's layout straight through: TopBar keeps its
+ * natural height and .phaseStage still takes the remaining space.
+ */
+.pageContent {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  will-change: opacity;
+}
+
+/* Stage under TopBar — Daily Drop and Available share this surface. */
+.phaseStage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.phaseLayer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  will-change: transform, opacity;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  min-height: 0;
+}
+
+/* ---- Left column: the hub itself ---- */
+
+.hub {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.hubScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 40px 48px 48px;
+}
+
+.hubContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (max-width: 62em) {
+  .hubScroll {
+    padding: 32px 24px 64px;
+  }
+}
+
+/* ---- Greeting (Venmo-feed style: one flowing sentence with inline avatar + colored metrics) ---- */
+
+.greeting {
+  max-width: 60rem;
+}
+
+.greetingText {
+  color: #a7a4ae;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 3.5rem;
+  margin: 0;
+}
+
+.greetingName {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.greetingAvatarInline {
+  display: inline-flex;
+  vertical-align: middle;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 120ms ease;
+}
+
+.greetingAvatarInline:hover {
+  border-color: #5a5563;
+}
+
+.greetingAvatarInline:focus-visible {
+  outline: 2px solid #a053e0;
+  outline-offset: 2px;
+}
+
+.metricOnTrack {
+  color: #7fe3a3;
+}
+
+.metricAtRisk {
+  color: #f7a3a3;
+}
+
+/* ---- "My stats" header + Yesterday/Today toggle ---- */
+
+.metricsHeader {
+  width: 100%;
+  padding: 16px 8px;
+}
+
+.metricsTitle {
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.metricsEarnings {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #a7a4ae;
+}
+
+.segmented {
+  background: #2a2630;
+  border: 1px solid #221f28;
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.segmentedLabel {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #716e78;
+  text-align: center;
+}
+
+.segmentedLabel[data-active] {
+  color: #e8e6ed;
+}
+
+.segmentedIndicator {
+  background: #3a3642;
+  border-radius: 6px;
+  box-shadow:
+    0 1px 2px 0 rgba(0, 0, 0, 0.1),
+    0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.lastUpdated {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #a7a4ae;
+}
+
+/* ---- Shared card surface (metric cards + leaderboard bar) ---- */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: #221f28;
+  border: 1px solid #3a3642;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.interactive {
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.interactive:hover {
+  border-color: #9a2bea;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.interactive:focus-visible {
+  outline: 2px solid #9a2bea;
+  outline-offset: 2px;
+}
+
+/* ---- Metric flip card (grid slot) ----
+ *
+ * The card in the grid. `.interactive` (above) provides the purple hover outline
+ * and slight lift; `.card` provides the surface. Clicking opens a modal overlay
+ * with the pluck-expand-flip choreography from the leaderboard.
+ */
+
+.metricFlipCard {
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.metricFlipCard[data-open] {
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* ---- Metric detail modal ----
+ *
+ * Same pluck-expand-flip pattern as the leaderboard: scrim darkens the page,
+ * the panel starts at the source card's rect and grows into a centered dialog
+ * while turning 180° on its Y-axis. backface-visibility handles the face swap.
+ */
+
+.metricScrim {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(10, 9, 13, 0.72);
+}
+
+.metricModal {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.metricModalFace {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.metricModalBack {
+  transform: rotateY(180deg);
+}
+
+.metricModalBack .payBackFace {
+  border-radius: 20px;
+}
+
+.metricModalBody {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+}
+
+
+/* ---- Metric card (front face) ---- */
+
+.metricCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  height: 100%;
+  gap: 4px;
+}
+
+/* Keeps the copy above the cake illustration. */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.metricTitleRow {
+  width: 100%;
+}
+
+.metricTitle {
+  color: #a7a4ae;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+  margin: 0;
+}
+
+.metricValueRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
+}
+
+.metricValue {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  color: #e8e6ed;
+}
+
+.metricUnit {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #a7a4ae;
+}
+
+.metricTarget {
+  color: #a7a4ae;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+}
+
+/* ---- Front face enrichment: category label, earned block, flip CTA ---- */
+
+.metricCategoryRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.metricStatusRight {
+  margin-left: auto;
+}
+
+.metricCategoryLabel {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #716e78;
+}
+
+.metricCategorySep {
+  font-size: 13px;
+  color: #716e78;
+}
+
+.metricCategoryName {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #a7a4ae;
+}
+
+.metricEarned {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.metricEarnedValue {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #e8e6ed;
+}
+
+.metricActionLine {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #a7a4ae;
+}
+
+.metricFlipCta {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #716e78;
+  text-align: right;
+  opacity: 0;
+  transition: opacity var(--ew-dur-micro, 100ms) ease;
+}
+
+.metricFlipCard:hover .metricFlipCta,
+.metricFlipCard:focus-within .metricFlipCta {
+  opacity: 1;
+}
+
+/* ---- Pay detail back face ---- */
+
+.payBackFace {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+  background: #221f28;
+  border: 1px solid #4a4652;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.payBackContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.payAmountRow {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.payDivider {
+  font-size: 32px;
+  font-weight: 100;
+  line-height: 40px;
+  color: #716e78;
+}
+
+.payAmountValue {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  color: #e8e6ed;
+}
+
+.payAmount {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  color: #e8e6ed;
+}
+
+.payAmountNone {
+  font-size: 20px;
+  color: #716e78;
+}
+
+/* Tier ladder — scrollable horizontal track with gradient fades */
+
+.tierContainer {
+  position: relative;
+}
+
+.tierContainer::before,
+.tierContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.tierContainer::before {
+  left: 0;
+  background: linear-gradient(to right, #221f28 30%, transparent);
+}
+
+.tierContainer::after {
+  right: 0;
+  background: linear-gradient(to left, #221f28 30%, transparent);
+}
+
+.tierFadeLeft::before {
+  opacity: 1;
+}
+
+.tierFadeRight::after {
+  opacity: 1;
+}
+
+.tierScroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 4px 0;
+}
+
+.tierScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.tierLabelRow {
+  display: flex;
+  min-width: max-content;
+}
+
+.tierItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 72px;
+  flex: 1;
+  padding: 0 4px;
+}
+
+.tierItemActive {
+  color: #d0aaf1;
+}
+
+.tierName {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #716e78;
+}
+
+.tierItemActive .tierName {
+  color: #d0aaf1;
+}
+
+.tierAmount {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  color: #a7a4ae;
+}
+
+.tierItemActive .tierAmount {
+  color: #e8e6ed;
+}
+
+.tierThreshold {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 14px;
+  color: #716e78;
+}
+
+.trackRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 28px;
+  min-width: max-content;
+  margin-top: 4px;
+}
+
+.trackRow::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: #3a3642;
+  transform: translateY(-50%);
+}
+
+.trackFill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 2px;
+  background: #d0aaf1;
+  transform: translateY(-50%);
+  border-radius: 1px;
+}
+
+.trackDot {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3a3642;
+  z-index: 1;
+}
+
+.trackDotCompleted {
+  background: #d0aaf1;
+}
+
+.trackDotActive {
+  width: 10px;
+  height: 10px;
+  background: #d0aaf1;
+  box-shadow: 0 0 8px rgba(160, 83, 224, 0.5);
+}
+
+.youreHere {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 12px;
+  white-space: nowrap;
+  color: #d0aaf1;
+}
+
+.howItWorksTip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #a7a4ae;
+  cursor: help;
+}
+
+.paySupporting {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.paySupportingHeader {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #716e78;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.paySupportingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.paySupportingLabel {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #a7a4ae;
+}
+
+.paySupportingValue {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #e8e6ed;
+}
+
+.payFlipCta {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #716e78;
+  text-align: right;
+}
+
+/* ---- Status pill ---- */
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* Tone colors mirror TAG_TONES in lib/tokens.ts (green / amber / red). */
+.tonePositive {
+  color: #7fe3a3;
+  background: #253b35;
+}
+
+.toneWarning {
+  color: #f0cf6b;
+  background: #413828;
+}
+
+.toneNegative {
+  color: #f7a3a3;
+  background: #422932;
+}
+
+/* ---- Cake illustrations: bottom-right, lightly cropped by the card's overflow ---- */
+
+.illustration {
+  position: absolute;
+  right: -18px;
+  bottom: -20px;
+  width: 132px;
+  height: 132px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  opacity: 0.95;
+  transform-origin: bottom right;
+}
+
+.illustrationLove {
+  /* Heart tip leaves empty corner space — slightly more crop than shield, same visible mass.
+     Lottie heart sits a touch left of the old PNG's center, so nudged rightward to match. */
+  width: 134px;
+  height: 134px;
+  right: -36px;
+  bottom: -36px;
+}
+
+.illustrationQuality {
+  /* Shield fills its frame tightly — less CSS overhang so it reads as clearly as the wallet */
+  width: 128px;
+  height: 128px;
+  right: -12px;
+  bottom: -38px;
+}
+
+.illustrationSales {
+  width: 132px;
+  height: 132px;
+  right: -20px;
+  bottom: -22px;
+}
+
+/* ---- Team leaderboard strip ---- */
+
+/*
+ * The reference app's theme sets a flat 18px body line-height; this app inherits Mantine's 1.55
+ * ratio, which would make every row taller. Pin it on the rows whose height comes from the text.
+ */
+.leaderboardAction,
+.liveBadge,
+.detailLabel,
+.detailSubtitle,
+.detailTarget,
+.detailSupportingHeader,
+.detailStatLabel,
+.detailStatValue,
+.standingsTitle,
+.standingsDescription,
+.standingsReminder {
+  line-height: 18px;
+}
+
+.leaderboardAction {
+  font-size: 13px;
+  font-weight: 600;
+  color: #d7d5db;
+}
+
+.leaderboardAction svg {
+  transition: transform 150ms ease;
+}
+
+/* Metric + window under the title: "Net enrollments · Sep 5–11". */
+.expertBoardLabel {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #716e78;
+}
+
+/* Text button back to the full standings in the rail — no card chrome. */
+.expertStandingsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  /* Padding for the hit target, pulled back out so the label stays flush. */
+  margin: -4px -6px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
+}
+
+/* Colour + a caret nudge only: a fill here would read as a second button beside
+   the Live badge and out-weigh the section title. */
+.expertStandingsLink:hover {
+  color: #ffffff;
+}
+
+.expertStandingsLink:hover svg {
+  transform: translateX(3px);
+}
+
+.expertStandingsLink:focus-visible {
+  outline: 2px solid #9a2bea;
+  outline-offset: 2px;
+}
+
+/*
+ * The strip itself. Geometry:
+ *
+ * - Card pitch is 148 + 12 gutter = 160, so the 863px hub shows ~5.4 of 9 cards
+ *   at 1440 — the strip always overflows, which makes the fade and the arrows
+ *   load-bearing wayfinding rather than decoration.
+ * - Card height is content-driven (shoulder 18 | face 48 | identity 34 |
+ *   score 28 inside 12/14 padding ≈ 176), close to the metric cards above so
+ *   the strip reads as a companion to My stats, not a second hero.
+ * - Nothing in a card clips: accessories overhang the photo box by up to ~14px
+ *   (a hat sits above the crown of the head) and the padding absorbs it.
+ */
+.expertStripViewport {
+  position: relative;
+}
+
+.expertStripTrack {
+  display: flex;
+  gap: 12px;
+  /*
+   * Room on all four sides for a card lifted by the proximity tween (scale 1.1, a
+   * 6px rise, and a 3px highlight ring ≈ 11px of overhang) to paint unclipped:
+   * `overflow-x` makes this a scroll container on *both* axes, so anything past
+   * the padding is cut — which is what used to slice the first card's left edge and
+   * its highlight. The matching negative margin keeps that room from moving the
+   * row, so the cards still sit flush with the content column at either end.
+   *
+   * Two things depend on this padding: the edge fades are inset by the same 20px
+   * so the cut they hide stays covered, and the cards' offset measurements in
+   * `leaderboard-strip.tsx` are read against this element (see `position` below).
+   */
+  margin: -20px;
+  padding: 20px;
+  /*
+   * A stacking context, so the hovered card's `z-index` can lift it above its
+   * neighbours without also climbing over the arrows — `overflow` alone doesn't
+   * create one, which let `z-index: 3` outrank them and swallow their clicks.
+   * `position` also makes this the cards' offsetParent, which is what keeps their
+   * `offsetLeft` in the same origin as the pointer maths now that there's padding.
+   */
+  position: relative;
+  z-index: 0;
+  list-style: none;
+  overflow-x: auto;
+  /* Keep a horizontal overscroll out of the browser's back gesture. */
+  overscroll-behavior-x: contain;
+  /* The fade + arrows are the affordance; a live scrollbar under the cards is
+     noise on a surface nobody drags. */
+  scrollbar-width: none;
+}
+
+.expertStripTrack::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+ * The card's surface and internal layout, shared by the row and by the front face
+ * of the flip panel — the card that lifts out has to be the card you clicked.
+ */
+.expertCardSurface {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 12px 14px;
+  background: #221f28;
+  border: 1px solid #3a3642;
+  /* 12px, matching the standings rows — the leaderboard's own radius. */
+  border-radius: 12px;
+}
+
+/*
+ * The slot in the row, and what the proximity tween scales and raises. It
+ * deliberately carries no `transform` transition: GSAP re-targets the transform
+ * on every pointermove, and a CSS transition layered on that reads as lag.
+ */
+.expertCard {
+  position: relative;
+  display: flex;
+  flex: 0 0 148px;
+  will-change: transform;
+}
+
+/* Lift the pointer's card above the neighbour it grows toward, so its highlight
+   can't be overlapped. */
+.expertCard:hover {
+  z-index: 3;
+}
+
+.expertCardButton {
+  width: 100%;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+/* The card under the pointer — the one a click will pick up. */
+.expertCard:hover .expertCardButton,
+.expertCardButton:focus-visible {
+  border-color: #9a2bea;
+  box-shadow:
+    0 0 0 3px rgba(154, 43, 234, 0.18),
+    0 10px 24px rgba(0, 0, 0, 0.45);
+  outline: none;
+}
+
+/* Rank and momentum ride the shoulder line, out of the portrait's way. */
+.expertCardShoulder {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 18px;
+}
+
+/* A bare number in the corner — same quiet grey as the standings rows' rank, and
+   the same for every position. The crown already says who leads. */
+.expertRank {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  font-variant-numeric: tabular-nums;
+  color: #716e78;
+}
+
+/*
+ * Momentum is built for the standings' 52px metrics column — it fills its
+ * container and right-aligns — so give it a sized slot here instead of
+ * overriding it.
+ */
+.expertDeltaSlot {
+  display: flex;
+  justify-content: flex-end;
+  width: 34px;
+  margin-left: auto;
+}
+
+.expertAvatar {
+  position: relative;
+  flex: none;
+  width: 48px;
+  height: 48px;
+}
+
+/* Your own face gets the ring; the week's leader gets the crown. */
+.expertPhotoYou {
+  box-shadow: 0 0 0 2px rgba(178, 51, 255, 0.55);
+}
+
+/* Mirrors .standingsCrown, sized for the 48px portrait. */
+.expertCrown {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f6d365 0%, #e8a838 100%);
+  color: #3a2508;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+/*
+ * Fixed 34px band (name 18 + 2 + sub 14) whether or not there's a sub-line, so
+ * every score in the row shares a baseline.
+ */
+.expertIdentity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  min-height: 34px;
+}
+
+.expertName {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #e8e6ed;
+}
+
+.expertSub {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #716e78;
+}
+
+.expertSubWinner {
+  color: #f0c14b;
+}
+
+/* `margin-top: auto` pins the score to the floor, so a card that stretches to a
+   taller sibling keeps its number on the shared baseline. */
+.expertScore {
+  margin-top: auto;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+/*
+ * "You" is orientation, not a CTA — the same soft purple as the standings row
+ * highlight, flattened to literal hex because it sits on the card surface
+ * (rgba(147, 58, 220, 0.14) over #221f28) rather than over the panel.
+ */
+.expertCardYou {
+  background: #322341;
+  border-color: #522875;
+}
+
+.expertCardYou .expertSub:not(.expertSubWinner) {
+  color: #d0aaf1;
+}
+
+/*
+ * Overflow cues. The page under the strip is a flat #1c1a21, so an opaque-to-
+ * transparent gradient in that colour reads as the cards passing under the
+ * edge — and unlike masking the scroll container, it leaves the arrows alone.
+ */
+/* 96px ≈ two thirds of a card, so the card you're cutting off has started to
+   dissolve by its own leading edge instead of showing a crisp border and chip.
+   Inset by the track's 20px lift padding on every side: the scroll container cuts
+   content at *its* edge, not the column's, so that's where the fade has to start. */
+.expertStripFade {
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  width: 116px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.expertStripFade[data-shown='true'] {
+  opacity: 1;
+}
+
+.expertStripFadeLeft {
+  left: -20px;
+  background: linear-gradient(to right, #1c1a21 18%, rgba(28, 26, 33, 0) 100%);
+}
+
+.expertStripFadeRight {
+  right: -20px;
+  background: linear-gradient(to left, #1c1a21 18%, rgba(28, 26, 33, 0) 100%);
+}
+
+.expertStripArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  /* A step brighter than a card so it still reads as a control sitting on top of
+     the fade rather than part of the card it covers. */
+  border: 1px solid #4a4652;
+  border-radius: 50%;
+  background: rgba(42, 38, 48, 0.95);
+  color: #e8e6ed;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  /*
+   * Its own press transition rather than `.motion-press`: that utility animates
+   * `transform`, which here also carries the -50% centring.
+   */
+  transform: translateY(-50%);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.expertStripArrowLeft {
+  left: 2px;
+}
+
+.expertStripArrowRight {
+  right: 2px;
+}
+
+.expertStripArrow:hover {
+  border-color: #9a2bea;
+  background: #332e3c;
+  color: #ffffff;
+}
+
+.expertStripArrow:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.expertStripArrow:focus-visible {
+  outline: 2px solid #9a2bea;
+  outline-offset: 2px;
+}
+
+/* Nothing that way: leave rather than sit dimmed — `disabled` also drops it from
+   the tab order, so nobody lands on a button that can't move. */
+.expertStripArrow:disabled {
+  opacity: 0;
+  transform: translateY(-50%) scale(0.9);
+  pointer-events: none;
+}
+
+/* ---- The flipped card ----
+ *
+ * Clicking a card lifts it out of the row and turns it over into this panel. The
+ * two faces are stacked in one 3D stage and swap at 90° through
+ * backface-visibility, which is also why the card's 12px radius and the panel's
+ * 20px never need to be tweened into each other: each face is only ever seen on
+ * its own half of the turn.
+ */
+
+.detailScrim {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(10, 9, 13, 0.72);
+}
+
+/*
+ * The stage. Deliberately without background, border or overflow of its own:
+ * `overflow` would collapse `transform-style` back to flat and break the faces.
+ * GSAP owns position, left/top/width/height, the rotation and its perspective, so
+ * nothing here may set them.
+ */
+.detailPanel {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.detailFace {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+/*
+ * Pre-turned, so it reads correctly once the panel has rotated 180°. This face
+ * clips (the front must not — accessories overhang the portrait) and carries the
+ * larger radius and a slightly brighter rim, being a lifted surface.
+ */
+.detailBack {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: rotateY(180deg);
+  background: #221f28;
+  border: 1px solid #4a4652;
+  border-radius: 20px;
+}
+
+.detailBody {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+.detailCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detailAvatar {
+  position: relative;
+  flex: none;
+  width: 40px;
+  height: 40px;
+}
+
+.detailIdentity {
+  flex: 1;
+  min-width: 0;
+}
+
+.detailName {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #ffffff;
+}
+
+.detailMeta {
+  margin: 2px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #a7a4ae;
+}
+
+.detailClose {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: #a7a4ae;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.detailClose:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.detailClose:focus-visible {
+  outline: 2px solid #9a2bea;
+  outline-offset: 2px;
+}
+
+/* Pay-period move: the value carries the direction, the caption the horizon. */
+.detailStat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #2a2630;
+}
+
+/* No tabular-nums: this figure stands alone rather than aligning in a column, and
+   the feature widens the space character to a digit's width ("+3    spots"). */
+.detailSpots {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.detailStatCaption {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #a7a4ae;
+}
+
+.detailTrend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailSectionLabel {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #716e78;
+}
+
+.detailGraph {
+  display: block;
+  /* Recharts measures this box, so it must not be the thing that collapses. */
+  width: 100%;
+}
+
+/* Hover readout on the trend chart — the panel's own raised surface, not
+   Recharts' default white card. */
+.detailTooltip {
+  padding: 6px 10px;
+  border: 1px solid #4a4652;
+  border-radius: 8px;
+  background: #2a2630;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+/* Same casing as the axis tick it's pointing at — the date is a value here, not a
+   section label, so it isn't upper-cased like "PAST MONTH". */
+.detailTooltipDate {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 15px;
+  color: #a7a4ae;
+}
+
+.detailTooltipValue {
+  margin: 2px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.detailTooltipUnit {
+  font-weight: 400;
+  color: #a7a4ae;
+}
+
+/* One customer's words, set off by a rule rather than quote marks. `margin-top:
+   auto` floors it, so the quote lands on the card's bottom edge at any height. */
+/*
+ * The testimonial, as its own card inside the panel: name, the plan it came in on,
+ * then the verbatim. The reference for this is a white card on a photo, so the
+ * dark-theme equivalent is a *raised* surface — one step lighter than the panel
+ * (#221f28) with a hairline rim, not a tinted or outlined block.
+ *
+ * `margin-top: auto` floors it, so a one-line quote leaves its slack above rather
+ * than lifting the card off the panel's bottom edge.
+ */
+.detailQuote {
+  margin: 0;
+  margin-top: auto;
+  padding: 14px;
+  border: 1px solid #3a3642;
+  border-radius: 12px;
+  background: #2a2630;
+}
+
+.detailQuoteName {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #ffffff;
+}
+
+.detailQuotePlan {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #a7a4ae;
+}
+
+/* Carries the curly quotes, and the most weight in the card — upright, not
+   italic: it's a quotation, not an aside. */
+.detailQuoteText {
+  margin: 10px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #e8e6ed;
+}
+
+/* ---- Live badge ---- */
+
+.liveBadge {
+  font-size: 12px;
+  font-weight: 500;
+  color: #d7d5db;
+}
+
+.liveDot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #b233ff;
+}
+
+/* ---- Right rail ---- */
+
+.railDivider {
+  flex: 0 0 1px;
+  align-self: stretch;
+  background: #2a2630;
+}
+
+.rail {
+  position: relative;
+  flex: 0 0 480px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.railInner {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.scheduleLayer {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  will-change: transform;
+}
+
+.railAssist {
+  flex-shrink: 0;
+  z-index: 3;
+}
+
+/* Transparent hit target only — elevation comes from the panel shadow, not a dim overlay. */
+.railScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.floatingPanel {
+  position: absolute;
+  inset: 12px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  will-change: transform, opacity;
+  /* Parked off-right until GSAP opens it; visibility/pointer-events owned by GSAP autoAlpha. */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.floatingPanelSurface {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #221f28;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow:
+    0 28px 80px -16px rgba(0, 0, 0, 0.88),
+    0 12px 36px -10px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+@media (max-width: 62em) {
+  .railDivider,
+  .rail {
+    display: none;
+  }
+}
+
+.panelHeader {
+  flex: none;
+  height: 56px;
+  padding: 0 16px;
+  border-bottom: 1px solid #3a3642;
+}
+
+.panelHeaderTitle {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 23.2px;
+  color: #e8e6ed;
+  margin: 0;
+}
+
+.panelScroll {
+  flex: 1;
+  min-height: 0;
+}
+
+.panelBody {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive,
+  .interactive:hover,
+  .leaderboardAction svg,
+  .expertStandingsLink:hover svg,
+  .fab,
+  .fab:hover {
+    transition: none;
+    transform: none;
+    animation: none;
+  }
+
+  /* Cues still appear and disappear — they just cut. Listed apart from the group
+     above because these keep a `transform` (the arrows' -50% centring, and the
+     back face's 180° pre-turn). */
+  .expertStandingsLink,
+  .expertStripFade,
+  .expertStripArrow,
+  .expertCardButton,
+  .detailClose {
+    transition: none;
+  }
+
+  .expertStripArrow:active {
+    transform: translateY(-50%);
+  }
+}
+
+/* ---- Metric detail panel ---- */
+
+.detailPrimary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  margin: 12px;
+  background: #221f28;
+  border-radius: 8px;
+}
+
+.detailLabel {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e8e6ed;
+}
+
+.detailSubtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #a7a4ae;
+}
+
+.detailValue {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  color: #e8e6ed;
+}
+
+.detailValueUnit {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #a7a4ae;
+}
+
+.detailTarget {
+  font-size: 12px;
+  font-weight: 400;
+  color: #a7a4ae;
+}
+
+.detailSupporting {
+  padding: 12px 8px;
+  margin: 0 12px 12px;
+}
+
+.detailSupportingHeader {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #3a3642;
+}
+
+.detailStatRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #3a3642;
+}
+
+.detailStatRow:last-child {
+  border-bottom: none;
+}
+
+.detailStatLabel {
+  font-size: 14px;
+  color: #d7d5db;
+}
+
+.detailStatValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ---- Leaderboard standings panel ----
+ *
+ * Inset math:
+ *   tabs / "You" highlight outer edge = 16px (matches panel header)
+ *   rank · avatar · name · score = 16 + 8 = 24px (content sits inside
+ *   the highlight with even 8px padding on all four sides)
+ *
+ * Row grid: 20 | 36 | 1fr | 52  with 12px gutters (4/8/12/16 scale).
+ * Row height is avatar (36) + 8+8 padding = 52 — no extra vertical
+ * min-height that would make top/bottom look roomier than left/right.
+ */
+
+.standings {
+  padding-bottom: 0;
+}
+
+/* Even 16px rhythm around the tabs — same block padding as `.metricsHeader`. */
+.standingsIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.standingsDescription {
+  font-size: 12px;
+  font-weight: 400;
+  color: #716e78;
+  line-height: 16px;
+}
+
+.standingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  /* Align row cards / You highlight with the Sales·Calls tabs above. */
+  padding: 0 16px 16px;
+}
+
+.standingsRow {
+  display: grid;
+  grid-template-columns: 20px 36px minmax(0, 1fr) 52px;
+  column-gap: 12px;
+  align-items: center;
+  /* Equal 8px padding all sides — content is inset from the highlight. */
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.standingsRank {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 16px;
+  color: #716e78;
+}
+
+.standingsAvatarWrap {
+  position: relative;
+  flex: none;
+  width: 32px;
+  height: 32px;
+}
+
+.standingsAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.standingsAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Crown sits in the corner gap — 16px disc clears the 12px gutter to identity. */
+.standingsCrown {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f6d365 0%, #e8a838 100%);
+  color: #3a2508;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+/*
+  36px band: name 20 + gap 4 + badge slot 12 = 36 — matches avatar and score stack.
+  Empty badge slot keeps every row on the same name ↔ score baseline.
+*/
+/* Single centred line — the badge rides beside the name, never under it. */
+.standingsIdentity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.standingsName {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #e8e6ed;
+}
+
+.standingsWinnerBadge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 7px;
+  border-radius: 9px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: #f0c14b;
+  background: rgba(240, 193, 75, 0.12);
+  white-space: nowrap;
+}
+
+/* Fixed metrics column — scores share a right edge; momentum stacks under. */
+.standingsMetrics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  width: 52px;
+}
+
+.standingsScore {
+  width: 100%;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 20px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  text-align: right;
+  color: #ffffff;
+}
+
+.standingsMomentum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  width: 100%;
+  height: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.standingsMomentumValue {
+  font-variant-numeric: tabular-nums;
+  min-width: 0.75em;
+  text-align: right;
+}
+
+.standingsMomentumUp {
+  color: #38d9a9;
+}
+
+.standingsMomentumDown {
+  color: #ff8787;
+}
+
+.standingsMomentumFlat {
+  color: #716e78;
+}
+
+/*
+  "You" is orientation, not a CTA — soft fill + hairline inset.
+  Same padding as siblings so the column grid never jumps.
+*/
+.standingsRowYou {
+  background: rgba(147, 58, 220, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(147, 58, 220, 0.22);
+}
+
+.standingsRowYou .standingsName {
+  font-weight: 600;
+}
+
+.standingsRowYou .standingsRank {
+  color: #d0aaf1;
+}
+
+/* ---- Schedule (default rail view) ---- */
+
+.scheduleView {
+  padding: 16px;
+}
+
+.timelineBar {
+  width: 3px;
+  border-radius: 3px;
+  align-self: stretch;
+}
+
+/* ---- Placeholder rail views ---- */
+
+.placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+}

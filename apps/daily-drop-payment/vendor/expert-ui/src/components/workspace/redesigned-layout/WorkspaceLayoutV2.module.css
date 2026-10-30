@@ -1,0 +1,18 @@
+/*
+ * Mantine's Splitter uses the handle element as both the visible divider and the drag target, so its
+ * hit area equals `lineSize` (1px here) — nearly impossible to grab. Keep the 1px visual line (the
+ * handle's own background) but overlay a wider, transparent pointer target so the boundary is easy to
+ * catch. The overlay also gives the col-resize cursor a few pixels of lead-in, so the boundary is
+ * discoverable.
+ */
+/* Own the positioning context explicitly rather than relying on Mantine setting it internally. */
+.handle {
+    position: relative;
+}
+
+.handle::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline: -6px; /* ~6px catch zone on each side of the 1px line */
+}

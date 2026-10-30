@@ -1,0 +1,22 @@
+/* PROTOTYPE DEVIATION — pay-period total banner (matched to Card Flip FlipMetricGrid). See prototype/DEVIATIONS.md. */
+
+.payPeriodBanner {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: var(--mantine-spacing-md);
+}
+
+.bannerAmount {
+    font-size: var(--mantine-font-size-lg);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--mantine-color-dark-0);
+}
+
+.bannerSubtext {
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+    line-height: 1.3;
+}

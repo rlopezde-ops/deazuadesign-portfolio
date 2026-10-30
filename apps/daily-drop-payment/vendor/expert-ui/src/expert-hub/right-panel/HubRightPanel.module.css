@@ -1,0 +1,30 @@
+@keyframes offCallFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.header {
+    border-bottom: 1px solid var(--mantine-color-dark-4);
+}
+
+.headerTitle {
+    font-size: var(--mantine-font-size-md);
+    font-weight: 700;
+    color: var(--mantine-color-dark-0);
+}
+
+/* Keyed by view so switching metric/leaderboard/assist cross-fades the body. */
+.body {
+    min-height: 0;
+    animation: offCallFadeIn 550ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .body {
+        animation: none;
+    }
+}

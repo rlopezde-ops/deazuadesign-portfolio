@@ -1,0 +1,19 @@
+.main {
+    flex-grow: 3;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.dot {
+    background: var(--mantine-color-primary-5);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.segmentedControlLabel {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.4rem;
+}

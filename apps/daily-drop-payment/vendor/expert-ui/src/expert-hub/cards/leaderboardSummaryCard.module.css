@@ -1,0 +1,65 @@
+.root {
+    /* Padding-driven single-row bar (Figma spec): 20px inset on all sides, height follows content. */
+    padding: var(--mantine-spacing-lg);
+    background: var(--mantine-color-default);
+    border: 1px solid var(--mantine-color-default-border);
+    cursor: pointer;
+    transition:
+        border-color 150ms ease,
+        transform 150ms ease,
+        box-shadow 150ms ease;
+}
+
+.root:hover {
+    border-color: var(--mantine-color-asurion-4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.root:focus-visible {
+    outline: 2px solid var(--mantine-color-asurion-4);
+    outline-offset: 2px;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--mantine-color-dark-0);
+}
+
+/* Rank now sits inline beside the title rather than as a hero number. */
+.rank {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--mantine-color-dark-0);
+}
+
+.unit {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--mantine-color-dark-3);
+}
+
+.action {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--mantine-color-dark-1);
+}
+
+.action svg {
+    transition: transform 150ms ease;
+}
+
+.root:hover .action svg {
+    transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .root,
+    .root:hover,
+    .action svg {
+        transition: none;
+        transform: none;
+        animation: none;
+    }
+}

@@ -1,0 +1,29 @@
+.bigNumber {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    color: var(--mantine-color-dark-0);
+}
+
+.unit {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #a5aaaf;
+}
+
+.emptyState {
+    color: var(--mantine-color-dark-1);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    max-width: 18rem;
+    text-align: center;
+}
+
+/* Error state: a failed/missing fetch, distinct from the neutral empty state above.
+   Shares the empty-state layout via composes; only the red text (error-text token, legible on the
+   card background) differs, flagging it as a fault rather than "no data yet". */
+.errorState {
+    composes: emptyState;
+    color: var(--mantine-color-error-text);
+}

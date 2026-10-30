@@ -1,0 +1,46 @@
+.sessionIdText {
+    align-items: center;
+    display: flex;
+    font-weight: 400;
+    white-space: nowrap;
+    /* Keep the full ID visible: don't let the header squeeze this button. */
+    flex-shrink: 0;
+    /* Muted but contrast-passing (~7:1) against the header bg in both themes. */
+    color: light-dark(var(--mantine-color-light-2), var(--mantine-color-dark-2));
+}
+.sessionIdText:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: light-dark(var(--mantine-color-light-0), var(--mantine-color-dark-0));
+}
+
+.headerContainer {
+    height: 3.4rem;
+    min-height: 3.4rem;
+    justify-content: space-between;
+    align-items: center;
+    z-index: var(--mantine-priority-highest);
+    background-color: var(--exwo-color-header-bg);
+    border-bottom: 1px solid var(--mantine-color-dark-5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+.trainingHeaderContainer {
+    display: flex;
+    padding: 4px var(--Padding-padding-xs, 12px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--Spacing-spacing-xs, 6px);
+    border-radius: var(--Radius-radius-xl, 24px);
+    background: var(--Success-Success-4, #38d9a9);
+    color: var(--mantine-color-dark-6);
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.logo {
+    height: 30px;
+    min-width: 200px;
+}

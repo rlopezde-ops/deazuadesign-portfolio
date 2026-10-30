@@ -1,0 +1,127 @@
+.input {
+    font-size: var(--mantine-font-size-md);
+    &[data-variant="filled"] {
+        /* TODO: responsive color */
+        background-color: var(--mantine-color-dark-7);
+        border: none;
+        /* TODO: responsive color */
+        color: var(--mantine-color-gray-2);
+    }
+    &[data-variant="transparent"] {
+        background-color: clear;
+        border: 0.075rem solid;
+        /* TODO: responsive color */
+        border-color: var(--mantine-color-primary-3);
+        color: var(--mantine-color-gray-2);
+        &::placeholder {
+            /* TODO: responsive color */
+            color: var(--mantine-color-gray-2);
+            opacity: 0.6;
+        }
+    }
+}
+
+.radio {
+    align-items: center;
+}
+
+.datePickerInput {
+    border: none;
+    align-items: center;
+    display: flex;
+}
+
+.divider {
+    --divider-color: var(--mantine-color-dark-6);
+    /* TODO: responsive color */
+}
+
+.menu {
+    background-color: var(--exwo-color-modal-bg);
+}
+
+.modalHeader {
+    background-color: var(--exwo-color-modal-bg);
+    color: var(--mantine-color-default-color);
+    padding-bottom: var(--mantine-spacing-md);
+}
+
+.modalTitle {
+    font-size: var(--mantine-font-size-md);
+}
+
+.modalContent {
+    background-color: var(--exwo-color-modal-bg);
+}
+
+.tooltip {
+    --tooltip-border-color: var(--mantine-color-dark-5);
+    --tooltip-background-color: var(--mantine-color-dark-9);
+    --tooltip-shadow: var(--mantine-shadow-sm);
+    background-color: var(--tooltip-background-color);
+    color: var(--mantine-color-dark-0);
+    font-size: var(--mantine-font-size-xs);
+    border: 1px solid var(--tooltip-border-color);
+    box-shadow: var(--tooltip-shadow);
+}
+
+.tooltipArrow {
+    /* !important is needed to override Mantine's inline styles */
+    background: var(--tooltip-background-color) !important;
+    border: 1px solid var(--tooltip-border-color) !important;
+    border-top-color: var(--tooltip-border-color) !important;
+    border-right-color: var(--tooltip-border-color) !important;
+    border-bottom-color: var(--tooltip-border-color) !important;
+    border-left-color: var(--tooltip-border-color) !important;
+    box-shadow: var(--tooltip-shadow);
+}
+
+.buttonVariants {
+    &[data-variant="subtle"],
+    &[data-variant="transparent"] {
+        /* TODO: responsive color, these are hardly visible as is so sync with design 85% transparent on a dark background is nothing */
+        &:hover {
+            background-color: color-mix(in srgb, var(--mantine-color-dark-1), transparent 92%);
+        }
+        &:active {
+            background-color: color-mix(in srgb, var(--mantine-color-dark-1), transparent 84%);
+        }
+    }
+}
+
+/* PROTOTYPE DEVIATION: upstream has a bare `[data-variant="reactive"]` selector. Next.js CSS
+   Modules reject "impure" selectors that contain no local class, so it is wrapped in :global().
+   See prototype/DEVIATIONS.md. */
+:global([data-variant="reactive"]) {
+    --mantine-color-anchor: var(--mantine-color-primary-3);
+
+    a:visited,
+    a:hover,
+    a:active {
+        --mantine-color-anchor: var(--mantine-color-primary-2);
+    }
+}
+
+/* PROTOTYPE DEVIATION: see the note on [data-variant="reactive"] above. */
+:global([data-variant="proactive"]) {
+    --mantine-color-anchor: var(--mantine-color-success-3);
+
+    a:visited,
+    a:hover,
+    a:active {
+        --mantine-color-anchor: var(--mantine-color-success-2);
+    }
+}
+
+.skeleton {
+    /*
+    ** The following values are derive from the avatar sizes:
+    ** https://github.com/mantinedev/mantine/blob/master/packages/%40mantine/core/src/components/Avatar/Avatar.module.css#L12-L16
+    ** Enable skeleton wrapping avatar to use the same relative sizes
+    */
+    --avatar-size-xs: 16px;
+    --avatar-size-sm: 26px;
+    --avatar-size-md: 38px;
+    --avatar-size-lg: 56px;
+    --avatar-size-xl: 84px;
+}

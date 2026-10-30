@@ -1,0 +1,29 @@
+.container {
+    flex: 1;
+    flex-direction: row;
+    background: var(--exwo-color-app-bg);
+    min-width: 43.75rem;
+    position: absolute;
+    top: 3.3rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.workspaceBody {
+    flex: 1;
+    flex-grow: 3;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--mantine-priority-lower);
+    width: 100%;
+}
+
+.confettiContainer {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: var(--mantine-priority-highest);
+}

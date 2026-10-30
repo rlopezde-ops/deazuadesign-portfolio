@@ -1,0 +1,8 @@
+/* The trailing unit next to the big value (e.g. "sec"), matching the reference `.unit`. */
+.smallNumber {
+    margin-left: 3px;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--mantine-color-dark-3);
+}

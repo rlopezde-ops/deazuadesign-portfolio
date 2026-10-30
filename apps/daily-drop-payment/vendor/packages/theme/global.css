@@ -1,0 +1,42 @@
+html,
+#root,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: Apercu;
+    font-weight: 700;
+    font-display: swap;
+    src:
+        url("/fonts/Apercu-Bold-Pro.woff2") format("woff2"),
+        url("/fonts/Apercu-Bold-Pro.woff") format("woff");
+}
+
+@font-face {
+    font-family: Apercu;
+    font-display: swap;
+    font-weight: 300;
+    src:
+        url("/fonts/Apercu-Light-Pro.woff2") format("woff2"),
+        url("/fonts/Apercu-Light-Pro.woff") format("woff");
+}
+
+@font-face {
+    font-family: Apercu;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url("/fonts/Apercu-Regular-Pro.woff2") format("woff2"),
+        url("/fonts/Apercu-Regular-Pro.woff") format("woff");
+}
+@font-face {
+    font-family: ApercuMono;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url("/fonts/ApercuMono-Regular-Pro.woff2") format("woff2"),
+        url("/fonts/ApercuMono-Regular-Pro.woff") format("woff");
+}

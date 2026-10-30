@@ -1,0 +1,50 @@
+/*
+ * Mirrors vendor/packages/theme/global.css, with two differences:
+ *  - this app ships the Apercu OTF files, not the WOFF2/WOFF pair the upstream file references;
+ *  - `#root` is replaced by Next's `__next` wrapper (there is no #root element here).
+ *
+ * The family name must literally be "Apercu" because the vendored Mantine theme sets
+ * `fontFamily: "Apercu"`. That is why these are hand-written @font-face rules rather than
+ * next/font/local, which would generate a hashed family name.
+ */
+
+@font-face {
+  font-family: Apercu;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/Apercu-Light-Pro.otf') format('opentype');
+}
+
+@font-face {
+  font-family: Apercu;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Apercu-Regular-Pro.otf') format('opentype');
+}
+
+@font-face {
+  font-family: Apercu;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Apercu-Bold-Pro.otf') format('opentype');
+}
+
+@font-face {
+  font-family: Apercu;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/Apercu-Black-Pro.otf') format('opentype');
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--exwo-color-app-bg);
+}

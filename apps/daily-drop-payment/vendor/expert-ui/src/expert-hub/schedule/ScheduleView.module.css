@@ -1,0 +1,90 @@
+/* ---- Custom date/shift header (renders above the AgendaView, matching the design mockup) ---- */
+.dateHeader {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 600;
+    color: var(--mantine-color-text);
+}
+
+/* "Today" reads in the brand accent; the rest of the date line stays neutral. */
+.today {
+    color: var(--mantine-color-primary-4);
+}
+
+.shiftLine {
+    font-size: var(--mantine-font-size-xs);
+    color: var(--mantine-color-dimmed);
+}
+
+/* ---- AgendaView shell ---- */
+.agendaView {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* We render our own date/shift header, so hide AgendaView's built-in range + per-group date headers. */
+.agendaHeader,
+.dateGroupHeader {
+    display: none;
+}
+
+.agendaBody {
+    padding: 0 var(--mantine-spacing-md) var(--mantine-spacing-md);
+}
+
+.noEvents {
+    padding: var(--mantine-spacing-md);
+    color: var(--mantine-color-dimmed);
+    font-size: var(--mantine-font-size-sm);
+    text-align: center;
+}
+
+/* ---- Row: [start time + duration] · accent bar · [icon + title, time range] ----
+   Layout (row/columns) is handled by Mantine Group/Stack in ScheduleView; this class only carries
+   the row surface (hover fill, spacing) and the per-status accent color consumed by the bar + icon. */
+.row {
+    /* Horizontal padding + negative margin so the hover fill spans the row without shifting content. */
+    padding: 10px var(--mantine-spacing-xs);
+    margin-inline: calc(var(--mantine-spacing-xs) * -1);
+    border-radius: var(--mantine-radius-sm);
+    transition: background-color 100ms ease;
+    /* Neutral fallback (UNKNOWN / missing status); per-status hue set below. */
+    --sched-accent: var(--mantine-color-gray-5);
+}
+
+/* Cosmetic full-row highlight (the rows aren't clickable — cursor stays default). */
+.row:hover {
+    background-color: var(--mantine-color-default-hover);
+}
+
+/* The thin vertical status bar — a leaf visual, so its appearance stays in CSS. */
+.accent {
+    flex: 0 0 3px;
+    align-self: stretch;
+    border-radius: 2px;
+    background: var(--sched-accent);
+}
+
+.rowIcon {
+    flex: 0 0 auto;
+    color: var(--sched-accent);
+}
+
+/* Multi-hue accents per status, matching the mockup (theme-driven Mantine color vars). */
+.row[data-status="MEETING"] {
+    --sched-accent: var(--mantine-color-blue-4);
+}
+
+.row[data-status="TRAINING"] {
+    --sched-accent: var(--mantine-color-orange-4);
+}
+
+.row[data-status="BREAK"] {
+    --sched-accent: var(--mantine-color-teal-4);
+}
+
+.row[data-status="LUNCH"] {
+    --sched-accent: var(--mantine-color-grape-4);
+}

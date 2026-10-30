@@ -1,0 +1,64 @@
+/*
+ * Pit Stop type — Pulse / AUI scale (apps/pulse-proto theme.ts):
+ *   xs 12/16 · sm 14/20 · md 16/24 · lg 20/28 · xl 24/32
+ *   h2 28/36 · h1 32/40
+ */
+
+.summaryHero {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--aui-on-surface);
+  /* Pulse h2 */
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 2.25rem;
+  text-align: center;
+}
+
+@media (max-width: 40em) {
+  .summaryHero {
+    /* Pulse xl */
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.eyebrow {
+  margin: 1rem 0 0;
+  color: #a053e0;
+  /* Pulse xs */
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sentBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: var(--aui-elevated-level-01);
+  color: var(--aui-on-surface-soft);
+  /* Pulse xs */
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1rem;
+}
+
+.readyButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 9999px;
+  background: #8223d2;
+  padding: 0.625rem 1.5rem 0.625rem 1rem;
+  color: #ffffff;
+  /* Pulse sm */
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+}

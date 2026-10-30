@@ -1,0 +1,113 @@
+/**
+ * AUI dark token layer for Expert Console.
+ *
+ * Dark counterpart of the published AUI variables, anchored to the console's
+ * warm violet-gray ramp so the in-call mood stays intact. Existing `--ew-*`
+ * tokens alias into these so the rest of the CSS picks AUI up without a
+ * find-and-replace pass. Motion tokens stay on `--ew-*` only.
+ */
+
+:root {
+  /* Surfaces */
+  --aui-surface-page: #1c1a21;
+  --aui-surface: #221f28;
+  --aui-elevated-level-01: #2a2630;
+  --aui-elevated-level-03: #332e3c;
+  --aui-elevated-dynamic-card: #2a2630;
+
+  /* On-surface */
+  --aui-on-surface: #e8e6ed;
+  --aui-on-surface-soft: #a7a4ae;
+  --aui-on-surface-faint: #716e78;
+
+  /* Outline / stroke */
+  --aui-outline: rgba(255, 255, 255, 0.14);
+  --aui-outline-soft: rgba(255, 255, 255, 0.08);
+  --aui-stroke-card: 1px;
+  --aui-neutral-soft: #2a2630;
+
+  /* Action */
+  --aui-action-filled-action: #8223d2;
+  --aui-action-on-filled-action: #ffffff;
+  --aui-action-outline-action: rgba(255, 255, 255, 0.14);
+  --aui-action-border-radius: 9999px;
+  --aui-primary: #a053e0;
+  --aui-on-primary: #ffffff;
+
+  /* Inverse (for chips / badges on dark) */
+  --aui-inverse-surface: #e8e6ed;
+  --aui-inverse-on-surface: #1a1c1e;
+
+  /* State layers */
+  --aui-state-layer-hover: rgba(255, 255, 255, 0.06);
+  --aui-state-layer-none: 0;
+  --aui-opacity-none: 0;
+
+  /* Drop shadow */
+  --aui-drop-shadow: rgba(12, 14, 17, 0.04);
+
+  /* Spacing — AUI scale */
+  --aui-spacing-000: 0px;
+  --aui-spacing-025: 2px;
+  --aui-spacing-050: 4px;
+  --aui-spacing-100: 8px;
+  --aui-spacing-150: 12px;
+  --aui-spacing-200: 16px;
+  --aui-spacing-300: 24px;
+
+  /* Radius — AUI ramp. Panel radius stays 16px (see --ew-radius-panel) so the
+     Sell BorderBeam path stays locked to the workspace panel corners. */
+  --aui-border-radius-none: 0px;
+  --aui-border-radius-025: 2px;
+  --aui-border-radius-050: 4px;
+  --aui-border-radius-100: 8px;
+  --aui-border-radius-200: 16px;
+  --aui-border-radius-400: 32px;
+
+  /* Type ramp — Conversational UI / AUI text styles */
+  --aui-type-heading-heavy-size: 32px;
+  --aui-type-heading-heavy-line: 1.2;
+  --aui-type-heading-heavy-weight: 700;
+
+  --aui-type-subheading-2-size: 20px;
+  --aui-type-subheading-2-line: 1.3;
+  --aui-type-subheading-2-weight: 400;
+  --aui-type-subheading-2-heavy-weight: 700;
+
+  --aui-type-body-1-size: 16px;
+  --aui-type-body-1-line: 1.3;
+  --aui-type-body-1-weight: 400;
+
+  --aui-type-body-2-size: 14px;
+  --aui-type-body-2-line: 1.3;
+  --aui-type-body-2-weight: 400;
+
+  --aui-type-label-size: 16px;
+  --aui-type-label-line: 1.5;
+  --aui-type-label-weight: 400;
+
+  /* Sell unlock — purple-shifted surface derived from action purple so the
+     glow delta survives --ew-* aliasing of the base panel. */
+  --aui-sell-surface: #261f30;
+  --aui-sell-outline: rgba(176, 127, 232, 0.34);
+  --aui-sell-halo-inner: rgba(130, 35, 210, 0.14);
+  --aui-sell-halo-mid: rgba(130, 35, 210, 0.28);
+  --aui-sell-halo-outer: rgba(176, 127, 232, 0.16);
+  --aui-sell-edge: rgba(208, 170, 241, 0.22);
+  --aui-sell-veil: rgba(176, 127, 232, 0.28);
+  --aui-sell-veil-soft: rgba(176, 127, 232, 0.1);
+
+  /* Soft accent for verbatim quotes */
+  --aui-accent-soft: #d0aaf1;
+
+  /* Tag — soft purple family, darkened to sit on the in-call surfaces. */
+  --aui-accent-purple-soft: rgba(208, 170, 241, 0.16);
+  --aui-accent-on-purple-soft: #d0aaf1;
+
+  /* Status — soft success, canonical dark-mode values from aui-tokens. */
+  --aui-status-success-soft: #0b4521;
+  --aui-status-on-success-soft: #c5ffc8;
+
+  /* Text-only action — maps to on-surface per AUI action spec. */
+  --aui-action-on-surface: var(--aui-on-surface);
+}

@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "daily-drop-payment",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["exec", "next", "dev", "-p", "3012"],
+      "port": 3012,
+      "autoPort": false
+    },
+    {
+      "name": "daily-drop-payment-dev",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["exec", "next", "dev", "-p", "3012"],
+      "port": 3012,
+      "autoPort": false
+    }
+  ]
+}

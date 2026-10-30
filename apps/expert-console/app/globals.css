@@ -1,0 +1,2214 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import './aui.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-ew-page: var(--aui-surface-page);
+  --color-ew-panel: var(--aui-surface);
+  --color-ew-border: #3a3642;
+  --color-ew-primary: var(--aui-primary);
+  --color-ew-primary-strong: #933adc;
+  --color-ew-cta: var(--aui-action-filled-action);
+  --color-ew-success: #12b886;
+  --color-ew-warn: #f59e0b;
+  --color-ew-error: #fa5252;
+}
+
+html,
+body {
+  background-color: var(--ew-surface-page);
+  color: var(--aui-on-surface-soft);
+  color-scheme: dark;
+  height: 100%;
+}
+
+/* Surface tokens — alias into AUI dark so the rest of the CSS inherits without
+   a rewrite. Panel radius stays 16px (not the AUI 8/32 ramp) so the Sell
+   BorderBeam path stays locked to the workspace panel corners. */
+:root {
+  --ew-surface-page: var(--aui-surface-page);
+  --ew-surface-panel: var(--aui-surface);
+  --ew-surface-raised: var(--aui-elevated-level-01);
+  /* Matches customer-summary-card border so sidecar / assist chrome share one edge. */
+  --ew-border-panel: var(--aui-outline-soft);
+  --ew-radius-panel: 16px;
+  /* Floating panel elevation — drop shadows only (no inset top bevel). An inset
+   * highlight stacked on the 1px border read as a thicker top edge than the
+   * customer card, which uses the same border without the bevel. */
+  --ew-shadow-panel:
+    0 2px 5px -2px rgba(10, 8, 14, 0.5),
+    0 14px 30px -12px rgba(10, 8, 14, 0.7);
+
+  /* Guidance copy. `accent` marks words the expert says out loud. */
+  --ew-text-strong: var(--aui-on-surface);
+  --ew-text-soft: var(--aui-on-surface-soft);
+  --ew-text-faint: var(--aui-on-surface-faint);
+  --ew-accent-soft: var(--aui-accent-soft);
+
+  /* Sales karaoke / spoken-word highlight (adapted from motion-kit spec 03). */
+  --ew-spoken-fill: rgba(95, 212, 138, 0.22);
+  --ew-spoken-leading: rgba(95, 212, 138, 0.38);
+  --ew-spoken-edge: rgba(95, 212, 138, 0.12);
+  --ew-script-unspoken: var(--ew-text-strong);
+  --ew-script-spoken-text: var(--ew-text-strong);
+  --ew-ease-highlight: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Motion tokens — mirrored in lib/motion-tokens.ts */
+:root {
+  --ew-ease-settle: cubic-bezier(0.2, 0, 0, 1);
+  --ew-ease-release: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --ew-dur-micro: 100ms;
+  --ew-dur-inline: 170ms;
+  --ew-dur-task: 190ms;
+  --ew-dur-surface: 240ms;
+  --ew-dur-backdrop: 180ms;
+
+  --ew-delay-unlock: 80ms;
+
+  --ew-dist-y: 10px;
+  --ew-dist-y-micro: 4px;
+  --ew-dist-y-surface: 12px;
+  /* Deeper rise for a sequenced surface entrance (warm handoff) — read clearly
+     as an upward move once the backdrop has already faded in. */
+  --ew-dist-y-surface-deep: 28px;
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55);
+  }
+  50% {
+    opacity: 0.35;
+    box-shadow: 0 0 0 9px rgba(245, 158, 11, 0);
+  }
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(18, 184, 134, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(18, 184, 134, 0);
+  }
+}
+
+@keyframes ringGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.7));
+  }
+}
+
+@keyframes pacingPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--pulse-color) 0%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 10px 3px color-mix(in srgb, var(--pulse-color) 60%, transparent);
+  }
+}
+
+@keyframes barPulseRed {
+  0%,
+  100% {
+    background-color: #3a1010;
+  }
+  50% {
+    background-color: #1c0808;
+  }
+}
+
+@keyframes barOuterGlowRed {
+  0%,
+  100% {
+    border-color: color-mix(in srgb, var(--glow-color) 30%, transparent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--glow-color) 0%, transparent);
+  }
+  50% {
+    border-color: var(--glow-color);
+    box-shadow: 0 0 6px 1px color-mix(in srgb, var(--glow-color) 40%, transparent);
+  }
+}
+
+.dot-standby {
+  animation: dotPulse 1.3s ease-in-out infinite;
+}
+
+.dot-live {
+  animation: livePulse 1.5s ease-out infinite;
+}
+
+.ring-standby {
+  animation: ringGlow 1.6s ease-in-out infinite;
+}
+
+.pill-pulse {
+  animation: pacingPulse 2.4s ease-in-out infinite;
+}
+
+.bar-pulse-red {
+  animation: barPulseRed 2.4s ease-in-out infinite;
+}
+
+.bar-outer-glow-red {
+  animation: barOuterGlowRed 2.4s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------------------------
+   State-change motion
+   Transform + opacity only. Short travel, fast settle, no bounce.
+--------------------------------------------------------------------------- */
+
+@keyframes motionEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--ew-dist-y), 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes motionEnterInline {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--ew-dist-y-micro), 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes motionSurfaceIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--ew-dist-y-surface), 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes motionBackdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes motionCheckPop {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Task cards and guidance entering the sidecar. */
+.motion-enter {
+  animation: motionEnter var(--ew-dur-task) var(--ew-ease-settle) both;
+}
+
+/* Inline reveals: send controls, status copy, script swaps. */
+.motion-enter-inline {
+  animation: motionEnterInline var(--ew-dur-inline) var(--ew-ease-settle) both;
+}
+
+/* Full surfaces rising into place. */
+.motion-surface-in {
+  animation: motionSurfaceIn var(--ew-dur-surface) var(--ew-ease-settle) both;
+}
+
+/*
+  Sequenced surface entrance (warm handoff arriving from the morning paper):
+  the backdrop fades in first, then — once it has settled — the panel rises from
+  a slightly deeper offset so the upward travel reads as a deliberate second
+  step rather than moving in lockstep with the fade. The delay matches the
+  backdrop duration so the two steps abut, and `both` holds the panel pre-offset
+  and invisible through the fade before it plays.
+*/
+.motion-surface-in-sequenced {
+  --ew-dist-y-surface: var(--ew-dist-y-surface-deep);
+  animation: motionSurfaceIn var(--ew-dur-surface) var(--ew-ease-settle) var(--ew-dur-backdrop) both;
+}
+
+.motion-backdrop-in {
+  animation: motionBackdropIn var(--ew-dur-backdrop) var(--ew-ease-settle) both;
+}
+
+/*
+  Sales opportunity rising after the solve resolves. The short delay is an
+  intentional beat between "problem fixed" and "here's an offer" — not a chain.
+*/
+.motion-enter-unlock {
+  animation: motionSurfaceIn var(--ew-dur-surface) var(--ew-ease-settle) var(--ew-delay-unlock) both;
+}
+
+/* Success checkmarks. Scales in without overshoot. */
+.motion-check-pop {
+  animation: motionCheckPop var(--ew-dur-inline) var(--ew-ease-settle) both;
+}
+
+/* Immediate press feedback on any interactive control. */
+.motion-press {
+  transition:
+    transform var(--ew-dur-micro) var(--ew-ease-settle),
+    background-color var(--ew-dur-micro) var(--ew-ease-settle),
+    border-color var(--ew-dur-micro) var(--ew-ease-settle),
+    color var(--ew-dur-micro) var(--ew-ease-settle),
+    opacity var(--ew-dur-micro) var(--ew-ease-settle);
+}
+
+.motion-press:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/*
+  Countdown and pacing sweeps. These advance a whole second at a time, so the
+  travel is carried across that second linearly — a short settle curve would
+  move briefly and then sit still, which reads as stutter. Colour is a state
+  change, so it settles.
+*/
+.motion-sweep-ring {
+  transition:
+    stroke-dashoffset 1000ms linear,
+    stroke 220ms var(--ew-ease-settle);
+}
+
+.motion-sweep-fill {
+  transition:
+    transform 1000ms linear,
+    background-color 220ms var(--ew-ease-settle);
+}
+
+/* The handoff ring ticks ten times a second, so it can settle on every tick. */
+.motion-handoff-ring {
+  transition:
+    stroke-dashoffset 200ms var(--ew-ease-settle),
+    stroke 200ms var(--ew-ease-settle);
+}
+
+.motion-pacing-pill {
+  transition:
+    border-color 220ms var(--ew-ease-settle),
+    box-shadow 220ms var(--ew-ease-settle);
+}
+
+/* Greeting brightening as the expert goes live — part of the Standby → On Air beat. */
+.motion-greeting {
+  transition:
+    opacity 200ms var(--ew-ease-settle),
+    border-color 200ms var(--ew-ease-settle);
+}
+
+/*
+  Height container for task cards whose content swaps between a full form and a
+  compressed summary. Height is measured and set by MotionTaskShell so the
+  surrounding column moves continuously instead of jumping.
+*/
+.motion-task-shell {
+  overflow: hidden;
+  transition: height var(--ew-dur-task) var(--ew-ease-settle);
+}
+
+.motion-task-shell[data-measured='false'] {
+  transition: none;
+}
+
+/* An activity that renders nothing must not leave a gap in the stack. */
+.motion-task-shell:has(> div:empty) {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill-pulse,
+  .bar-pulse-red,
+  .bar-outer-glow-red,
+  .dot-standby,
+  .dot-live,
+  .ring-standby,
+  .motion-enter,
+  .motion-enter-inline,
+  .motion-enter-unlock,
+  .motion-surface-in,
+  .motion-surface-in-sequenced,
+  .motion-backdrop-in,
+  .motion-check-pop,
+  .task-status-loader,
+  .transcript-line,
+  .transcript-msg {
+    animation: none;
+  }
+
+  /* Joy's Lottie watches prefers-reduced-motion itself. */
+
+  .motion-press,
+  .motion-task-shell,
+  .motion-sweep-ring,
+  .motion-sweep-fill,
+  .motion-handoff-ring,
+  .motion-pacing-pill,
+  .motion-greeting,
+  .checklist-row,
+  .task,
+  .workspace-panel,
+  .panel-resizer-grip,
+  .transcript-line {
+    transition: none;
+  }
+
+  .motion-press:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* ---- Task ----
+ *
+ * Tasks flow in the sidecar column with no card chrome. The old bordered card
+ * with a 14px bold header gave every task the same weight, so nothing told the
+ * expert where to look; hierarchy is carried by type size and colour instead,
+ * the way the customer-facing chat presents one focus at a time.
+ *
+ * Type ramp is the AUI Conversational UI ramp stepped down once for the
+ * ~480px panel — Figma's 32px directive is sized for a full-width customer
+ * screen, and 24px is the value the Nav-C prototype tuned for this width:
+ *
+ *   eyebrow      12 / 16    faint, sentence case
+ *   affirmation  AUI Sub Heading 2 Base   — acknowledgement before the ask
+ *   verbatim     24 / 1.35  strong        — words to say, in accent quotes
+ *   directive    24 / 1.35  strong        — what to do
+ *   detail       AUI Body 1               — supporting context
+ *
+ * Spacing is the AUI scale: 4 / 8 / 12 / 16.
+ */
+
+/* Task guidance. When Joy is on, the cue sits in the top-left corner and
+   reserves no space; the step's content is held back (in JS) until the cue
+   fades out, then comes in flush-left where the cue was. */
+.task {
+  position: relative;
+  display: block;
+}
+
+/* While Joy's cue plays, the step's content is held back and the avatar is out
+   of flow (position: absolute), so the task would collapse to zero height and
+   MotionTaskShell — which pins to the measured height with overflow: hidden —
+   would clip the cue away. Reserve the cue's 46px footprint so it stays visible
+   until the content comes in and takes over the height. */
+.task--cueing {
+  min-height: 46px;
+}
+
+.task-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aui-spacing-100);
+  width: 100%;
+  min-width: 0;
+}
+
+/* The step's content coming in after the cue fades out. The per-word typewriter
+   still runs on top; this just eases the non-typed elements (media, actions).
+   Rises from below on the standard surface travel — paired with `.task-exit`
+   leaving toward the top, the guidance column reads like a chat timeline without
+   being one. */
+.task-content--in {
+  animation: task-content-in 0.3s var(--ew-ease-settle, cubic-bezier(0.2, 0.8, 0.2, 1)) both;
+}
+
+@keyframes task-content-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--ew-dist-y-surface), 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/*
+ * The other half of that motion: a step leaving the column floats up and out.
+ * Its card is unmounted the instant the step swaps, so `motion-task-shell.tsx`
+ * hands a static clone to the sidecar stage and this plays it out — absolutely
+ * positioned at the card's last box, so the arriving step never waits on it.
+ *
+ * Travels a little further than the entry and on an accelerating curve (the same
+ * easeInCubic the input sheet leaves on), so it reads as pushed out of the way
+ * rather than drifting.
+ */
+.task-exit {
+  pointer-events: none;
+  animation: task-exit-up var(--ew-dur-task) cubic-bezier(0.32, 0, 0.67, 0) forwards;
+}
+
+@keyframes task-exit-up {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, calc(-1 * var(--ew-dist-y-surface-deep)), 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .task-content--in {
+    animation-duration: 1ms;
+  }
+}
+
+/* Out-of-flow thinking cue pinned to the container's top-left corner. It
+   overlaps the content area (no reserved gutter) and exits opacity-only. */
+.task-joy-slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 46px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.task-joy {
+  display: block;
+}
+
+.task-eyebrow {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ew-text-faint);
+}
+
+.task-affirmation {
+  font-size: var(--aui-type-subheading-2-size);
+  line-height: var(--aui-type-subheading-2-line);
+  font-weight: var(--aui-type-subheading-2-weight);
+  color: var(--ew-text-soft);
+  text-wrap: balance;
+}
+
+.task-directive,
+.task-verbatim {
+  font-size: 28px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ew-text-strong);
+  text-wrap: balance;
+}
+
+/* Quotes carry the read-aloud signal, so the line needs no bubble or rule to
+   distinguish it from a directive. */
+.task-verbatim::before {
+  content: '\201C';
+  color: var(--ew-accent-soft);
+  margin-right: 2px;
+}
+
+.task-verbatim::after {
+  content: '\201D';
+  color: var(--ew-accent-soft);
+  margin-left: 2px;
+}
+
+.task-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aui-spacing-200);
+  margin-top: var(--aui-spacing-100);
+}
+
+.task-detail {
+  font-size: var(--aui-type-body-1-size);
+  line-height: var(--aui-type-label-line);
+  color: var(--ew-text-soft);
+}
+
+/* Numbered walkthrough steps — Tailwind preflight clears list markers. */
+.task-steps {
+  margin: 0;
+  padding-left: 1.35rem;
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+.task-steps > li {
+  display: list-item;
+  padding-left: 0.25rem;
+}
+
+.task-steps > li + li {
+  margin-top: 4px;
+}
+
+/* Subtasks are separated by space alone — the old dividers added a second grid
+   of lines on top of the card borders. */
+.subtask {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.subtask-label {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: var(--ew-text-faint);
+}
+
+.task-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Sales script karaoke — soft spoken fill + protected-language underline. */
+.sales-karaoke {
+  white-space: pre-wrap;
+}
+
+.sales-karaoke-spoken {
+  color: var(--ew-script-spoken-text);
+  background: var(--ew-spoken-fill);
+  border-radius: 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding-inline: 1.5px;
+  transition:
+    background-color 160ms var(--ew-ease-release),
+    color 160ms var(--ew-ease-release);
+}
+
+.sales-karaoke-unspoken {
+  color: var(--ew-script-unspoken);
+}
+
+.sales-karaoke-emphasis {
+  text-decoration: underline;
+  text-decoration-color: var(--ew-accent-soft);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
+/* Inline system acknowledgement while a commit action is pending, then success. */
+.task-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ew-text-soft);
+}
+
+/* Looping Joy Lottie — pulse-proto ThinkingAvatar stand-in for the old spinner. */
+.task-status-thinking {
+  display: block;
+  flex-shrink: 0;
+}
+
+.task-status-success {
+  color: #5fd48a;
+}
+
+.task-header-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Done work collapses to a single line so the live task keeps the 24px slot to
+   itself. Without this every task shouts at once and the ramp does nothing. */
+.task-collapsed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--ew-surface-raised);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ew-text-soft);
+}
+
+.task-collapsed-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Flow strip — section title + step pills for the active section only. */
+.flow-steps-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aui-spacing-100);
+  margin-bottom: 24px;
+}
+
+.flow-section-heading {
+  margin: 0;
+  font-size: var(--aui-type-subheading-2-size);
+  line-height: var(--aui-type-subheading-2-line);
+  font-weight: var(--aui-type-subheading-2-heavy-weight);
+  color: var(--aui-on-surface);
+}
+
+/* Flow strip — pulse FlowStrip: muted labels, chevrons, soft purple active pill. */
+.flow-steps-bar {
+  flex-shrink: 0;
+  padding: 16px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.flow-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  align-items: center;
+}
+
+.flow-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--ew-text-faint);
+  white-space: nowrap;
+  transition:
+    color var(--ew-dur-inline) var(--ew-ease-settle),
+    background-color var(--ew-dur-inline) var(--ew-ease-settle);
+}
+
+.flow-step-active {
+  color: var(--ew-accent-soft);
+  background: rgba(147, 58, 220, 0.18);
+}
+
+.flow-step-complete,
+.flow-step-upcoming {
+  color: var(--ew-text-faint);
+  background: transparent;
+}
+
+.flow-step-clickable {
+  cursor: pointer;
+}
+
+.flow-step-clickable:hover {
+  color: var(--ew-text-soft);
+}
+
+.flow-step-active.flow-step-clickable:hover {
+  background: rgba(147, 58, 220, 0.26);
+}
+
+.flow-step:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.flow-step-chevron {
+  flex-shrink: 0;
+  color: var(--ew-text-faint);
+  opacity: 0.7;
+}
+
+.flow-step-label {
+  transform: translateY(0.5px);
+}
+
+.flow-back-row {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+  margin-left: -6px;
+}
+
+.flow-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ew-text-faint);
+  cursor: pointer;
+}
+
+.flow-back-btn:hover {
+  color: var(--ew-text-strong);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.flow-back-spacer {
+  width: 32px;
+  height: 32px;
+}
+
+/* Centered reading column — matches pulse-proto SidecarShell
+   (Mantine Container size="sm" = 720px) with 2rem side padding. */
+/* Positioning context for the Input Widget bottom sheet — spans the reading
+   column only, so an open sheet never covers the Assist composer below it. */
+.sidecar-stage {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.sidecar-reading {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0 8px;
+}
+
+.sidecar-reading-inner {
+  width: 100%;
+  max-width: 720px;
+  padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Ask Expert Assist — continuous sheet; GSAP owns height / radius (no CSS morph). */
+.assist-dock {
+  margin: 0 16px 12px;
+  background: var(--ew-surface-raised);
+  border: 1px solid var(--ew-border-panel);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 8px 28px rgba(0, 0, 0, 0.38);
+  height: 48px;
+  flex-shrink: 0;
+  will-change: height, border-radius;
+}
+
+.assist-dock-chrome {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.assist-dock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.assist-dock-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ew-text-strong);
+}
+
+.assist-dock-title span {
+  color: var(--ew-accent-soft);
+}
+
+.assist-dock-close {
+  background: transparent;
+  border: none;
+  color: var(--ew-text-faint);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 2px 6px;
+}
+
+.assist-dock-close:hover {
+  color: var(--ew-text-strong);
+}
+
+.assist-thread {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.assist-msg {
+  max-width: 85%;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.assist-msg.user {
+  align-self: flex-end;
+  background: rgba(147, 58, 220, 0.18);
+  color: var(--ew-text-strong);
+  padding: 8px 12px;
+  border-radius: 12px 12px 4px 12px;
+  border: 1px solid rgba(147, 58, 220, 0.45);
+}
+
+.assist-msg.bot {
+  align-self: flex-start;
+  color: var(--ew-text-soft);
+  padding: 2px 4px;
+}
+
+.assist-md-h {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ew-accent-soft);
+  margin: 0 0 4px;
+}
+
+.assist-md-p {
+  margin: 0 0 8px;
+}
+
+.assist-md-p:last-child {
+  margin-bottom: 0;
+}
+
+.assist-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.assist-chip {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: var(--ew-text-strong);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.3;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.assist-chip:hover {
+  border-color: var(--ew-accent-soft);
+  color: var(--ew-accent-soft);
+}
+
+.assist-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 16px;
+  background: var(--ew-surface-raised);
+  flex-shrink: 0;
+  height: 48px;
+  box-sizing: border-box;
+  border-top: 1px solid transparent;
+  z-index: 1;
+}
+
+.assist-dock[data-open='true'] .assist-input-row {
+  border-top-color: rgba(255, 255, 255, 0.06);
+  padding: 10px 12px;
+  height: auto;
+  min-height: 48px;
+}
+
+.assist-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--ew-text-strong);
+  outline: none;
+  font-size: 13px;
+  padding: 4px 0;
+  min-width: 0;
+}
+
+.assist-input::placeholder {
+  color: var(--ew-text-faint);
+}
+
+.assist-send {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--aui-action-filled-action);
+  border: none;
+  cursor: pointer;
+  color: var(--aui-action-on-filled-action);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.assist-send:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.assist-send:not(:disabled):hover {
+  background: var(--aui-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assist-dock {
+    will-change: auto;
+  }
+}
+
+/* Floating Paper-like surface — sidecar only; transcript sits on the page bg. */
+.workspace-panel {
+  position: relative;
+  background-color: var(--ew-surface-panel);
+  border: 1px solid var(--ew-border-panel);
+  border-radius: var(--ew-radius-panel);
+  box-shadow: var(--ew-shadow-panel);
+  overflow: hidden;
+  transition:
+    background-color 780ms var(--ew-ease-settle),
+    border-color 780ms var(--ew-ease-settle),
+    box-shadow 780ms var(--ew-ease-settle);
+}
+
+/* Sell unlock — purple-shifted panel + continuous soft rim for the tall perimeter. */
+.workspace-panel[data-sell='true'] {
+  background-color: var(--aui-sell-surface);
+  border-color: var(--aui-sell-outline);
+  box-shadow:
+    var(--ew-shadow-panel),
+    0 0 0 1px var(--aui-sell-halo-inner),
+    /* Faint outer halo — whole rim stays present between beam passes. */
+    0 0 18px -2px var(--aui-sell-halo-mid),
+    0 0 36px -8px var(--aui-sell-halo-outer);
+}
+
+/*
+ * Persistent L/R edge veil — keeps the tall sides softly lit so traveling beams
+ * read as hotspots on a continuous neon rim rather than isolated spots.
+ */
+.workspace-panel[data-sell='true']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 3;
+  box-shadow: inset 0 0 0 1px var(--aui-sell-edge);
+  background: linear-gradient(
+    90deg,
+    var(--aui-sell-veil) 0%,
+    var(--aui-sell-veil-soft) 5%,
+    transparent 14%,
+    transparent 86%,
+    var(--aui-sell-veil-soft) 95%,
+    var(--aui-sell-veil) 100%
+  );
+  animation: sidecar-edge-breathe 5.5s var(--ew-ease-settle) infinite;
+}
+
+@keyframes sidecar-edge-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/*
+ * Companion beam rides opposite the primary (half-cycle delay) so the large
+ * sidecar perimeter always has a soft traveling highlight on one long edge.
+ * animation: beam-spin Xs, beam-fade-in 0.6s — delay only the spin.
+ */
+.sidecar-border-beam-secondary [data-beam] {
+  animation-delay: calc(var(--sidecar-beam-duration, 11s) / -2), 0s !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workspace-panel {
+    transition-duration: 1ms;
+  }
+
+  .workspace-panel[data-sell='true']::after {
+    animation: none;
+    opacity: 0.75;
+  }
+
+  .sidecar-border-beam-secondary {
+    display: none;
+  }
+}
+
+/* Only set for reset/keyboard resizes — a dragged panel must track the pointer 1:1. */
+.workspace-panel[data-animating='true'],
+[data-animating='true'] {
+  transition: flex var(--ew-dur-inline) var(--ew-ease-settle);
+}
+
+.panel-resizer-grip {
+  transition: background-color var(--ew-dur-micro) var(--ew-ease-settle);
+}
+
+/* Chat transcript — bubbles on page background, bottom-anchored. */
+.transcript-pane {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 20px 24px;
+  gap: 12px;
+  background: transparent;
+}
+
+.transcript-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 50ch;
+  animation: motionEnterInline var(--ew-dur-inline) var(--ew-ease-settle) both;
+}
+
+.transcript-msg-first {
+  margin-top: auto;
+}
+
+.transcript-msg-customer {
+  align-self: flex-start;
+}
+
+.transcript-msg-expert {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.transcript-msg-system {
+  align-self: center;
+  align-items: center;
+  max-width: 42ch;
+  text-align: center;
+}
+
+.transcript-msg-who {
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--ew-text-faint);
+  padding: 0 6px;
+}
+
+.transcript-msg-body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ew-text-strong);
+}
+
+.transcript-msg-customer .transcript-msg-body {
+  background: #16141b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px 16px 16px 16px;
+  padding: 10px 14px;
+}
+
+.transcript-msg-expert .transcript-msg-body {
+  background: var(--ew-surface-raised);
+  border-radius: 16px 4px 16px 16px;
+  padding: 10px 14px;
+}
+
+.transcript-msg-system .transcript-msg-body {
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ew-text-faint);
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.transcript-line {
+  animation: motionEnterInline var(--ew-dur-inline) var(--ew-ease-settle) both;
+}
+
+/* Enrollment checklist rows tick over rather than snapping between colors. */
+.checklist-row {
+  transition: color var(--ew-dur-inline) var(--ew-ease-settle);
+}
+
+/* Shared metric card — anatomy aligned with Daily Drop (.card / .metricCard). */
+.metric-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  overflow: hidden;
+  border: 1px solid #3a3642;
+  border-radius: 8px;
+  background: #221f28;
+  padding: 20px;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+}
+
+.metric-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+  /* Keep copy clear of the bottom-right cake illustration. */
+  padding-right: 72px;
+}
+
+.metric-card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.metric-card-title {
+  /* Pulse sm — 14/20 */
+  color: var(--aui-on-surface-soft);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+}
+
+.metric-card-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.metric-card-value {
+  /* Pulse h1 — 32/40 */
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+}
+
+.metric-card-unit {
+  /* Pulse lg — 20/28 */
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+  color: var(--aui-on-surface-soft);
+}
+
+.metric-card-target {
+  /* Pulse xs — 12/16 */
+  margin: 0;
+  color: var(--aui-on-surface-faint);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+.metric-card-level {
+  /* Pulse xs — 12/16 */
+  margin: 0;
+  color: var(--aui-on-surface-soft);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+.metric-card-illustration {
+  position: absolute;
+  right: -18px;
+  bottom: -20px;
+  width: 132px;
+  height: 132px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  opacity: 0.95;
+  transform-origin: bottom right;
+}
+
+/*
+  Per-asset optical balance (subjects aren't framed the same).
+  Matches Daily Drop illustration offsets.
+*/
+.metric-card-illustration--love {
+  /* Wider/shorter heart + taper tip — slightly larger box, harder corner crop */
+  width: 156px;
+  height: 156px;
+  right: -50px;
+  bottom: -66px;
+}
+
+.metric-card-illustration--quality {
+  width: 128px;
+  height: 128px;
+  right: -12px;
+  bottom: -14px;
+}
+
+.metric-card-illustration--sales {
+  width: 132px;
+  height: 132px;
+  right: -20px;
+  bottom: -22px;
+}
+
+.metric-card-illustration--time {
+  /* Stopwatch sits further right so it reads as cropped, not centered */
+  width: 150px;
+  height: 150px;
+  right: -34px;
+  bottom: -58px;
+}
+
+/* Asurion ID OTP / passcode cells — dark-theme adaptation of the auth pattern.
+   Mantine PinInput sizes wrappers via --pin-input-size (square). We override both
+   the pinInput wrapper and the input to non-square squircles so cells don't
+   overflow into the expire hint or look like overlapping capsules. */
+.verify-code {
+  --verify-pin-w: 52px;
+  --verify-pin-h: 64px;
+  --verify-pin-gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  max-width: 367px;
+}
+
+.verify-code__row {
+  /* Beat Mantine varsResolver inline --pin-input-size (defaults to sm/36px). */
+  --pin-input-size: var(--verify-pin-w) !important;
+  align-items: stretch !important;
+  flex-wrap: nowrap !important;
+  gap: var(--verify-pin-gap) !important;
+  min-height: var(--verify-pin-h);
+}
+
+/* Wrapper Mantine sizes to --pin-input-size square — force Asurion ID footprint. */
+.verify-code__pin {
+  width: var(--verify-pin-w) !important;
+  height: var(--verify-pin-h) !important;
+  min-width: var(--verify-pin-w) !important;
+  min-height: var(--verify-pin-h) !important;
+  flex: 0 0 var(--verify-pin-w) !important;
+  overflow: visible !important;
+}
+
+.verify-code__cell,
+.verify-code__pin input {
+  box-sizing: border-box !important;
+  width: var(--verify-pin-w) !important;
+  height: var(--verify-pin-h) !important;
+  min-width: var(--verify-pin-w) !important;
+  min-height: var(--verify-pin-h) !important;
+  max-width: var(--verify-pin-w) !important;
+  max-height: var(--verify-pin-h) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 16px !important;
+  border: 1px solid #3a3642 !important;
+  background: #16141b !important;
+  color: var(--ew-text-strong) !important;
+  font-size: 22px !important;
+  font-weight: 500 !important;
+  line-height: var(--verify-pin-h) !important;
+  text-align: center !important;
+}
+
+.verify-code__cell:focus,
+.verify-code__pin input:focus {
+  border-color: var(--ew-accent-soft) !important;
+  outline: none;
+}
+
+.verify-code__hint {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--ew-text-faint);
+  text-align: center;
+}
+
+.pin-row {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.pin-cell {
+  width: 52px;
+  height: 64px;
+  border-radius: 16px;
+  border: 1px solid #3a3642;
+  background: #16141b;
+  color: #e8e6ed;
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 64px;
+}
+
+/* Quiet status — kept for any leftover references; prefer TaskCollapsed. */
+.task-status-line {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ew-text-soft);
+}
+
+/* ---- AUI chat primitives ---- */
+
+.selection-slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aui-spacing-100);
+}
+
+.selection-slot-label {
+  margin: 0;
+  font-size: var(--aui-type-body-2-size);
+  line-height: var(--aui-type-body-2-line);
+  font-weight: 600;
+  color: var(--aui-on-surface);
+}
+
+.selection-slot-card {
+  background: var(--aui-elevated-dynamic-card) !important;
+  border: var(--aui-stroke-card) solid var(--aui-outline) !important;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.selection-slot-card[data-checked='true'],
+.selection-slot-card[data-checked] {
+  border-color: var(--aui-action-filled-action) !important;
+}
+
+.action-slot-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aui-spacing-200);
+}
+
+/* Selection Slot card shape; the caret marks it as opening an Input Widget. */
+.action-slot-card {
+  display: flex;
+  align-items: center;
+  gap: var(--aui-spacing-150);
+  width: 100%;
+  padding: var(--aui-spacing-150);
+  text-align: left;
+  background: var(--aui-elevated-dynamic-card);
+  border: var(--aui-stroke-card) solid var(--aui-outline);
+  border-radius: var(--aui-border-radius-100);
+  cursor: pointer;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.action-slot-card:hover {
+  border-color: var(--aui-accent-soft);
+  box-shadow: inset 0 0 0 999px var(--aui-state-layer-hover);
+}
+
+.action-slot-card:focus-visible {
+  outline: 2px solid var(--aui-action-filled-action);
+  outline-offset: 2px;
+}
+
+.action-slot-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.action-slot-title {
+  font-size: var(--aui-type-body-1-size);
+  line-height: var(--aui-type-body-1-line);
+  font-weight: 600;
+  color: var(--aui-on-surface);
+}
+
+.action-slot-subtitle {
+  font-size: var(--aui-type-body-2-size);
+  line-height: var(--aui-type-body-2-line);
+  color: var(--aui-on-surface-soft);
+}
+
+.action-slot-caret {
+  flex-shrink: 0;
+  color: var(--aui-on-surface-soft);
+}
+
+.action-dock {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--aui-spacing-100);
+  margin-top: var(--aui-spacing-150);
+}
+
+.action-dock-primary,
+.action-dock-secondary {
+  border-radius: var(--aui-action-border-radius);
+  padding: 10px 20px;
+  font-size: var(--aui-type-body-2-size);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.action-dock-primary {
+  background: var(--aui-action-filled-action);
+  color: var(--aui-action-on-filled-action);
+  border: none;
+}
+
+.action-dock-primary:hover {
+  background: var(--aui-primary);
+}
+
+/* Shown from the moment the sheet opens; waits (dimmed) for a complete entry. */
+.action-dock-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.action-dock-primary:disabled:hover {
+  background: var(--aui-action-filled-action);
+}
+
+.action-dock-secondary {
+  background: transparent;
+  color: var(--aui-on-surface);
+  border: 1px solid var(--aui-outline);
+}
+
+/* Bottom-sheet host — spans the guidance column, sits above the Assist
+   composer, and stays inside the panel clip so the Sell beams keep working. */
+.input-widget-layer {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem 8px;
+  pointer-events: none;
+}
+
+/* Fade the guidance column out behind the rising sheet. */
+.input-widget-layer:not(:empty)::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 96px;
+  background: linear-gradient(to top, var(--ew-surface-panel), transparent);
+  pointer-events: none;
+}
+
+.input-widget {
+  position: relative;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 656px;
+  max-height: min(70vh, 520px);
+  background: var(--aui-elevated-level-01);
+  border: 1px solid var(--aui-outline-soft);
+  border-radius: var(--aui-border-radius-200);
+  box-shadow:
+    0 0 4px 0 var(--aui-drop-shadow),
+    0 0 4px 2px var(--aui-drop-shadow),
+    var(--ew-shadow-panel);
+  overflow: hidden;
+  animation: input-widget-rise 260ms var(--ew-ease-settle, cubic-bezier(0.2, 0.8, 0.2, 1));
+}
+
+@keyframes input-widget-rise {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/*
+ * Exit. The sheet's owner unmounts it the moment its action settles, so
+ * `input-widget.tsx` hands a static clone to the layer and this plays it out: a
+ * short sink and fade, so the sheet reads as dismissed rather than cut.
+ *
+ * Must stay after `.input-widget` — equal specificity, so source order is what
+ * stops the rise animation replaying on the clone when it's inserted. The curve
+ * mirrors EASE_PANEL_OUT in `lib/motion.ts` (easeInCubic): it accelerates away
+ * instead of settling, which is what makes 170ms read as quick rather than
+ * clipped, and leaves the stage clear long before the next sheet's loader.
+ */
+.input-widget-exit {
+  pointer-events: none;
+  animation: input-widget-sink var(--ew-dur-inline) cubic-bezier(0.32, 0, 0.67, 0) forwards;
+}
+
+@keyframes input-widget-sink {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+}
+
+/* The veil behind the sheet leaves with it, rather than cutting once the clone is
+   dropped and brightening the guidance column a beat late. */
+.input-widget-layer:has(> .input-widget-exit:only-child)::before {
+  animation: input-widget-veil-out var(--ew-dur-inline) cubic-bezier(0.32, 0, 0.67, 0) forwards;
+}
+
+@keyframes input-widget-veil-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input-widget {
+    animation-duration: 1ms;
+  }
+}
+
+.input-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--aui-spacing-100);
+  padding: var(--aui-spacing-050) var(--aui-spacing-050) var(--aui-spacing-050)
+    var(--aui-spacing-200);
+  min-height: 48px;
+  background: var(--aui-elevated-level-03);
+  border-bottom: 1px solid var(--aui-outline-soft);
+}
+
+.input-widget-title {
+  margin: 0;
+  font-size: var(--aui-type-subheading-2-size);
+  line-height: var(--aui-type-subheading-2-line);
+  font-weight: var(--aui-type-subheading-2-heavy-weight);
+  color: var(--aui-on-surface);
+}
+
+.input-widget-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--aui-on-surface-soft);
+  cursor: pointer;
+}
+
+.input-widget-close:hover {
+  background: var(--aui-state-layer-hover);
+  color: var(--aui-on-surface);
+}
+
+.input-widget-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: clip;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--aui-spacing-200);
+  padding: var(--aui-spacing-200);
+}
+
+.input-widget-body > * {
+  width: 100%;
+}
+
+/* Figma centers Box Input in the sheet; the standalone card keeps it left. */
+.input-widget-body .verify-code {
+  align-items: center;
+  max-width: none;
+}
+
+/* Figma stacks the dock actions full-width inside the sheet. */
+.input-widget-footer {
+  margin: 0;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  padding: var(--aui-spacing-200);
+  border-top: 1px solid var(--aui-outline-soft);
+}
+
+.input-widget-footer > .action-dock-primary,
+.input-widget-footer > .action-dock-secondary {
+  width: 100%;
+}
+
+.suggested-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--aui-spacing-100);
+}
+
+.suggested-reply {
+  border-radius: var(--aui-action-border-radius);
+  border: 1px solid var(--aui-outline);
+  background: transparent;
+  color: var(--aui-on-surface);
+  padding: 8px 14px;
+  font-size: var(--aui-type-body-2-size);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.suggested-reply:hover {
+  background: var(--aui-state-layer-hover);
+}
+
+.media-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--aui-border-radius-100);
+  border: 1px solid var(--aui-outline-soft);
+  background: var(--aui-elevated-level-01);
+  overflow: hidden;
+}
+
+.media-slot-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aui-spacing-050);
+}
+
+.progress-bar-label {
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: var(--aui-on-surface-faint);
+}
+
+.progress-bar-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--aui-outline-soft);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--aui-action-filled-action);
+  transition: width 240ms var(--ew-ease-settle);
+}
+
+/* Section header + step pills */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aui-spacing-100);
+  padding: var(--aui-spacing-150) var(--aui-spacing-200) var(--aui-spacing-100);
+}
+
+.section-heading {
+  margin: 0;
+  font-size: var(--aui-type-subheading-2-size);
+  line-height: var(--aui-type-subheading-2-line);
+  font-weight: var(--aui-type-subheading-2-heavy-weight);
+  color: var(--aui-on-surface);
+}
+
+/* Device grid */
+.device-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--aui-spacing-100);
+}
+
+.device-card {
+  position: relative;
+  display: flex;
+  border-radius: var(--aui-border-radius-100);
+  border: 1px solid var(--aui-outline);
+  background: var(--aui-elevated-dynamic-card);
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  color: inherit;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.device-card:hover {
+  background: color-mix(in srgb, var(--aui-elevated-dynamic-card) 85%, white 15%);
+}
+
+.device-card[data-selected='true'] {
+  border-color: var(--aui-action-filled-action);
+}
+
+.device-card[data-orientation='vertical'] {
+  flex-direction: column;
+  align-items: center;
+  padding: var(--aui-spacing-150);
+  gap: var(--aui-spacing-100);
+  min-height: 180px;
+}
+
+.device-card[data-orientation='horizontal'] {
+  flex-direction: row;
+  align-items: center;
+  padding: var(--aui-spacing-150);
+  gap: var(--aui-spacing-150);
+  width: 100%;
+}
+
+.device-card-shield {
+  position: absolute;
+  top: var(--aui-spacing-100);
+  right: var(--aui-spacing-100);
+  color: var(--aui-accent-soft);
+}
+
+.device-card-image {
+  object-fit: contain;
+}
+
+.device-card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--aui-spacing-050);
+  min-width: 0;
+}
+
+.device-card[data-orientation='horizontal'] .device-card-meta {
+  align-items: flex-start;
+  flex: 1;
+}
+
+.device-card-id {
+  margin: 0;
+  font-size: var(--aui-type-body-2-size);
+  line-height: var(--aui-type-body-2-line);
+  font-weight: 600;
+  color: var(--aui-on-surface);
+}
+
+/* AUI Tag — regular size: 14px text, 3px/4px padding, 4px corners. */
+.aui-tag {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border: 0;
+  border-radius: var(--aui-border-radius-050);
+  padding: 3px var(--aui-spacing-050);
+  font-size: var(--aui-type-body-2-size);
+  line-height: 1.2;
+}
+
+.aui-tag--small {
+  border-radius: var(--aui-border-radius-025);
+  padding: var(--aui-spacing-025);
+  font-size: 12px;
+}
+
+.aui-tag--purple {
+  background: var(--aui-accent-purple-soft);
+  color: var(--aui-accent-on-purple-soft);
+}
+
+.device-card-empty {
+  border-style: dashed;
+  justify-content: center;
+}
+
+.device-card-empty-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--aui-spacing-100);
+  color: var(--aui-on-surface);
+}
+
+.device-card-empty-plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--aui-outline);
+  color: var(--aui-on-surface-soft);
+}
+
+.device-slot-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--aui-spacing-050);
+  margin-top: var(--aui-spacing-100);
+  font-size: var(--aui-type-body-2-size);
+  color: var(--aui-on-surface-soft);
+}
+
+/* Plan card — non-interactive surface above the device grid */
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aui-spacing-050);
+  border-radius: var(--aui-border-radius-100);
+  border: 1px solid var(--aui-outline);
+  background: var(--aui-elevated-dynamic-card);
+  padding: var(--aui-spacing-200);
+  width: 100%;
+}
+
+.plan-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.plan-card-name {
+  margin: var(--aui-spacing-050) 0 0;
+  font-size: var(--aui-type-body-1-size);
+  line-height: var(--aui-type-body-1-line);
+  font-weight: 600;
+  color: var(--aui-on-surface);
+}
+
+.plan-card-detail {
+  margin: 0;
+  font-size: var(--aui-type-body-2-size);
+  line-height: var(--aui-type-body-2-line);
+  color: var(--aui-on-surface-soft);
+}
+
+.plan-card-details-btn {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: var(--aui-spacing-100);
+  padding: 10px 20px;
+  border-radius: var(--aui-action-border-radius);
+  border: 1px solid var(--aui-outline);
+  background: transparent;
+  color: var(--aui-on-surface);
+  font-size: var(--aui-type-body-2-size);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/*
+ * Small step, for the plan card nested inside the customer summary card: at full
+ * size the pill out-weighs the account rows beside it. Drops to the same 12px the
+ * `--small` tag uses, with the padding scaled to match.
+ */
+.plan-card-details-btn--small {
+  padding: 6px 14px;
+  font-size: 12px;
+}
+
+.plan-card-details-btn:hover {
+  background: color-mix(in srgb, var(--aui-on-surface) 8%, transparent);
+}
+
+.aui-tag--success {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #14532d;
+  color: #4ade80;
+}
+
+.aui-tag--success-soft {
+  background: var(--aui-status-success-soft);
+  color: var(--aui-status-on-success-soft);
+}
+
+.plan-device-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aui-spacing-200);
+}
+
+.plan-card-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--aui-outline-soft);
+}
+
+/* Offer card — VHDP product card shown during the Sell flow */
+.offer-card {
+  display: flex;
+  flex-direction: row;
+  border-radius: var(--aui-border-radius-100);
+  border: 1px solid var(--aui-outline);
+  background: var(--aui-elevated-dynamic-card);
+  overflow: hidden;
+  width: 100%;
+}
+
+.offer-card-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 28px 8px 8px;
+}
+
+.offer-card-eligible {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+}
+
+.offer-card-devices-img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+.offer-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--aui-spacing-050);
+  padding: var(--aui-spacing-200);
+  min-width: 0;
+}
+
+.offer-card-name {
+  margin: 0;
+  font-size: var(--aui-type-subheading-2-size);
+  line-height: var(--aui-type-subheading-2-line);
+  font-weight: var(--aui-type-subheading-2-heavy-weight);
+  color: var(--aui-on-surface);
+}
+
+.offer-card-price {
+  margin: 0;
+  font-size: var(--aui-type-body-2-size);
+  line-height: var(--aui-type-body-2-line);
+  font-weight: 600;
+  color: var(--aui-on-surface);
+}
+
+.offer-card-cancel {
+  font-weight: 400;
+  color: var(--aui-on-surface-soft);
+}
+
+
+/* Enrollment success — centered celebratory state */
+.enrollment-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--aui-spacing-150);
+  padding: var(--aui-spacing-300) var(--aui-spacing-200);
+}
+
+.enrollment-success-illustration {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.enrollment-success-heading {
+  margin: 0;
+  font-size: var(--aui-type-subheading-2-size);
+  line-height: var(--aui-type-subheading-2-line);
+  font-weight: var(--aui-type-subheading-2-heavy-weight);
+  color: var(--aui-on-surface);
+}
+
+.enrollment-success-detail {
+  margin: 0;
+  font-size: var(--aui-type-body-1-size);
+  line-height: var(--aui-type-body-1-line);
+  color: var(--aui-on-surface-soft);
+}
+
+.aui-text-action {
+  display: inline;
+  width: fit-content;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: var(--aui-type-body-2-size);
+  line-height: var(--aui-type-body-2-line);
+  font-weight: 400;
+  color: var(--aui-action-on-surface);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.aui-text-action:hover {
+  color: var(--aui-on-surface);
+}
+
+/* Device detail card — horizontal card inside the device drawer */
+.device-detail-card {
+  display: flex;
+  flex-direction: row;
+  border-radius: var(--aui-border-radius-100);
+  border: 1px solid var(--aui-outline);
+  background: var(--aui-elevated-dynamic-card);
+  overflow: hidden;
+}
+
+.device-detail-card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  min-height: 120px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #1a1060 0%, #3b2094 100%);
+  padding: var(--aui-spacing-150);
+}
+
+.device-detail-card-image img {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.device-detail-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aui-spacing-050);
+  padding: var(--aui-spacing-200);
+  min-width: 0;
+}
+
+.device-detail-card-id {
+  margin: 0;
+  font-size: var(--aui-type-heading-5-size, 20px);
+  line-height: var(--aui-type-heading-5-line, 1.3);
+  font-weight: 700;
+  color: var(--aui-on-surface);
+}
+
+.device-detail-card-desc {
+  margin: 0;
+  font-size: var(--aui-type-body-2-size);
+  line-height: var(--aui-type-body-2-line);
+  color: var(--aui-on-surface-soft);
+}
+
+.device-detail-card-serial {
+  margin: 0;
+  font-size: var(--aui-type-body-2-size);
+  line-height: var(--aui-type-body-2-line);
+  color: var(--aui-on-surface-soft);
+}
+
+.device-detail-card-edit {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: var(--aui-spacing-050);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--aui-on-surface);
+  font-size: var(--aui-type-body-2-size);
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}

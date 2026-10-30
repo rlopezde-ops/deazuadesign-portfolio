@@ -1,0 +1,38 @@
+{
+  "name": "@asurion-core/nextgen-portal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3005",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "clean": "rm -rf .next",
+    "capture:flow-map": "node scripts/capture-flow-map.mjs"
+  },
+  "dependencies": {
+    "@asurion-core/mx-asurion-ui-react": "^4.64.9",
+    "@getbrevo/brevo": "^6.0.2",
+    "@hassanmojab/react-modern-calendar-datepicker": "3.1.7",
+    "@neondatabase/serverless": "^1.1.0",
+    "@phosphor-icons/react": "2.1.7",
+    "clsx": "^2.1.1",
+    "next": "^16.2.6",
+    "react": "19.2.0",
+    "react-day-picker": "9.13.2",
+    "react-dom": "19.2.0",
+    "styled-components": "^6.4.4",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^16.2.6",
+    "playwright": "^1.61.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

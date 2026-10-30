@@ -1,0 +1,46 @@
+---
+description: Prefer official AUI React components; use AUI token theme classes for dark/light
+globs: apps/nextgen-portal/**/*.{tsx,ts,css}
+alwaysApply: false
+---
+
+# AUI components + tokens (nextgen-portal)
+
+Package: `@asurion-core/mx-asurion-ui-react` (wired via `AuiProvider` in `app/layout.tsx`).
+CSS tokens: `apps/nextgen-portal/app/aui-tokens.css` (same as `@asurion-core/aui-tokens`); also injected by AUI `GlobalStyles`.
+
+## Color mode (dark / light)
+
+Official AUI themes are **CSS classes** on `<html>`:
+
+| Class | Use |
+|---|---|
+| `asurion-dark` | Asurion purple dark (default for this app) |
+| `asurion-light` | Asurion light |
+| `partner-dark` | Neutral partner dark |
+| `partner-light` | Partner light |
+
+Set via `<body className="asurion-dark">` and `AuiProvider colorMode="asurion-dark"`.
+**Important:** put the theme class on `<body>`, not `<html>` — AUI defines light tokens on `:root`, which would override a class on the same element.
+
+## Prefer AUI components for chrome + forms
+
+- **Do:** `Button`, `Drawer`, `Modal` (via `components/aui/aui-modal.tsx` for dark defaults), `Toast`, `Dropdown`, `Textarea`, `TextField`, `Datepicker`, `Tabs`, `Tag`, chip lists, `ActionCard` / `SimpleCard`
+- **Do:** Import from `@asurion-core/mx-asurion-ui-react`; wrap with `InternalProvider` (already in `AuiProvider`)
+- **Keep custom:** `components/ui/table.tsx` (no AUI Table), `components/ui/date-range-field.tsx` (AUI Datepicker is single-day), and `components/ui/slide-out-panel.tsx` (right slide-out with dark tokens; AUI Drawer is bottom-sheet / light-hardcoded)
+- **Don't:** Hand-roll dialogs, drawers, toasts, or primary form controls when an AUI equivalent exists
+
+## Color tokens (layout / custom surfaces)
+
+- **Do:** `bg-[var(--aui-elevated-level-01)]`, `text-[var(--aui-on-surface)]`, `border-[var(--aui-outline-soft)]`
+- **Don't:** Raw `#RRGGBB` / Tailwind palettes in product UI
+- **Exception:** Hex only inside `aui-tokens.css` (token definitions)
+
+## Spacing & radius
+
+- Prefer `--aui-spacing-*` and `--aui-border-radius-*` around AUI components.
+
+## Icons
+
+- Prefer AUI `Icon` / `Icon.Phosphor`, or `@phosphor-icons/react` where needed.
+- Prefer AUI `Datepicker` for single dates; use `DateRangeField` for single-or-range (same AUI calendar engine; commits on click, dismiss on outside click).

@@ -1,0 +1,5 @@
+.purple {
+    border: 1px solid var(--mantine-color-primary-5);
+    border-width: 1px 0px 1px 0px;
+    background: var(--mantine-color-primary-9);
+}

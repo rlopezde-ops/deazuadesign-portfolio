@@ -1,0 +1,388 @@
+/* PROTOTYPE DEVIATION — progress line, action line, how-it-works. See DEVIATIONS.md. */
+
+/* Rounded content block — mirrors MetricDetailPanel .primary */
+.block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--mantine-spacing-lg);
+    background: var(--mantine-color-default);
+    border-radius: var(--mantine-radius-md);
+    margin: 16px 16px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Keep all block children above the illustration */
+.block > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Cake illustration — same cropped corner treatment as MetricCard */
+.illustration {
+    position: absolute;
+    right: -14px;
+    bottom: -16px;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    opacity: 0.9;
+}
+
+/* Second block (pay + tier) sits below with a tighter top gap */
+.blockPay {
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+/* ── Block 1: Metric ─────────────────────────────────────────── */
+
+/* PROTOTYPE DEVIATION: compound Serve • ERP label matching Card Flip PayDetailBack. */
+.labelGroup {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    line-height: 1.2;
+    margin-bottom: 2px;
+}
+
+.labelCategory {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 700;
+    color: var(--mantine-color-dark-0);
+}
+
+.labelSep {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 400;
+    color: var(--mantine-color-dark-3);
+}
+
+.labelMetric {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+}
+
+.metricLabel {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 700;
+    color: var(--mantine-color-dark-0);
+}
+
+/* Status badge — same spec as MetricCard .statusBadge */
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--mantine-spacing-3xs);
+    padding: 2px var(--mantine-spacing-3xs);
+    border-radius: var(--mantine-radius-sm);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.badgePositive {
+    color: var(--mantine-color-success-text);
+    background: var(--mantine-color-success-light);
+}
+
+.badgeWarning {
+    color: var(--mantine-color-warning-text);
+    background: var(--mantine-color-warning-light);
+}
+
+.badgeNegative {
+    color: var(--mantine-color-error-text);
+    background: var(--mantine-color-error-light);
+}
+
+/* Big metric value — matches MetricDetailPanel .bigValue */
+.bigValue {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    color: var(--mantine-color-dark-0);
+    margin-top: 4px;
+}
+
+.bigValueUnit {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--mantine-color-dark-2);
+}
+
+.target {
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+}
+
+.delta {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--mantine-color-dark-0);
+}
+
+/* ── Block 2: Supporting metrics ─────────────────────────────── */
+
+.blockSupporting {
+    margin-top: 8px;
+}
+
+.supportingHeading {
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 700;
+    color: var(--mantine-color-dark-2);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+}
+
+.supportingRow {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--mantine-color-dark-5);
+}
+
+.supportingRow:last-child {
+    border-bottom: none;
+}
+
+.supportingLabel {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+}
+
+.supportingValue {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 600;
+    color: var(--mantine-color-dark-0);
+}
+
+/* ── Block 3: Pay ────────────────────────────────────────────── */
+
+.payLabel {
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+}
+
+.payAmount {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.rateSubtext {
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 500;
+    color: var(--mantine-color-dark-1);
+    margin-top: 2px;
+}
+
+.tonePositive { color: var(--mantine-color-success-text); }
+.toneWarning  { color: var(--mantine-color-warning-text); }
+.toneNegative { color: var(--mantine-color-error-text); }
+
+/* ── Action line ─────────────────────────────────────────────── */
+
+.actionLine {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 600;
+    color: var(--mantine-color-dark-0);
+    margin-top: 4px;
+}
+
+.topTierText {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 600;
+    color: var(--mantine-color-success-text);
+    margin-top: 4px;
+}
+
+/* ── Tier ladder (matched to Card Flip PayDetailBack) ────────── */
+
+.tierContainer {
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.tierScroll {
+    overflow-x: auto;
+    padding: 12px 14px 30px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.tierScroll::-webkit-scrollbar {
+    display: none;
+}
+
+.tierFadeRight::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to right, transparent, color-mix(in srgb, var(--mantine-color-dark-7), white 6%));
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 0 10px 10px 0;
+}
+
+.tierFadeLeft::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to left, transparent, color-mix(in srgb, var(--mantine-color-dark-7), white 6%));
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 10px 0 0 10px;
+}
+
+.tierLabelRow {
+    display: flex;
+    min-width: 100%;
+    width: max-content;
+    margin-bottom: 10px;
+}
+
+.tierItem {
+    flex: 1 0 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.tierName {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--mantine-color-dark-2);
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.tierAmount {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+    line-height: 1.3;
+}
+
+.tierThreshold {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--mantine-color-dark-3);
+    line-height: 1.3;
+}
+
+.tierItemActive .tierName {
+    font-weight: 700;
+    color: var(--mantine-color-dark-0);
+}
+
+.tierItemActive .tierAmount {
+    font-weight: 700;
+    color: var(--mantine-color-dark-0);
+}
+
+.tierItemActive .tierThreshold {
+    color: var(--mantine-color-dark-2);
+}
+
+/* Track row — dots aligned with label columns via matching flex layout */
+.trackRow {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 100%;
+    width: max-content;
+}
+
+/* Background track — full width, muted */
+.trackRow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--mantine-color-dark-5);
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+/* Filled track segment — width set via inline style */
+.trackFill {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 2px;
+    background: var(--mantine-color-dark-4);
+    transform: translateY(-50%);
+    z-index: 0;
+    transition: width 0.3s ease;
+}
+
+.trackDot {
+    flex: 1 0 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.trackDot::after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--mantine-color-dark-4);
+}
+
+.trackDotActive::after {
+    width: 10px;
+    height: 10px;
+    background: var(--mantine-color-dark-0);
+}
+
+.youreHere {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--mantine-color-asurion-2);
+    white-space: nowrap;
+    line-height: 1;
+}
+
+/* ── How it works ────────────────────────────────────────────── */
+
+.howItWorks {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+    line-height: 1.45;
+    margin-top: 24px;
+}

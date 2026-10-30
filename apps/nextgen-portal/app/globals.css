@@ -1,0 +1,515 @@
+@import "tailwindcss";
+@import "./aui-tokens.css";
+@import "./aui-dark-overrides.css";
+
+@theme inline {
+  --font-sans: "Apercu Pro", "Apercu", "Inter", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  --color-aui-primary: var(--aui-primary);
+  --color-aui-on-primary: var(--aui-on-primary);
+  --color-aui-surface: var(--aui-surface);
+  --color-aui-surface-variant: var(--aui-surface-variant);
+  --color-aui-on-surface: var(--aui-on-surface);
+  --color-aui-on-surface-soft: var(--aui-on-surface-soft);
+  --color-aui-outline-soft: var(--aui-outline-soft);
+  --color-aui-accent-purple: var(--aui-accent-purple);
+  --color-aui-accent-purple-soft: var(--aui-accent-purple-soft);
+  --radius-aui-card: var(--aui-border-radius-200);
+  --radius-aui-pill: var(--aui-border-radius-round);
+  --shadow-aui-card: 0 1px 4px 0 var(--aui-fills-drop-shadow);
+}
+
+/* Store dashboard accents on top of official AUI asurion-dark tokens */
+.asurion-dark,
+.partner-dark {
+  --aui-nav-active-bg: var(--aui-accent-purple-soft);
+  --aui-nav-active-text: var(--aui-accent-purple);
+  --aui-nav-hover-bg: var(--aui-fills-surface-contrast);
+  --aui-progress-fill: var(--aui-accent-purple);
+  --aui-progress-track: var(--aui-outline-soft);
+  --aui-card-surface: var(--aui-elevated-level-01);
+  --aui-search-bg: var(--aui-surface-variant);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  /* Beat AUI GlobalStyles light-mode `color: black` so token theme wins */
+  background: var(--aui-surface) !important;
+  color: var(--aui-on-surface) !important;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  * {
+    border-color: var(--aui-outline-soft);
+  }
+
+  html.asurion-dark input[type="search"],
+  html.asurion-dark select,
+  html.partner-dark input[type="search"],
+  html.partner-dark select,
+  body.asurion-dark input[type="search"],
+  body.asurion-dark select,
+  body.partner-dark input[type="search"],
+  body.partner-dark select {
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: light) {
+    html.asurion-dark input[type="search"]::-webkit-search-cancel-button,
+    html.partner-dark input[type="search"]::-webkit-search-cancel-button,
+    body.asurion-dark input[type="search"]::-webkit-search-cancel-button,
+    body.partner-dark input[type="search"]::-webkit-search-cancel-button {
+      filter: invert(1) brightness(1.25);
+    }
+  }
+}
+
+/* Kill native date-picker glyph — always use Phosphor via DateField instead */
+.aui-date-field {
+  color-scheme: dark;
+}
+
+.aui-date-field::-webkit-calendar-picker-indicator {
+  display: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  color: transparent !important;
+}
+
+.aui-date-field::-webkit-inner-spin-button,
+.aui-date-field::-webkit-clear-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+}
+
+/* Match AUI TextField / Dropdown control chrome for custom fields */
+.aui-field-control {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  height: 3.5rem;
+  align-items: center;
+  border: 1px solid var(--aui-outline);
+  border-radius: var(--aui-border-radius-100);
+  background-color: var(--aui-surface);
+  color: var(--aui-on-surface);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  padding-left: var(--aui-spacing-150);
+  padding-right: var(--aui-spacing-150);
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.aui-field-control::placeholder {
+  color: var(--aui-on-surface-soft);
+}
+
+.aui-field-control:hover:not(:disabled):not([aria-disabled="true"]) {
+  border-color: var(--aui-on-surface);
+}
+
+.aui-field-control:focus,
+.aui-field-control:focus-visible,
+button.aui-field-control[aria-expanded="true"] {
+  border-color: var(--aui-on-surface);
+  box-shadow: inset 0 0 0 1px var(--aui-on-surface);
+}
+
+.aui-field-control:disabled {
+  cursor: not-allowed;
+  border-width: 1px;
+  background-color: var(--aui-neutral-soft);
+  color: var(--aui-on-surface-soft);
+  opacity: var(--aui-state-layer-on-disabled);
+  box-shadow: none;
+}
+
+.aui-field-control--with-leading-icon {
+  padding-left: calc(var(--aui-spacing-150) + 1.5rem + 0.625rem);
+}
+
+.aui-field-control--with-trailing-icon {
+  padding-right: calc(var(--aui-spacing-150) + 1.5rem + 0.625rem);
+}
+
+/* Close Store / date field calendar — matches AUI datepicker screenshot */
+.aui-calendar {
+  width: 19rem;
+  box-sizing: border-box;
+  background: var(--aui-elevated-level-03);
+  color: var(--aui-on-surface);
+  font-family: inherit;
+  user-select: none;
+}
+
+.aui-calendar__months,
+.aui-calendar__month {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.aui-calendar__caption {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--aui-spacing-300) var(--aui-spacing-300) var(--aui-spacing-400);
+}
+
+.aui-calendar__caption-label {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--aui-on-surface);
+}
+
+.aui-calendar__nav {
+  position: absolute;
+  inset: var(--aui-spacing-300) var(--aui-spacing-200) auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aui-calendar__nav-btn {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--aui-border-radius-400);
+  background: transparent;
+  color: var(--aui-on-surface);
+  cursor: pointer;
+}
+
+.aui-calendar__nav-btn:hover {
+  background: var(--aui-surface-variant);
+}
+
+.aui-calendar__nav-btn:disabled {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.aui-calendar__grid {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.aui-calendar__weekdays {
+  display: flex;
+  width: 100%;
+  padding: 0 var(--aui-spacing-200);
+  margin-bottom: 0.35rem;
+}
+
+.aui-calendar__weekday {
+  flex: 1;
+  padding: 0;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--aui-on-surface);
+  text-decoration: none;
+}
+
+.aui-calendar__week {
+  display: flex;
+  width: 100%;
+  padding: 0 var(--aui-spacing-200);
+}
+
+.aui-calendar__day {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  margin-bottom: 0.1rem;
+  padding: 0;
+  text-align: center;
+}
+
+.aui-calendar__day-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--aui-on-surface);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    opacity 0.2s;
+}
+
+.aui-calendar__day-btn:hover:not(:disabled)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: var(--aui-state-layer-hover);
+  pointer-events: none;
+}
+
+.aui-calendar__day-btn:focus-visible {
+  outline: 1px solid var(--aui-on-surface);
+  outline-offset: 1px;
+}
+
+/* Today — small white dot under the date */
+.aui-calendar__day--today .aui-calendar__day-btn {
+  color: var(--aui-on-surface);
+  font-weight: 400;
+}
+
+.aui-calendar__day--today .aui-calendar__day-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0.28rem;
+  left: 50%;
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+  background: var(--aui-on-surface);
+  transform: translateX(-50%);
+}
+
+/* Selected — pale lavender circle, dark number */
+.aui-calendar__day--selected:not(.aui-calendar__day--range-middle) .aui-calendar__day-btn {
+  background: var(--aui-inverse-surface);
+  color: var(--aui-inverse-on-surface);
+  font-weight: 600;
+}
+
+.aui-calendar__day--selected:not(.aui-calendar__day--range-middle) .aui-calendar__day-btn::after {
+  display: none;
+}
+
+.aui-calendar__day--selected:not(.aui-calendar__day--range-middle) .aui-calendar__day-btn:hover::before {
+  opacity: 0;
+}
+
+/* Range selection */
+.aui-calendar__day--range-start,
+.aui-calendar__day--range-end {
+  background: color-mix(in srgb, var(--aui-inverse-surface) 22%, transparent);
+}
+
+.aui-calendar__day--range-start {
+  border-radius: 100em 0 0 100em;
+}
+
+.aui-calendar__day--range-end {
+  border-radius: 0 100em 100em 0;
+}
+
+.aui-calendar__day--range-start.aui-calendar__day--range-end {
+  border-radius: 0;
+  background: transparent;
+}
+
+.aui-calendar__day--range-middle {
+  border-radius: 0;
+  background: color-mix(in srgb, var(--aui-inverse-surface) 22%, transparent);
+}
+
+.aui-calendar__day--range-start .aui-calendar__day-btn,
+.aui-calendar__day--range-end .aui-calendar__day-btn {
+  background: var(--aui-inverse-surface);
+  color: var(--aui-inverse-on-surface);
+  font-weight: 600;
+  border-radius: 50%;
+}
+
+.aui-calendar__day--range-middle .aui-calendar__day-btn {
+  background: transparent;
+  color: var(--aui-on-surface);
+  font-weight: 400;
+  border-radius: 0;
+}
+
+.aui-calendar__day--range-start .aui-calendar__day-btn::after,
+.aui-calendar__day--range-end .aui-calendar__day-btn::after,
+.aui-calendar__day--range-middle .aui-calendar__day-btn::after {
+  display: none;
+}
+
+.aui-calendar__day--range-start .aui-calendar__day-btn:hover::before,
+.aui-calendar__day--range-end .aui-calendar__day-btn:hover::before,
+.aui-calendar__day--range-middle .aui-calendar__day-btn:hover::before {
+  opacity: 0;
+}
+
+.aui-calendar__day--outside .aui-calendar__day-btn {
+  color: transparent;
+  pointer-events: none;
+}
+
+.aui-calendar__day--disabled .aui-calendar__day-btn {
+  color: var(--aui-on-surface) !important;
+  opacity: var(--aui-state-layer-on-disabled);
+  cursor: default;
+  pointer-events: none;
+}
+
+.aui-calendar__day--disabled .aui-calendar__day-btn:hover::before {
+  opacity: 0;
+}
+
+.aui-calendar__day--hidden {
+  visibility: hidden;
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.28s ease-out;
+}
+
+/* Check-in micro-interactions */
+
+@keyframes step-expand {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-step-expand {
+  animation: step-expand 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes step-summary-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-step-summary-in {
+  animation: step-summary-in 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes indicator-pop {
+  0%   { transform: scale(0.7); opacity: 0; }
+  60%  { transform: scale(1.1); }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+.animate-indicator-pop {
+  animation: indicator-pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes field-prefill-glow {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--aui-brand-asurion-purple) 40%, transparent); }
+  50%  { box-shadow: 0 0 0 4px color-mix(in srgb, var(--aui-brand-asurion-purple) 20%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--aui-brand-asurion-purple) 0%, transparent); }
+}
+
+.animate-prefill-glow {
+  animation: field-prefill-glow 0.8s ease-out forwards;
+}
+
+@keyframes modal-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.animate-modal-fade-out {
+  animation: modal-fade-out 0.18s ease-out forwards;
+}
+
+@keyframes slide-out-right {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+
+.animate-slide-out-right {
+  animation: slide-out-right 0.22s ease-in forwards;
+}
+
+/* Quick action tiles: strip ActionCard chrome/padding so media is edge-to-edge */
+[data-slot="quick-actions"] .quick-action-tile[data-aui="action-card"] {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  border-radius: var(--aui-border-radius-100);
+  background: transparent;
+}
+
+[data-slot="quick-actions"] .quick-action-tile[data-aui="action-card"] > div {
+  padding: 0 !important;
+  gap: 0 !important;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #dropoff-receipt,
+  #dropoff-receipt * {
+    visibility: visible;
+  }
+  #dropoff-receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none !important;
+  }
+}

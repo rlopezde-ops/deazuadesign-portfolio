@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "target": "ES2020",
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/config": ["./prototype/shims/config.ts"],
+      "@/analytics": ["./prototype/shims/analytics.ts"],
+      "@/sdk": ["./prototype/shims/sdk.tsx"],
+      "@/partner/usePartnerConfig": ["./prototype/shims/partner.tsx"],
+      "@/sidecar/AssistTab": ["./prototype/shims/sidecar.tsx"],
+      "@/shared-utils": ["./prototype/shims/shared-utils.ts"],
+      "@/shared-utils/": ["./prototype/shims/shared-utils.ts"],
+      "@/panels/modules/panels/components/PanelErrorFallback": [
+        "./prototype/shims/panels.tsx"
+      ],
+      "@/common-ui": ["./prototype/shims/common-ui.tsx"],
+      "@/*": ["./vendor/expert-ui/src/*"],
+
+      "@expert/theme": ["./vendor/packages/theme/index.tsx"],
+      "@expert/common-ui": ["./prototype/shims/expert/common-ui.tsx"],
+      "@expert/common-ui/*": ["./vendor/packages/common-ui/*"],
+      "@expert/sales-tools": ["./prototype/shims/expert/sales-tools.tsx"],
+      "@expert/features": ["./prototype/shims/expert/features.tsx"],
+      "@expert/state-utils": ["./prototype/shims/expert/state-utils.ts"],
+      "@expert/logging": ["./prototype/shims/expert/logging.ts"],
+      "@expert/expert-university": ["./prototype/shims/expert/expert-university.ts"],
+      "@expert/shared-types": ["./prototype/shims/expert/shared-types.ts"],
+      "@expert/app-config/types": ["./prototype/shims/expert/app-config-types.ts"],
+
+      "~/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}

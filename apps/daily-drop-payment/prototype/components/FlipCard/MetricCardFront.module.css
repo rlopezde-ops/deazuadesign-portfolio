@@ -1,0 +1,226 @@
+.root {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: var(--mantine-color-dark-6);
+    border: 1px solid var(--mantine-color-dark-4);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Image zone — gradient tint, no badge */
+.imageZone {
+    flex: 0 0 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        180deg,
+        var(--mantine-color-dark-7) 30%,
+        rgba(147, 58, 220, 0.18) 100%
+    );
+    border-bottom: 1px solid var(--mantine-color-dark-5);
+}
+
+.illustration {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    user-select: none;
+    pointer-events: none;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.45));
+}
+
+/* Content zone */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 12px 16px 36px;
+    min-height: 0;
+}
+
+/* Title row: label left, status badge right — mirrors AUI MetricCard */
+.titleRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Compound label: "Serve • ERP" */
+.labelGroup {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.2;
+    min-width: 0;
+}
+
+.labelCategory {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 700;
+    color: var(--mantine-color-dark-0);
+    white-space: nowrap;
+}
+
+.labelSep {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 400;
+    color: var(--mantine-color-dark-3);
+}
+
+.labelMetric {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Status badge — inline, right-aligned in title row */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--mantine-spacing-3xs);
+    padding: 2px 6px;
+    border-radius: var(--mantine-radius-sm);
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.tonePositive {
+    color: var(--mantine-color-success-text);
+    background: var(--mantine-color-success-light);
+}
+
+.toneWarning {
+    color: var(--mantine-color-warning-text);
+    background: var(--mantine-color-warning-light);
+}
+
+.toneNegative {
+    color: var(--mantine-color-error-text);
+    background: var(--mantine-color-error-light);
+}
+
+/* Value row: always white — tone lives in the badge, not the number */
+.valueRow {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 2px;
+}
+
+.value {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--mantine-color-dark-0);
+}
+
+.unit {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--mantine-color-dark-2);
+}
+
+.target {
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+    line-height: 1.3;
+}
+
+.emptyText {
+    font-size: var(--mantine-font-size-sm);
+    color: var(--mantine-color-dark-2);
+}
+
+.errorText {
+    font-size: var(--mantine-font-size-sm);
+    color: var(--mantine-color-error-text);
+}
+
+/* Money block — current $ + action line */
+.moneyBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 6px;
+}
+
+.earned {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--mantine-color-dark-0);
+    line-height: 1.3;
+}
+
+.actionLine {
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+    line-height: 1.3;
+}
+
+/* Supporting stats — surface-variant container, no divider */
+.stats {
+    margin-top: auto;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    align-self: stretch;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 8px 10px;
+}
+
+.statsDivider {
+    display: none;
+}
+
+.statRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.statLabel {
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+    line-height: 1.4;
+}
+
+.statValue {
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 600;
+    color: var(--mantine-color-dark-0);
+    line-height: 1.4;
+}
+
+/* Flip affordance — AUI dark-mode action style (matches leaderboardSummaryCard .action) */
+.flipCta {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--mantine-color-dark-1);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: 0;
+}

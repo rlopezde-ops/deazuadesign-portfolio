@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "expert-console",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--ignore-workspace", "exec", "next", "dev", "-p", "3011"],
+      "port": 3011
+    },
+    {
+      "name": "daily-drop-payment",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd /Users/ricardo.deazua/Documents/GitHub/asurion-core/expert-design/apps/daily-drop-payment && pnpm dev"],
+      "port": 3012
+    }
+  ]
+}

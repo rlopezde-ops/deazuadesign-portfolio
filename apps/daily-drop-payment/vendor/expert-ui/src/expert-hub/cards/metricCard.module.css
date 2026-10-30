@@ -1,0 +1,175 @@
+/* Ported from the verizon-v2 design: left-aligned card, anatomy Name → Value+Unit → Status → Target → Gap. */
+.root {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
+    overflow: hidden;
+    padding: var(--mantine-spacing-lg);
+    gap: 4px;
+    background: var(--mantine-color-default);
+    border: 1px solid var(--mantine-color-default-border);
+    border-radius: var(--mantine-radius-md);
+}
+
+/* PROTOTYPE DEVIATION: keep copy above the cake illustration. */
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+/*
+  PROTOTYPE DEVIATION: Asurion cake illustrations, bottom-right, lightly cropped (~12–18% off).
+  Intentionally cropped corner look, but clear enough for experts to read the subject.
+*/
+.illustration {
+    position: absolute;
+    right: -18px;
+    bottom: -20px;
+    width: 132px;
+    height: 132px;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    opacity: 0.95;
+    transform-origin: bottom right;
+}
+
+.illustrationLove {
+    /* Heart tip leaves empty corner space — slightly more crop than shield, same visible mass */
+    width: 134px;
+    height: 134px;
+    right: -22px;
+    bottom: -24px;
+}
+
+.illustrationQuality {
+    /* Shield fills its frame tightly — less CSS overhang so it reads as clearly as the wallet */
+    width: 128px;
+    height: 128px;
+    right: -12px;
+    bottom: -14px;
+}
+
+.illustrationSales {
+    width: 132px;
+    height: 132px;
+    right: -20px;
+    bottom: -22px;
+}
+
+.interactive {
+    cursor: pointer;
+    transition:
+        border-color 150ms ease,
+        transform 150ms ease,
+        box-shadow 150ms ease;
+}
+
+.interactive:hover {
+    border-color: var(--mantine-color-asurion-4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.interactive:focus-visible {
+    outline: 2px solid var(--mantine-color-asurion-4);
+    outline-offset: 2px;
+}
+
+.titleRow {
+    width: 100%;
+}
+
+.title {
+    color: var(--mantine-color-dark-2);
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 400;
+    text-align: left;
+}
+
+/* PROTOTYPE DEVIATION: compound Serve • ERP eyebrow label, matching Card Flip MetricCardFront. */
+.labelGroup {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    line-height: 1.2;
+}
+
+.labelCategory {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 700;
+    color: var(--mantine-color-dark-0);
+}
+
+.labelSep {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 400;
+    color: var(--mantine-color-dark-3);
+}
+
+.labelMetric {
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 400;
+    color: var(--mantine-color-dark-2);
+}
+
+/* Big value, left-aligned; the status pill now sits in the card head (title row). */
+.valueRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: var(--mantine-color-white);
+}
+
+.value {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 3px;
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--mantine-spacing-3xs);
+    padding: 2px var(--mantine-spacing-3xs);
+    border-radius: var(--mantine-radius-sm);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+/* Status pills use Mantine's semantic light/text token pair per Figma: a dark same-hue fill with a vivid, legible label. */
+.tonePositive {
+    color: var(--mantine-color-success-text);
+    background: var(--mantine-color-success-light);
+}
+
+.toneWarning {
+    color: var(--mantine-color-warning-text);
+    background: var(--mantine-color-warning-light);
+}
+
+.toneNegative {
+    color: var(--mantine-color-error-text);
+    background: var(--mantine-color-error-light);
+}
+
+.target {
+    color: var(--mantine-color-dark-2);
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 400;
+    text-align: left;
+}
+
+.gap {
+    color: var(--mantine-color-dark-0);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+}

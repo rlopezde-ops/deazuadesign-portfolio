@@ -1,0 +1,11 @@
+/* Positioned, clipped box so panel content that lays itself out with `position: absolute; inset: 0`
+   (Sidecar, the transcript, the FadeSwap right slot) has a full-height frame to fill. */
+.panelContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+.scrollArea {
+    position: absolute;
+    inset: 0;
+}

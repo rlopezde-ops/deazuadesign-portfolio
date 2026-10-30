@@ -1,0 +1,45 @@
+.root {
+    width: 100%;
+    padding: 16px 8px;
+}
+
+.title {
+    color: var(--mantine-color-white);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.segmented {
+    background: var(--mantine-color-dark-5);
+    border: 1px solid var(--mantine-color-dark-6);
+    border-radius: var(--mantine-radius-md);
+    padding: 3px;
+}
+
+.segmentedLabel {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    color: var(--mantine-color-dark-3);
+    text-align: center;
+}
+
+.segmentedLabel[data-active] {
+    color: var(--mantine-color-dark-0);
+}
+
+.segmentedIndicator {
+    background: var(--mantine-color-dark-4);
+    border-radius: var(--mantine-radius-sm);
+    box-shadow:
+        0 1px 2px 0 rgba(0, 0, 0, 0.1),
+        0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.lastUpdatedText {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--mantine-color-dark-2);
+}

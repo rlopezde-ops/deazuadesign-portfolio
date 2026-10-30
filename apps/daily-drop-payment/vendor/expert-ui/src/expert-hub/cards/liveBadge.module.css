@@ -1,0 +1,13 @@
+.badge {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--mantine-color-dark-1);
+}
+
+.dot {
+    flex: none;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--mantine-color-asurion-3);
+}
