@@ -1,0 +1,143 @@
+WORKDAY JOB DESCRIPTION — PASTE GUIDE
+Ricardo L. De Azua | Product Design Leader
+======================================================================
+Copy each block below into the corresponding Workday role description
+field. Each is plain text with no special characters or formatting.
+======================================================================
+
+
+======================================================================
+ROLE 1 OF 5
+Job Title:  Senior Manager, Product Design
+Company:    Asurion
+Start:      May 2022   |   End: Present
+----------------------------------------------------------------------
+PASTE BELOW THIS LINE:
+
+Led two design teams at Asurion: one supporting in-store operations for 680+ uBreakiFix locations nationwide, and one building AI-powered tools for 10,000+ call center and claims experts.
+
+In-Store Operations (2022-2025)
+- Reduced technician training time by 50% and cut new-partner onboarding from 2 months to 1 week by leading a team of 4 designers through a complete redesign and re-platform of the core in-store POS and job management system.
+- Drove full rollout to all 680+ corporate stores by January 2026 -- enabling enterprise partners like Amazon and AT&T to onboard in days instead of months, with faster customer check-in and streamlined repair workflows.
+- Established cross-functional design principles now embedded in product, engineering, and operations roadmaps and roadmap planning decisions.
+- Elevated design to a strategic function with regular involvement in executive presentations and C-suite strategy decisions.
+- Grew and mentored a team of IC designers, driving individual career development alongside consistent team delivery.
+
+Tech Support Tools (2025-Present)
+- Directing UX vision for an AI-powered expert workspace serving 10,000+ call center and claims agents -- defining design principles, establishing AI interaction guidelines, and aligning cross-functional stakeholders around a user-centered product strategy.
+- Designing simplified performance dashboards that translate complex metrics into scannable summaries, giving agents clearer visibility into goals and earnings than prior tooling allowed.
+- Embedding gamification mechanics (goal streaks, performance-based feedback loops) to reinforce positive expert behaviors and drive measurable improvements in engagement.
+- Grounding design decisions in direct field research: expert interviews and call center shadowing to ensure AI-assisted workflows reflect how people actually work.
+
+======================================================================
+
+
+======================================================================
+ROLE 2 OF 5
+Job Title:  Principal Product Designer
+Company:    Asurion
+Start:      October 2021   |   End: May 2022
+----------------------------------------------------------------------
+PASTE BELOW THIS LINE:
+
+IC design lead for Asurion's in-store operations and experience domain. Promoted to Senior Manager after 7 months.
+
+- Cut claim resolution time from 45 minutes to under 10 minutes by designing and launching the In-Store Claims Kiosk -- enabling 10,000+ customers per month to self-serve at repair locations and generating $100K+ in annual call and chat deflection savings.
+- Validated the concept through a 20-store pilot, then partnered with operations to scale to all corporate locations based on proven results.
+- Partnered with motion design and marketing teams on idle-state animations and in-store signage to drive customer engagement and product visibility at point of repair.
+- Reduced missed appointments and improved store-level customer satisfaction by identifying scheduling friction through user research and redesigning the appointment flow.
+
+======================================================================
+
+
+======================================================================
+ROLE 3 OF 5
+Job Title:  Lead Product Designer
+Company:    Travel+Leisure Co.
+Start:      December 2019   |   End: October 2021
+----------------------------------------------------------------------
+PASTE BELOW THIS LINE:
+
+Design lead and people manager for the industry's largest vacation ownership company, serving 809,000+ club members across 270+ resorts.
+
+- Designed the Club Wyndham Vacation Planner -- a personalized, quiz-style discovery experience enabling 809,000+ members to find and book destinations across 270+ resorts, with tailored flows for existing members and prospective owners.
+- Drove measurable increases in loyalty status upgrades by redesigning the member status experience across account pages, sign-in flows, and tier education -- improving benefits visibility and motivating tier progression.
+- Championed and led company-wide adoption of Figma, building the internal business case and establishing a new design operations standard across the product organization.
+- Managed 2 in-house designers, provided design direction to an external agency team, and used high-fidelity prototype testing to validate concepts before development investment.
+
+======================================================================
+
+
+======================================================================
+ROLE 4 OF 5
+Job Title:  Senior UI/UX Designer
+Company:    Disney Parks, Experiences and Products
+Start:      May 2019   |   End: December 2019
+----------------------------------------------------------------------
+PASTE BELOW THIS LINE:
+
+Senior IC designer building internal operational tools for 30,000+ Cast Members across Walt Disney World Resort and beyond.
+
+- Improved Cast Member operational efficiency by approximately 25% across 5 parks by designing the Guest Service Suite -- consolidating 60+ disconnected legacy applications into a single responsive, role-adapted platform that earned 80% positive Cast response at launch.
+- Led design for Guest Interaction Tracking -- enabling Cast Members to quickly log, review, and act on guest history with speed-optimized views across mobile and desktop contexts.
+- Delivered complex operational tooling at theme park scale in a fast-paced, cross-functional agile environment serving 30,000+ Cast Members.
+
+======================================================================
+
+
+======================================================================
+ROLE 5 OF 5
+Job Title:  UI/UX Art Director
+Company:    Universal Orlando Resorts
+Start:      March 2018   |   End: March 2019
+----------------------------------------------------------------------
+PASTE BELOW THIS LINE:
+
+In-house creative and UX lead for Universal Orlando's consumer-facing digital properties.
+
+- Drove double-digit growth in online ticket sales by leading the mobile-first redesign of the Halloween Horror Nights website -- simplifying the ticket purchase funnel from 7 options to 2, contributing to record-breaking event attendance.
+- Directed cross-channel brand integration across digital, advertising, and marketing teams -- delivering a cohesive guest experience aligned with theme park creative direction.
+- Led enterprise accessibility remediation across Universal Studios Hollywood and Universal Orlando Resort, achieving WCAG compliance across all digital properties.
+
+======================================================================
+
+
+======================================================================
+ROLE 6 OF 6
+Job Title:  Art Director, Web + Digital
+Company:    Full Sail University
+Start:      September 2014   |   End: March 2018
+----------------------------------------------------------------------
+PASTE BELOW THIS LINE:
+
+In-house art director for Full Sail University's creative group, leading brand, digital, and marketing work across web, print, and campaign channels.
+
+- Led a team of in-house designers and freelancers, providing art direction across event branding, marketing campaigns, online advertising, and web and landing page design.
+- Partnered cross-functionally with design, production, development, and video teams to deliver cohesive brand experiences across digital and physical channels.
+- Contributed to brand standards development alongside senior creative leadership, establishing consistent usage guidelines across the organization.
+
+======================================================================
+
+
+======================================================================
+WORKDAY TIPS
+----------------------------------------------------------------------
+- Dates: Use the month/year dropdowns Workday provides -- no need to
+  type them, just match to the ranges above.
+
+- Character limits: If Workday enforces a limit (usually 2,000-4,000
+  chars), trim from the bottom of each description. The most important
+  bullets are always listed first.
+
+- Line breaks: Workday preserves line breaks in most browsers. If yours
+  collapses them, separate each bullet with a blank line instead.
+
+- Double hyphens (--): Used above as a dash replacement since some
+  Workday fields strip em-dashes. Safe to leave as-is.
+
+- Skills section: Workday often has a separate skills field. Recommended
+  entries: Product Design, UX Design, Design Leadership, People
+  Management, Figma, Design Systems, User Research, Prototyping,
+  Interaction Design, Accessibility (WCAG), Agile, Cross-functional
+  Collaboration, Stakeholder Management, Design Strategy.
+======================================================================
