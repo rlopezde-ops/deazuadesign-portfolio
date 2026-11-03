@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "site/app/styles/main.css"
+        ],
+        "createdAt": "2026-10-31T02:08:37.701Z",
+        "reason": "Existing hero headline treatment carried over unchanged in the Next.js port; documented in docs/PROJECT_DOCS.md"
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "site/app/styles/case-study.css"
+        ],
+        "createdAt": "2026-10-31T02:08:37.738Z",
+        "reason": "Existing impact value treatment carried over unchanged in the Next.js port; documented in docs/PROJECT_DOCS.md"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "files": [
+          "site/app/layout.tsx"
+        ],
+        "createdAt": "2026-10-31T02:24:36.737Z",
+        "reason": "Existing site typeface carried over unchanged in the Next.js port; defined as --font-body in the legacy css/main.css"
+      }
+    ]
+  }
+}

@@ -1,0 +1,687 @@
+import type { Metadata } from "next";
+import { EmailLink } from "@/components/email-link";
+import { SiteNav } from "@/components/site-nav";
+
+export const metadata: Metadata = { title: "De Azua Design | Design Leader" };
+
+export default function HomePage() {
+  return (
+    <>
+      <meta
+        httpEquiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.youtube.com;"
+      />
+
+      <SiteNav home />
+      <section className="hero">
+        <div className="hero-gradient"></div>
+        <div className="hero-floating-icons" aria-hidden="true">
+          <span
+            className="hero-float-icon hero-float-icon--accent"
+            style={
+              {
+                "--icon-x": "8%",
+                "--icon-y": "18%",
+                "--float-duration": "14s",
+                "--float-delay": "0s",
+                "--drift-amplitude": "10px",
+              } as React.CSSProperties
+            }
+          >
+            <span className="hero-float-icon-inner">
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                strokeWidth="0.8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14.1488 9.47163V3.61153C14.1488 2.72151 13.4273 2 12.5373 2V2C11.6473 2 10.9258 2.72151 10.9258 3.61153V8.44611"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                ></path>
+                <path
+                  d="M16.346 12.841L18.5217 5.58862C18.7755 4.74265 18.2886 3.85248 17.4394 3.60984V3.60984C16.5943 3.3684 15.7142 3.8609 15.4779 4.70743L14.1484 9.47149"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                ></path>
+                <path
+                  d="M7.61935 9.24985L8.67489 11.5913C9.03961 12.4003 8.68159 13.352 7.87404 13.72C7.06183 14.0901 6.10347 13.7296 5.73663 12.9159L4.68109 10.5745C4.31637 9.76542 4.67439 8.81376 5.48193 8.44574C6.29415 8.07559 7.25251 8.43614 7.61935 9.24985Z"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                ></path>
+                <path
+                  d="M11.7192 12.2615V12.2615C11.9239 11.694 11.8998 11.0692 11.6518 10.5192L10.5787 8.13874C10.2181 7.33892 9.27613 6.98454 8.4778 7.34836V7.34836C7.66469 7.71892 7.31885 8.68832 7.71382 9.48986L7.84946 9.76511"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                ></path>
+                <path
+                  d="M13.8566 17.6767L14.3487 16.6927C14.3976 16.5947 14.3461 16.4763 14.241 16.4454L10.6903 15.4011C9.97853 15.1918 9.51797 14.5038 9.59563 13.766V13.766C9.68372 12.9292 10.4284 12.3188 11.2662 12.3968L16.0542 12.8422C16.0542 12.8422 19.8632 13.4282 18.5447 17.2372C17.2262 21.0463 16.7867 22.3648 13.8566 22.3648C11.9521 22.3648 9.16855 22.3648 9.16855 22.3648H8.87555C6.52912 22.3648 4.62697 20.4627 4.62697 18.1163V18.1163L4.48047 9.91211"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                ></path>
+              </svg>
+            </span>
+          </span>{" "}
+          <span
+            className="hero-float-icon"
+            style={
+              {
+                "--icon-x": "92%",
+                "--icon-y": "22%",
+                "--float-duration": "12s",
+                "--float-delay": "1.5s",
+                "--drift-amplitude": "8px",
+              } as React.CSSProperties
+            }
+          >
+            <span className="hero-float-icon-inner">
+              <svg
+                width="64"
+                height="64"
+                strokeWidth="0.8"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.8476 13.317L9.50515 18.2798C8.70833 19.1905 7.29167 19.1905 6.49485 18.2798L2.15238 13.317C1.49259 12.563 1.49259 11.437 2.15238 10.683L6.49485 5.72018C7.29167 4.80952 8.70833 4.80952 9.50515 5.72017L13.8476 10.683C14.5074 11.437 14.5074 12.563 13.8476 13.317Z"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M13 19L17.8844 13.3016C18.5263 12.5526 18.5263 11.4474 17.8844 10.6984L13 5"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M17 19L21.8844 13.3016C22.5263 12.5526 22.5263 11.4474 21.8844 10.6984L17 5"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+              </svg>
+            </span>
+          </span>{" "}
+          <span
+            className="hero-float-icon hero-float-icon--ease-curve"
+            style={
+              {
+                "--icon-x": "5%",
+                "--icon-y": "55%",
+                "--float-duration": "16s",
+                "--float-delay": "0.5s",
+                "--drift-amplitude": "6px",
+              } as React.CSSProperties
+            }
+          >
+            <span className="hero-float-icon-inner">
+              <svg
+                width="64"
+                height="64"
+                strokeWidth="0.8"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17 20C17 21.1046 17.8954 22 19 22C20.1046 22 21 21.1046 21 20C21 18.8954 20.1046 18 19 18C17.8954 18 17 18.8954 17 20ZM17 20H15"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M7 4C7 5.10457 6.10457 6 5 6C3.89543 6 3 5.10457 3 4C3 2.89543 3.89543 2 5 2C6.10457 2 7 2.89543 7 4ZM7 4L9 4"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M14 4L12 4"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M12 20H10"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M3 20C11 20 13 4 21 4"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+              </svg>
+            </span>
+          </span>{" "}
+          <span
+            className="hero-float-icon"
+            style={
+              {
+                "--icon-x": "95%",
+                "--icon-y": "50%",
+                "--float-duration": "11s",
+                "--float-delay": "2s",
+                "--drift-amplitude": "8px",
+              } as React.CSSProperties
+            }
+          >
+            <span className="hero-float-icon-inner">
+              <svg
+                width="64"
+                height="64"
+                strokeWidth="0.8"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 3.6V14.4C15 14.7314 14.7314 15 14.4 15H3.6C3.26863 15 3 14.7314 3 14.4V3.6C3 3.26863 3.26863 3 3.6 3H14.4C14.7314 3 15 3.26863 15 3.6Z"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M13.5 21H16.5"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M21 13.5V16.5"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M21 19.5V20.4C21 20.7314 20.7314 21 20.4 21H19.5"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M10.5 21H9.6C9.26863 21 9 20.7314 9 20.4V19.5"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M19.5 9H20.4C20.7314 9 21 9.26863 21 9.6V10.5"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M16.5 9H9.6C9.26863 9 9 9.26863 9 9.6V16.5"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+              </svg>
+            </span>
+          </span>{" "}
+          <span
+            className="hero-float-icon"
+            style={
+              {
+                "--icon-x": "50%",
+                "--icon-y": "88%",
+                "--float-duration": "13s",
+                "--float-delay": "1s",
+                "--drift-amplitude": "7px",
+              } as React.CSSProperties
+            }
+          >
+            <span className="hero-float-icon-inner">
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                strokeWidth="0.8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M21 7.35304L21 16.647C21 16.8649 20.8819 17.0656 20.6914 17.1715L12.2914 21.8381C12.1102 21.9388 11.8898 21.9388 11.7086 21.8381L3.30861 17.1715C3.11814 17.0656 3 16.8649 3 16.647L2.99998 7.35304C2.99998 7.13514 3.11812 6.93437 3.3086 6.82855L11.7086 2.16188C11.8898 2.06121 12.1102 2.06121 12.2914 2.16188L20.6914 6.82855C20.8818 6.93437 21 7.13514 21 7.35304Z"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M20.5 16.7222L12.2914 12.1618C12.1102 12.0612 11.8898 12.0612 11.7086 12.1618L3.5 16.7222"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M3.52844 7.29363L11.7086 11.8382C11.8898 11.9388 12.1102 11.9388 12.2914 11.8382L20.5 7.27783"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M12 3L12 12"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+                <path
+                  d="M12 19.5V22"
+                  stroke="currentColor"
+                  strokeWidth="0.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+              </svg>
+            </span>
+          </span>
+        </div>
+        <div className="hero-content">
+          <h1 className="hero-title">
+            I Lead Design Teams Who
+            <br />{" "}
+            <span className="gradient-text-wrapper">
+              <span className="hero-cursor-glow" aria-hidden="true"></span>{" "}
+              <span className="gradient-text">Ship Work That Matters</span>
+            </span>
+          </h1>
+          <p className="hero-subtitle">
+            15 years building complex, high-stakes products for customers and the people who serve
+            them, driving design cultures where great work thrives.
+          </p>
+          <a className="hero-cta" href="#case-studies">
+            View Case Studies <span className="arrow">→</span>
+          </a>
+        </div>
+      </section>
+      <section className="work-section" id="case-studies">
+        <div className="section-header">
+          <h2 className="section-title">Case Studies</h2>
+          <p className="section-subtitle">Case studies from enterprise-scale design leadership</p>
+        </div>
+        <div className="card-grid">
+          {" "}
+          <a className="case-card featured fade-in" href="/projects/case-study-expert-workspace.html">
+            <div
+              className="card-image has-image"
+              style={{ background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)" }}
+            >
+              <img
+                src="/assets/images/projects/expert-workspace/asurion-expert-workspace.png"
+                alt="Expert Workspace"
+              />
+            </div>
+            <div className="card-content">
+              <div className="card-header">
+                <span className="card-client">Asurion</span>{" "}
+                <span className="card-tag">Featured work</span>
+              </div>
+              <h3 className="card-title">Expert Workspace</h3>
+              <p className="card-description">
+                Redesigning the primary tool for 10,000+ help desk and claims agents—a
+                conversational, AI-powered workspace that makes every customer interaction feel
+                simple, personal, and white-glove.
+              </p>
+              <div className="card-meta">
+                <span className="card-role">Sr. Manager, Product Design</span>{" "}
+                <span className="card-year">2025–Present</span>
+              </div>
+            </div>
+          </a>{" "}
+          <a className="case-card featured fade-in" href="/projects/case-study-nextgen-portal.html">
+            <div
+              className="card-image has-image"
+              style={{ background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" }}
+            >
+              <img
+                src="/assets/images/projects/nextgen/next-gen-hero-2200x900.png"
+                alt="Next-Gen Portal dashboard"
+              />
+            </div>
+            <div className="card-content">
+              <div className="card-header">
+                <span className="card-client">Asurion</span>{" "}
+                <span className="card-tag">Featured work</span>
+              </div>
+              <h3 className="card-title">Next-Gen Portal</h3>
+              <p className="card-description">
+                Rebuilding the core operating system for 680+ repair stores nationwide—transforming
+                how technicians check in customers, manage repairs, and run their business.
+              </p>
+              <div className="card-meta">
+                <span className="card-role">Sr. Manager, Product Design</span>{" "}
+                <span className="card-year">2022–2025</span>
+              </div>
+            </div>
+          </a>{" "}
+          <a className="case-card fade-in" href="/projects/case-study-call-pacing.html">
+            <div
+              className="card-image has-image"
+              style={{ background: "linear-gradient(135deg, #0f766e 0%, #ca8a04 100%)" }}
+            >
+              <img
+                src="/assets/images/projects/call-pacing/call-pacing-hero-2200x900.png"
+                alt="Visual Call Pacing call bar states"
+              />
+            </div>
+            <div className="card-content">
+              <div className="card-header">
+                <span className="card-client">Asurion</span>
+              </div>
+              <h3 className="card-title">Visual Call Pacing</h3>
+              <p className="card-description">
+                Can a timer make calls shorter? We shipped a rough test to find out, learned what it
+                got wrong, then redesigned it and took another 21 seconds off the average call.
+              </p>
+              <div className="card-meta">
+                <span className="card-role">Sr. Manager, Product Design</span>{" "}
+                <span className="card-year">2026–Present</span>
+              </div>
+            </div>
+          </a>{" "}
+          <a className="case-card fade-in" href="/projects/case-study-instore-kiosk.html">
+            <div
+              className="card-image has-image"
+              style={{ background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" }}
+            >
+              <img
+                src="/assets/images/projects/claims/claims-hero-2200x900.png"
+                alt="In-Store Claims Kiosk"
+              />
+            </div>
+            <div className="card-content">
+              <div className="card-header">
+                <span className="card-client">Asurion</span>
+              </div>
+              <h3 className="card-title">In-Store Claims Kiosk</h3>
+              <p className="card-description">
+                Reducing claim resolution from 45 minutes to under 10—helping 10,000+ customers per
+                month self-serve at repair stores.
+              </p>
+              <div className="card-meta">
+                <span className="card-role">Principal Designer</span>{" "}
+                <span className="card-year">2021–2022</span>
+              </div>
+            </div>
+          </a>{" "}
+          <a className="case-card fade-in" href="/projects/case-study-disney-guest-service.html">
+            <div
+              className="card-image has-image"
+              style={{ background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" }}
+            >
+              <img
+                src="/assets/images/projects/gss/disney-gss-hero-2200x900.png"
+                alt="Disney Guest Service Suite dashboard and guest management interface"
+              />
+            </div>
+            <div className="card-content">
+              <div className="card-header">
+                <span className="card-client">Disney Parks &amp; Experiences</span>
+              </div>
+              <h3 className="card-title">Guest Service Suite</h3>
+              <p className="card-description">
+                Replacing 60+ disconnected apps with one responsive tool—improving Cast Member
+                efficiency by 25% across 5 parks.
+              </p>
+              <div className="card-meta">
+                <span className="card-role">Lead Product Designer</span>{" "}
+                <span className="card-year">2019–2020</span>
+              </div>
+            </div>
+          </a>{" "}
+          <a className="case-card fade-in" href="/projects/case-study-vacation-planner.html">
+            <div
+              className="card-image has-image"
+              style={{ background: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)" }}
+            >
+              <img
+                src="/assets/images/projects/wyndham/cw-hero-2200x900-2.png"
+                alt="Club Wyndham Vacation Planner Explore Resorts experience"
+              />
+            </div>
+            <div className="card-content">
+              <div className="card-header">
+                <span className="card-client">Travel + Leisure Co</span>
+              </div>
+              <h3 className="card-title">Vacation Planner</h3>
+              <p className="card-description">
+                Trip planning tool helping 809,000+ vacation club owners discover their dream
+                destinations across 270+ resorts worldwide.
+              </p>
+              <div className="card-meta">
+                <span className="card-role">Design Manager</span>{" "}
+                <span className="card-year">2020–2022</span>
+              </div>
+            </div>
+          </a>{" "}
+          <a className="case-card fade-in" href="/projects/case-study-halloween-horror-nights.html">
+            <div
+              className="card-image has-image"
+              style={{ background: "linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 100%)" }}
+            >
+              <img
+                src="/assets/images/projects/hhn/hhn-hero-2200x900-2.png"
+                alt="Halloween Horror Nights responsive homepage"
+              />
+            </div>
+            <div className="card-content">
+              <div className="card-header">
+                <span className="card-client">Universal Orlando</span>
+              </div>
+              <h3 className="card-title">Halloween Horror Nights</h3>
+              <p className="card-description">
+                Mobile-first e-commerce redesign that broke attendance records and drove
+                double-digit growth in online ticket sales.
+              </p>
+              <div className="card-meta">
+                <span className="card-role">UI/UX Art Director</span>{" "}
+                <span className="card-year">2018–2019</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+      <section className="how-i-lead-section" id="how-i-lead">
+        <div className="section-header">
+          <h2 className="section-title">How I Lead</h2>
+          <p className="how-i-lead-intro-text">
+            I build teams that understand the why, take ownership of the how, and ship work that
+            moves the business. Here's what that looks like in practice.
+          </p>
+        </div>
+        <div className="how-i-lead-cards">
+          <div className="highlight-card">
+            <div className="highlight-icon">
+              <i className="iconoir-angle-tool"></i>
+            </div>
+            <h4 className="highlight-title">Building Teams</h4>
+            <p className="highlight-text">
+              Great design culture doesn't happen by accident — I build it intentionally through
+              open critique, inclusive hiring, and a genuine commitment to psychological safety.
+              When someone on my team pushes back on a direction, I take that as a sign the culture
+              is working — not a problem to manage.
+            </p>
+          </div>
+          <div className="highlight-card">
+            <div className="highlight-icon">
+              <i className="iconoir-archery"></i>
+            </div>
+            <h4 className="highlight-title">Ownership &amp; Clarity</h4>
+            <p className="highlight-text">
+              I set a clear product vision and make sure every designer understands how their work
+              connects to it. I stay close to the craft — reviewing work, shaping direction, and
+              contributing directly when the work calls for it.
+            </p>
+          </div>
+          <div className="highlight-card">
+            <div className="highlight-icon">
+              <i className="iconoir-leaf"></i>
+            </div>
+            <h4 className="highlight-title">Growth &amp; Innovation</h4>
+            <p className="highlight-text">
+              I give my team stretch opportunities, room to fail, and honest feedback that helps
+              them grow into more well-rounded designers and leaders. I also push early adoption of
+              tools like Cursor, v0, and Figma Make — not to shortcut the craft, but to multiply
+              what's possible.
+            </p>
+          </div>
+          <div className="highlight-card">
+            <div className="highlight-icon">
+              <i className="iconoir-graph-up"></i>
+            </div>
+            <h4 className="highlight-title">Driving Impact</h4>
+            <p className="highlight-text">
+              Design is a business partner, not a service department. Every decision my team makes
+              is grounded in real user research, validated through feedback, and measured by
+              outcomes that matter to the business.
+            </p>
+          </div>
+        </div>
+        <div className="how-i-lead-footer">
+          <blockquote className="testimonial">
+            <p>
+              Ricardo bridges business context, user needs, and thoughtful design strategy in a way
+              that brings clarity to the work and confidence to the team. He's deeply respected by
+              his peers, stakeholders, and the people he leads.
+            </p>
+            <cite>— Lauren Singer Brolan, Director of Product Design, Capital One</cite>
+          </blockquote>
+          <p>
+            <a className="about-leadership-link" href="/leadership.html">
+              How I lead in practice <span className="arrow">→</span>
+            </a>
+          </p>
+        </div>
+      </section>
+      <section className="about-section" id="about">
+        <div className="about-gradient"></div>
+        <div className="about-content">
+          <h2 className="section-title">About</h2>
+          <div className="about-grid">
+            <div className="about-text">
+              <p className="about-intro fade-in">
+                The products I'm most proud of are the ones where getting it wrong wasn't an option
+                — tools built for people whose jobs depended on every pixel being right. Front-line
+                workers, customer-facing teams, operational systems at scale. But the through-line
+                isn't the industry — it's the standard. I bring that same level of rigor to every
+                product I lead, because the people using what we build deserve nothing less.
+              </p>
+              <p className="fade-in">
+                I started as a designer who cared obsessively about craft. Over time I learned that
+                craft without strategy is just taste, and strategy without craft is just a deck. The
+                leader I've become holds both.
+              </p>
+              <p className="fade-in">
+                I write about design leadership on my Substack,{" "}
+                <a
+                  href="https://ricardodeazua.substack.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  No Barriers to Entry
+                </a>
+                . If you're building something that demands great design and you care deeply about
+                the culture behind it, <a href="mailto:ricardo@deazuadesign.com">let's talk</a>.
+              </p>
+            </div>
+            <div className="about-image-placeholder">
+              <img
+                src="/assets/images/about%20me/about-me-ricardo-deazua.png"
+                alt="Ricardo De Azua"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="connect-section" id="connect">
+        <div className="connect-content">
+          <h2 className="section-title">Let's Talk</h2>
+          <p className="connect-text">
+            I'm not looking for just anything — I'm looking for the right thing. If you're building
+            products that demand great design and you care deeply about the culture behind it, I'd
+            genuinely love to connect.
+          </p>
+          <div className="connect-links">
+            <a
+              className="connect-link"
+              href="https://www.linkedin.com/in/ricardodeazua/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="link-icon">
+                <i className="iconoir-linkedin"></i>
+              </span>{" "}
+              LinkedIn
+            </a>{" "}
+            <a
+              className="connect-link"
+              href="https://ricardodeazua.substack.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="link-icon">
+                <i className="iconoir-bookmark"></i>
+              </span>{" "}
+              No Barriers to Entry
+            </a>{" "}
+            <EmailLink className="connect-link">
+              <span className="link-icon">
+                <i className="iconoir-mail"></i>
+              </span>{" "}
+              Email
+            </EmailLink>{" "}
+            <a
+              className="connect-link"
+              href="/assets/images/resume/ricardo-deazua-resume-2026.pdf"
+              download
+            >
+              <span className="link-icon">
+                <i className="iconoir-download"></i>
+              </span>{" "}
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
