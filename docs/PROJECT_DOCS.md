@@ -36,6 +36,13 @@ deazuadesign-portfolio/
 │           │   └── next-gen-feature-card-legacy-1400x440.png  # Legacy system (Challenge 02)
 │           ├── expert-workspace/  # Asurion Expert Workspace
 │           │   └── asurion-expert-workspace.png  # Hero
+│           ├── call-pacing/  # Asurion Visual Call Pacing
+│           │   ├── call-pacing-hero-2200x900.png  # Hero
+│           │   ├── call-pacing-first-test.png     # First test pill (cropped from the Figma deck)
+│           │   ├── call-pacing-targets.png        # V1 target popover
+│           │   ├── call-pacing-floor.jpg          # Call center floor
+│           │   ├── call-pacing-bar-states.png     # V1.5 At risk and Behind states
+│           │   └── call-pacing-v2.png             # V2 sales timer concept
 │           ├── universal/  # Halloween Horror Nights (legacy)
 │           ├── hhn/       # Halloween Horror Nights
 │           │   ├── hhn-hero-2200x900-2.png
@@ -59,6 +66,7 @@ deazuadesign-portfolio/
 ├── projects/               # Case study HTML pages
 │   ├── case-study-expert-workspace.html
 │   ├── case-study-nextgen-portal.html
+│   ├── case-study-call-pacing.html
 │   ├── case-study-disney-guest-service.html
 │   ├── case-study-halloween-horror-nights.html
 │   ├── case-study-instore-kiosk.html
@@ -209,8 +217,9 @@ Use semantic HTML for all quotations. Never use raw straight `"` for visible quo
 | Expert Workspace | `case-study-expert-workspace.html` | `morecowbell` (shared `CORRECT_PASSWORD` constant) |
 | Next-Gen Portal | `case-study-nextgen-portal.html` | Same constant and shared storage key |
 | Disney Guest Service Suite | `case-study-disney-guest-service.html` | Same constant and shared storage key |
+| Visual Call Pacing | `case-study-call-pacing.html` | Same constant and shared storage key |
 
-All three pages use **`CORRECT_PASSWORD = 'morecowbell'`** and **`STORAGE_KEY = 'pw_case_studies'`** so one successful unlock covers every protected case study in the session. Change the string in all three inline scripts if you rotate credentials.
+All four pages use **`CORRECT_PASSWORD = 'morecowbell'`** and **`STORAGE_KEY = 'pw_case_studies'`** so one successful unlock covers every protected case study in the session. Change the string in all four inline scripts if you rotate credentials.
 
 **No flash on load:** The overlay is **`hidden` in HTML by default**. Inline `DOMContentLoaded` logic only removes `hidden` when `PASSWORD_PROTECTION_ENABLED` is not `false` and `sessionStorage` is not yet unlocked. On first reveal, the overlay gets `password-overlay--instant` for one frame so the show animation does not run (avoids a visible “pop-in”).
 
@@ -225,6 +234,7 @@ All three pages use **`CORRECT_PASSWORD = 'morecowbell'`** and **`STORAGE_KEY = 
 ### Case study terminology (internal → external copy)
 
 - **Expert Workspace:** Prefer **agents** (not “experts”) for people in the call center / messaging context; keep product name **Expert Workspace**. Replace internal phrases **customer solution** → **operations**, **sales enablement** → **sales** where they refer to org areas.
+- **Visual Call Pacing:** Prefer **agents** and plain **call time** (not CRT, SP100, or VCP). Don't name carriers or colleagues, and publish deltas rather than absolute call times or volumes. Source decks and dashboards are marked confidential; never publish them directly.
 - **Next-Gen Portal:** Prefer **technicians** for store staff (not “experts”).
 
 ---
