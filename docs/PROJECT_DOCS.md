@@ -4,6 +4,34 @@ Single source of truth for structure, conventions, and patterns. **Reference thi
 
 ---
 
+## Site Architecture (Next.js + shadcn/ui)
+
+The live site is built from **`site/`**, a Next.js app exported to static files and deployed to GitHub Pages. The root `index.html`, `leadership.html`, `projects/*.html`, `css/` and `js/` are the legacy static site. They no longer deploy, so make changes in `site/`.
+
+Sections below that name legacy files still describe the same patterns. They map to the new app like this:
+
+| Legacy | Now |
+|--------|-----|
+| `index.html` | `site/app/page.tsx` |
+| `leadership.html` | `site/app/leadership/page.tsx` |
+| `projects/case-study-*.html` | `site/app/projects/case-study-*/page.tsx` |
+| `css/main.css`, `css/case-study.css` | `site/app/styles/` |
+| `js/main.js` and inline page scripts | `site/lib/site-effects.ts` |
+| Nav markup | `site/components/site-nav.tsx` |
+| Password overlay and inline script | `site/components/password-gate.tsx` |
+| `FEATURE_FLAGS` | `site/lib/feature-flags.ts` |
+
+- **Assets:** `site/public/assets` is a symlink to the root `assets/` folder. Use root-relative paths such as `/assets/images/logo.png` on every page.
+- **Publishing:** `assets/claude-stuff` and `assets/figma-files` are working files. The deploy workflow removes them from the build, so they never reach the live site. Add any new private folder to that step.
+- **URLs:** Internal links use the published `.html` URLs (`/leadership.html`, `/projects/case-study-x.html`). `next dev` rewrites them to the routes. Links are plain `<a>` tags, so each page is a full load and `initSiteEffects()` runs once.
+- **`.fade-in`:** Set in the markup on `.case-card`, `.expertise-item` and `.about-text p`, rather than added by JS, so cards don't flash before hydration.
+- **Styling:** The existing stylesheets are unlayered, so they override Tailwind's layers. `site/app/globals.css` keeps browser defaults for headings and image alignment that those stylesheets rely on, and maps shadcn tokens to the Digital Lavender palette. `--primary` and `--accent` belong to `main.css`; shadcn's `accent` color is set to `#1e1e38` in `@theme inline`.
+- **shadcn/ui:** Add components with `npx shadcn@latest add <name>` from `site/`. Style is `base-nova`. Keep overlays at `z-index: 10001` or above when they must cover the nav.
+- **Icons:** Iconoir loads through a `<link>` in `site/app/layout.tsx`. Lucide icons are available for shadcn components.
+- **Stale CSS:** If a `globals.css` change doesn't appear in a build, delete `site/.next` and rebuild.
+
+---
+
 ## Project Structure
 
 ```
@@ -358,15 +386,20 @@ Safari on iPhone with `viewport-fit=cover` composites `position: fixed` elements
 
 | Flag | Location | Purpose |
 |------|----------|---------|
-| `caseStudyPasswordProtection` | `js/main.js` → `FEATURE_FLAGS` | When `false`, password modals are hidden and case studies are viewable without a password. Set to `true` when applying to re-enable protection. |
+| `caseStudyPasswordProtection` | `site/lib/feature-flags.ts` → `FEATURE_FLAGS` | When `false`, password modals are hidden and case studies are viewable without a password. Set to `true` when applying to re-enable protection. |
 
 ---
 
 ## Local Development
 
 ```bash
-python3 -m http.server 8000
-# Open http://localhost:8000
+cd site
+npm install
+npm run dev
+# Open http://localhost:3000
+
+npm run build
+# Static output in site/out
 ```
 
 ---

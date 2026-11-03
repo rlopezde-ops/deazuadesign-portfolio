@@ -8,8 +8,11 @@ Personal portfolio website showcasing design leadership work at Disney, Universa
 
 ## Project Structure
 
+`site/` holds the live site. The tree below shows the legacy static files and the shared `assets/` folder.
+
 ```
 deazuadesign-portfolio/
+├── site/                  # Next.js app (deployed)
 ├── index.html              # Homepage
 ├── README.md               # This file
 ├── .gitignore
@@ -45,11 +48,12 @@ deazuadesign-portfolio/
 ## Local Development
 
 ```bash
-# Start a local server
-python3 -m http.server 8082
+cd site
+npm install
+npm run dev
 
 # Open in browser
-open http://localhost:8082
+open http://localhost:3000
 ```
 
 ## Password Protected Pages
@@ -58,12 +62,11 @@ Some case studies are password protected. Contact Ricardo for access.
 
 ## Technologies
 
-- Vanilla HTML, CSS, JavaScript
-- No build tools or frameworks required
-- Responsive design with CSS Grid and Flexbox
-- CSS custom properties for theming
+- Next.js static export (`site/`)
+- shadcn/ui and Tailwind CSS
+- Existing CSS custom properties for theming
 - Intersection Observer for scroll animations
 
 ## Deployment
 
-The site is deployed via GitHub Pages from the `main` branch.
+GitHub Actions builds `site/` and deploys it to GitHub Pages on every push to `main`. The root HTML, `css/` and `js/` files are the legacy static site and no longer deploy.
