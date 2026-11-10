@@ -409,8 +409,8 @@ export default function HomePage() {
               </div>
               <h3 className="card-title">Visual Call Pacing</h3>
               <p className="card-description">
-                Can a timer make calls shorter? We shipped a rough test to find out, learned what it
-                got wrong, then redesigned it and took another 21 seconds off the average call.
+                Call center agents had no live read on their pace. We shipped a rough timer,
+                learned what it got wrong, and the redesign cut another 21 seconds per call.
               </p>
               <div className="card-meta">
                 <span className="card-role">Sr. Manager, Product Design</span>{" "}
