@@ -238,6 +238,23 @@ Use semantic HTML for all quotations. Never use raw straight `"` for visible quo
 
 ---
 
+## robots.txt Policy
+
+The file that deploys is **`site/public/robots.txt`** (Next.js copies `public/` into the export). The root `robots.txt` is legacy and does not deploy, so edit `site/public/robots.txt` only.
+
+A named group replaces the `User-agent: *` rules entirely, so each audience needs its own Allow/Disallow lines.
+
+| Audience | Rule | Password-protected case studies |
+|----------|------|----------------------------------|
+| Search and link previews (Googlebot, Bingbot, DuckDuckBot, Applebot, Claude-SearchBot, Facebook/Twitter/LinkedIn/Slack) | `Allow: /` | Disallowed — stay out of search results |
+| Site tools (Claude-User, Claude-Code, Claude-Agent, Cursor) | `Allow: /` | Allowed — so they can read pages while updating the site |
+| Training and reseller bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, AhrefsBot, and the others listed in the file) | `Disallow: /` | Blocked |
+| Everyone else (`User-agent: *`) | `Allow: /` | Disallowed |
+
+The disallowed paths are Expert Workspace, Next-Gen Portal, and Disney Guest Service Suite. Call Pacing is also password-protected in code but is not listed, so it is open to all bots. Add it to the list if that should change.
+
+This file is a request to well-behaved bots. It does not hide a page from someone who has the URL, and some tools fetch with a generic user agent (`axios`, `got`) that only matches `User-agent: *`.
+
 ## Password-Protected Case Studies
 
 | Case Study | Page | Password (in HTML) |

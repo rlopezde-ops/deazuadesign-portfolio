@@ -1,25 +1,67 @@
 # robots.txt for De Azua Design Portfolio
+# https://deazuadesign.com/robots.txt
+#
+# Search engines can index the public site.
+# The three password-protected case studies stay out of search results.
+# Claude and Cursor can read the whole site, including those case studies,
+# so they can help update it.
+# Bots that copy pages to train their own models are blocked.
 
-User-agent: *
+# --- Search engines and link previews ---
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: Applebot
+User-agent: Claude-SearchBot
+User-agent: facebookexternalhit
+User-agent: Twitterbot
+User-agent: LinkedInBot
+User-agent: Slackbot
 Allow: /
-
-# Prevent indexing of protected case studies
 Disallow: /projects/case-study-expert-workspace.html
 Disallow: /projects/case-study-nextgen-portal.html
 Disallow: /projects/case-study-disney-guest-service.html
 
-# Block common bad bots
+# --- Tools used to read and improve this site ---
+# A named group does not inherit the Disallow lines above, so these
+# can open the password-protected case studies.
+User-agent: Claude-User
+User-agent: Claude-Code
+User-agent: Claude-Agent
+User-agent: Cursor
+Allow: /
+
+# --- Bots that copy content to train or resell ---
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bytespider
+User-agent: Amazonbot
+User-agent: meta-externalagent
+User-agent: FacebookBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Diffbot
+User-agent: ImagesiftBot
+User-agent: cohere-ai
+User-agent: AI2Bot
+User-agent: PetalBot
 User-agent: AhrefsBot
-Disallow: /
-
 User-agent: SemrushBot
-Disallow: /
-
 User-agent: MJ12bot
-Disallow: /
-
 User-agent: DotBot
 Disallow: /
 
-# Sitemap (optional - add if you create one)
-# Sitemap: https://yourdomain.com/sitemap.xml
+# --- Everyone else ---
+# Public pages stay open. The three case studies stay unlisted.
+User-agent: *
+Allow: /
+Disallow: /projects/case-study-expert-workspace.html
+Disallow: /projects/case-study-nextgen-portal.html
+Disallow: /projects/case-study-disney-guest-service.html
