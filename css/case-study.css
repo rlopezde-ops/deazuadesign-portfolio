@@ -425,29 +425,6 @@
 }
 
 /* --------------------------------------------------------------------------
-   Timeline Grid - equal cards that read left to right, in order
-   -------------------------------------------------------------------------- */
-.timeline-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-md);
-  margin: var(--space-xl) 0;
-}
-
-@media (min-width: 769px) {
-  .timeline-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-lg);
-  }
-}
-
-@media (min-width: 1024px) {
-  .timeline-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* --------------------------------------------------------------------------
    Highlight Cards - For key points
    Mobile-first: base = single column, desktop layouts in min-width query
    -------------------------------------------------------------------------- */
