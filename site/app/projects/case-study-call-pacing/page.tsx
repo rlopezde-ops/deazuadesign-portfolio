@@ -27,8 +27,8 @@ export default function CallPacingPage() {
           <p className="case-client">Asurion</p>
           <h1 className="case-title">Visual Call Pacing</h1>
           <p className="case-intro">
-            Can a timer make calls shorter? We shipped a rough test to find out, learned what it got
-            wrong, then redesigned it and took another 21 seconds off the average call.
+            Call center agents had no live read on their pace. We shipped a rough timer, learned what
+            it got wrong, and the redesign cut another 21 seconds per call.
           </p>
           <div className="case-image image-hero">
             <img
@@ -47,7 +47,7 @@ export default function CallPacingPage() {
             </div>
             <div className="meta-item">
               <p className="meta-label">Team</p>
-              <p className="meta-value">Design, Product, Engineering</p>
+              <p className="meta-value">Design, Product, Engineering, Operations</p>
             </div>
             <div className="meta-item">
               <p className="meta-label">Platform</p>
@@ -75,11 +75,10 @@ export default function CallPacingPage() {
           <p className="case-section-title">The Challenge</p>
           <h3>Can a timer make calls shorter?</h3>
           <p>
-            Have you ever looked up from a hard problem and realized the time got away from you?
-            Same. Now imagine that with a customer waiting on the line. Agents had no live read on
-            their pace; the feedback came after the call was over. So we asked: if they can see it
-            in real time, will they pace themselves? No new scripts, no extra coaching. Just a
-            timer.
+            An agent is deep into a device activation, the customer is still on the line, and
+            nothing on screen says whether this call is running long. Agents only heard about their
+            pace after the call was over. So we asked: if they could see it in real time, would
+            they pace themselves? No new scripts, no extra coaching. Just a timer.
           </p>
         </section>
       </div>
@@ -95,7 +94,8 @@ export default function CallPacingPage() {
             <p className="feature-label">The First Test</p>
             <h4 className="feature-title">Shipped Fast, Not Pretty</h4>
             <p className="feature-description">
-              An engineer vibe coded this in a few minutes, reusing an existing pill component as a
+              An engineer vibe coded this in a few minutes, reusing an existing pill component in{" "}
+              <a href="/projects/case-study-expert-workspace.html">Expert Workspace</a> as a
               lightweight test. I'm a designer, so of course I asked for a few more days. My
               partners said ship it and see. They were right.
             </p>
@@ -105,10 +105,9 @@ export default function CallPacingPage() {
       <div className="case-content">
         <div className="impact-section fade-in-section">
           <p className="case-section-title">Early Signals</p>
-          <h3>Ship it. Learn. Then make it beautiful.</h3>
+          <h3>It worked better than I wanted to admit</h3>
           <p style={{ color: "var(--text-secondary)", maxWidth: "600px" }}>
-            We piloted with about 14 agents in Orlando in April. It worked better than I wanted to
-            admit.
+            We piloted with about 14 agents in Orlando in April, and sales held steady.
           </p>
           <div className="impact-grid">
             <div className="impact-card">
@@ -119,19 +118,15 @@ export default function CallPacingPage() {
               <p className="impact-value">+2.9 pts</p>
               <p className="impact-label">Resolution rate in the pilot</p>
             </div>
-            <div className="impact-card">
-              <p className="impact-value">Held</p>
-              <p className="impact-label">Sales</p>
-            </div>
           </div>
         </div>
       </div>
       <div className="case-content-narrow">
         <section className="case-section fade-in-section">
           <p className="case-section-title">What We Learned</p>
-          <h3>So we went all in. And we learned…</h3>
+          <h3>Agents liked it. They just couldn't see it.</h3>
           <p>
-            By July, pacing was live across two major carrier programs. Agents told us they liked
+            So we scaled it. By July, pacing was live across two major carrier programs. Agents told us they liked
             seeing how they were doing, and that they wished they could see it better. Then we
             walked the floor and saw why.
           </p>
@@ -164,7 +159,7 @@ export default function CallPacingPage() {
           </div>
           <div className="feature-text">
             <p className="feature-label">Problem 02</p>
-            <h4 className="feature-title">Coaches Couldn't See It from Across the Room</h4>
+            <h4 className="feature-title">Coaches Couldn't See It</h4>
             <p className="feature-description">
               Coaches walk the floor looking for agents who need help. From any real distance, that
               little pill disappeared.
@@ -177,7 +172,7 @@ export default function CallPacingPage() {
           className="case-section-title fade-in-section"
           style={{ textAlign: "center", marginBottom: "var(--space-lg)" }}
         >
-          Fix What's Not Working
+          Design Principles
         </p>
         <div className="highlight-grid fade-in-section">
           <div className="highlight-card">
@@ -212,8 +207,8 @@ export default function CallPacingPage() {
       <div className="case-content">
         <div className="case-image image-hero fade-in-section">
           <img
-            src="/assets/images/projects/call-pacing/call-pacing-bar-states.png"
-            alt="V1.5 call bars in amber At risk and red Behind states, with the color filling the whole bar"
+            src="/assets/images/projects/call-pacing/call-pacing-before-after.png"
+            alt="The V1 call bar with a small timer pill counting up, above the V1.5 call bar filled amber with an At risk label and 9:00 left"
           />
         </div>
       </div>
@@ -234,12 +229,12 @@ export default function CallPacingPage() {
           <h3>21 seconds per call, just from the redesign</h3>
           <p style={{ color: "var(--text-secondary)", maxWidth: "600px" }}>
             In a 50/50 test across 170,000+ calls, V1.5 beat V1 every week. Turns out making it
-            beautiful was worth something. Sales ran slightly lower, so we're keeping an eye on it.
+            easy to see was worth something. Sales ran slightly lower, so we're keeping an eye on it.
           </p>
           <div className="impact-grid">
             <div className="impact-card">
               <p className="impact-value">−21 sec</p>
-              <p className="impact-label">Per call vs. V1 in an A/B test</p>
+              <p className="impact-label">Per call vs. V1 (A/B test)</p>
             </div>
             <div className="impact-card">
               <p className="impact-value">3 of 3</p>
@@ -247,7 +242,7 @@ export default function CallPacingPage() {
             </div>
             <div className="impact-card">
               <p className="impact-value">500 hrs</p>
-              <p className="impact-label">Estimated handle time saved per week at full rollout</p>
+              <p className="impact-label">Est. hours saved weekly at full rollout</p>
             </div>
           </div>
         </div>
@@ -261,39 +256,13 @@ export default function CallPacingPage() {
             />
           </div>
           <div className="feature-text">
-            <p className="feature-label">What's Next</p>
+            <p className="feature-label">What's Next · Concept</p>
             <h4 className="feature-title">V2 Gives Selling Its Own Clock</h4>
             <p className="feature-description">
               One timer covers the whole call, so a great sales conversation looks like a slow call.
               In V2, the agent taps <q>I read it</q> on the sales script and a sales timer takes
               over. It's still a concept, so ask me how it goes.
             </p>
-          </div>
-        </div>
-      </div>
-      <div className="case-content">
-        <p
-          className="case-section-title fade-in-section"
-          style={{ textAlign: "center", marginBottom: "var(--space-lg)" }}
-        >
-          Every Step: Measure, Learn, Adjust
-        </p>
-        <div className="highlight-grid fade-in-section">
-          <div className="highlight-card">
-            <h4 className="highlight-title">April</h4>
-            <p className="highlight-text">Calls got faster → Scale it</p>
-          </div>
-          <div className="highlight-card">
-            <h4 className="highlight-title">July</h4>
-            <p className="highlight-text">Coaches couldn't see it → Design V1.5</p>
-          </div>
-          <div className="highlight-card">
-            <h4 className="highlight-title">September</h4>
-            <p className="highlight-text">V1.5 won by 21 seconds → Ship it to everyone</p>
-          </div>
-          <div className="highlight-card">
-            <h4 className="highlight-title">October</h4>
-            <p className="highlight-text">Some targets are off → Tune targets</p>
           </div>
         </div>
       </div>
@@ -305,6 +274,13 @@ export default function CallPacingPage() {
             On this one, it often wasn't me. An engineer built the first version, and my partners
             pushed us to ship it. I led design from there, working with product, engineering, and
             operations to turn what each test taught us into the next version.
+          </p>
+          <p>
+            The hardest part was agreeing on the problem. Everyone wanted shorter calls, but not
+            everyone agreed on what made them long, or what a timer should do about it. My worry was
+            the agents: a timer that adds stress or one more thing to check makes a hard call
+            harder. So I kept bringing every idea back to one test. Does this help agents pace
+            themselves without adding work?
           </p>
           <div className="role-list">
             <span className="role-tag">Design Strategy</span>{" "}
@@ -318,7 +294,7 @@ export default function CallPacingPage() {
       <div className="case-content-narrow">
         <section className="case-section fade-in-section">
           <p className="case-section-title">Reflection</p>
-          <h3>What I'd Tell Past Me</h3>
+          <h3>Ship small, then earn the polish</h3>
           <p>
             <strong>Ship small.</strong> The smallest thing that can teach you something is usually
             enough. <strong>Let data earn the polish.</strong> V1.5 got its shot because V1 proved

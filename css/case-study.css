@@ -549,7 +549,7 @@
 
 .impact-card {
   text-align: center;
-  padding: var(--space-lg) 0;
+  padding: var(--space-lg);
 }
 
 .impact-value {
@@ -561,7 +561,6 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1;
-  white-space: nowrap;
   margin-bottom: var(--space-sm);
 }
 
