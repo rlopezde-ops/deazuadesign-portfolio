@@ -28,7 +28,7 @@ export default function NextgenPortalPage() {
           <h1 className="case-title">Next-Gen Portal</h1>
           <p className="case-intro">
             Rebuilding the core operating system for 680+ repair stores nationwide—transforming how
-            technicians check in customers, manage repairs, and run their business.
+            technicians check in customers, take payments, manage repairs, and run their business.
           </p>
           <div className="case-image image-hero">
             <img
@@ -72,6 +72,38 @@ export default function NextgenPortalPage() {
           </div>
         </div>
       </section>
+      <div className="case-content-narrow">
+        <section className="case-section fade-in-section">
+          <p className="case-section-title">Featured Work: Checkout &amp; Payments</p>
+          <h3>Every repair ends at the counter</h3>
+          <p>
+            Checkout and payments were some of the most important parts of the new portal. Getting
+            the money step right is what turns a finished repair into a happy customer and a closed
+            work order. I led the design of how technicians quote, charge, and collect, so the
+            fastest path through a visit is also the correct one.
+          </p>
+        </section>
+      </div>
+      <div className="case-content">
+        <div className="feature-block fade-in-section">
+          <div className="feature-image has-image">
+            <img
+              src="/assets/images/projects/nextgen/customer-search-check-in.gif"
+              alt="New portal dashboard with Check-in, Checkout, Estimates and Metrics quick actions"
+            />
+          </div>
+          <div className="feature-text">
+            <p className="feature-label">Checkout &amp; Payments</p>
+            <h4 className="feature-title">Quote, Charge, and Collect in One Flow</h4>
+            <p className="feature-description">
+              Instant price estimates so customers know the cost up front. Checkout one tap away on
+              the dashboard. Pay by Link so technicians can collect upsells and deposits over the
+              phone. Pricing comes straight from the system, so technicians no longer have to
+              memorize which price applies.
+            </p>
+          </div>
+        </div>
+      </div>
       <div className="case-content-narrow">
         <section className="case-section fade-in-section">
           <p className="case-section-title">The Challenge</p>
@@ -264,8 +296,8 @@ export default function NextgenPortalPage() {
             </div>
             <h4 className="highlight-title">Simplified Experience</h4>
             <p className="highlight-text">
-              Clean interface where technicians easily understand what to do—without 2 weeks of
-              training.
+              Clean interface and faster search, so technicians easily understand what to do—without
+              2 weeks of training.
             </p>
           </div>
           <div className="highlight-card">
@@ -275,22 +307,6 @@ export default function NextgenPortalPage() {
             <h4 className="highlight-title">Design System Powered</h4>
             <p className="highlight-text">
               Using Asurion's UI components to reduce dev time and create consistency.
-            </p>
-          </div>
-        </div>
-        <div className="feature-block fade-in-section">
-          <div className="feature-image has-image">
-            <img
-              src="/assets/images/projects/nextgen/customer-search-check-in.gif"
-              alt="New portal dashboard with quick actions and arrivals calendar"
-            />
-          </div>
-          <div className="feature-text">
-            <p className="feature-label">Feature</p>
-            <h4 className="feature-title">Better Customer Experiences</h4>
-            <p className="feature-description">
-              Price estimate feature for instant quotes, Pay by Link for upsells and deposits over
-              the phone, and improved search so technicians find what they need fast.
             </p>
           </div>
         </div>
@@ -320,6 +336,13 @@ export default function NextgenPortalPage() {
             built and managed a team of 4 designers while also establishing a culture of sharing,
             open feedback, and high design craft. I pushed for customer-facing-level quality for our
             internal tools.
+          </p>
+          <p>
+            When hiring, I looked for designers who would bring a different perspective from the
+            people already on the team. Once they joined, I coached each designer to own a key
+            experience area from start to finish: leading their own reviews with product and
+            engineering and presenting their work to stakeholders. In our 1:1s, we worked on the
+            specific skills each person wanted to grow.
           </p>
           <p>
             I partnered with operations leaders, product managers, and engineering leads to set the

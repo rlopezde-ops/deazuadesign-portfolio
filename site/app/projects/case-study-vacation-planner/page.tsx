@@ -37,11 +37,11 @@ export default function VacationPlannerPage() {
           <div className="case-meta">
             <div className="meta-item">
               <p className="meta-label">Role</p>
-              <p className="meta-value">Design Manager</p>
+              <p className="meta-value">Lead Product Designer</p>
             </div>
             <div className="meta-item">
               <p className="meta-label">Timeline</p>
-              <p className="meta-value">2020 – 2022</p>
+              <p className="meta-value">Dec 2019 – Oct 2021</p>
             </div>
             <div className="meta-item">
               <p className="meta-label">Team</p>
@@ -221,16 +221,21 @@ export default function VacationPlannerPage() {
       <div className="case-content-narrow">
         <section className="case-section fade-in-section">
           <p className="case-section-title">My Role</p>
-          <h3>Design Manager</h3>
+          <h3>Lead Product Designer</h3>
           <p>
-            I led the design team working on the Club Wyndham website, including the owner
-            dashboard, booking flow, and the Vacation Planner. I managed 2 designers, reviewed
+            I was the design lead and people manager for the Club Wyndham website, including the
+            owner dashboard, booking flow, and the Vacation Planner. I managed 2 designers, reviewed
             designs from our external agency team, and provided guidance to ensure good user
             experience and consistent design patterns. I worked closely with the user testing team
             to gather insights using high-fidelity prototypes.
           </p>
+          <p>
+            Managing the team meant coaching, not just assigning work. Through regular critique and
+            1:1s, I pushed both designers to present and defend their own work with stakeholders,
+            and to back their decisions with what we learned in testing.
+          </p>
           <div className="role-list">
-            <span className="role-tag">Design Management</span>{" "}
+            <span className="role-tag">People Management</span>{" "}
             <span className="role-tag">Product Strategy</span>{" "}
             <span className="role-tag">Agency Collaboration</span>{" "}
             <span className="role-tag">User Testing</span>{" "}
