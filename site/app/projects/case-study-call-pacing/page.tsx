@@ -247,7 +247,7 @@ export default function CallPacingPage() {
           </div>
         </div>
       </div>
-      <div className="case-content">
+      <div className="case-content" style={{ marginBottom: "var(--space-3xl)" }}>
         <div className="case-image fade-in-section">
           <video
             autoPlay
