@@ -248,25 +248,6 @@ export default function CallPacingPage() {
         </div>
       </div>
       <div className="case-content">
-        <div className="feature-block reverse fade-in-section">
-          <div className="feature-image has-image">
-            <img
-              src="/assets/images/projects/call-pacing/call-pacing-v2.png"
-              alt="V2 concept: tapping I read it on the sales script starts a separate green sales timer"
-            />
-          </div>
-          <div className="feature-text">
-            <p className="feature-label">What's Next · Concept</p>
-            <h4 className="feature-title">V2 Gives Selling Its Own Clock</h4>
-            <p className="feature-description">
-              One timer covers the whole call, so a great sales conversation looks like a slow call.
-              In V2, the agent taps <q>I read it</q> on the sales script and a sales timer takes
-              over. It's still a concept, so ask me how it goes.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="case-content">
         <div className="case-image fade-in-section">
           <video
             autoPlay
