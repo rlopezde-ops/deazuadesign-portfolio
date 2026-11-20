@@ -34,7 +34,7 @@ export default function ExpertWorkspacePage() {
           <div className="case-image image-hero fade-in-section">
             <img
               src="/assets/images/projects/expert-workspace/asurion-expert-workspace.png"
-              alt="Expert Workspace"
+              alt="Expert Workspace AI-powered agent workspace"
             />
           </div>
           <div className="case-meta">
@@ -190,6 +190,131 @@ export default function ExpertWorkspacePage() {
       </div>
       <div className="case-content-narrow">
         <section className="case-section fade-in-section">
+          <p className="case-section-title">The Work</p>
+          <h3>One shift, start to finish</h3>
+          <p>
+            Rather than redesigning everything at once, we mapped the workspace to an agent's shift.
+            First, prepare them before the first call. Then guide them during every call. Finally,
+            help them learn from each call before the next one starts.
+          </p>
+        </section>
+      </div>
+      <div className="case-content">
+        <div className="feature-block fade-in-section">
+          <div className="feature-image has-image image-screen">
+            <img
+              src="/assets/images/projects/expert-workspace/ew-morning-paper.jpg"
+              alt="Morning Paper: a personal greeting summarizing which goals are on track and at risk, with stat cards, a team leaderboard and the day's schedule"
+            />
+          </div>
+          <div className="feature-text">
+            <p className="feature-label">Before the Call</p>
+            <h4 className="feature-title">Morning Paper</h4>
+            <p className="feature-description">
+              Agents used to start every shift cold. Morning Paper opens with a plain-language
+              briefing on what's on track and what's at risk, plus the day's schedule and the
+              team leaderboard. We tested a notification model, a full dashboard, and a briefing.
+              Agents chose the briefing because it felt like a teammate catching them up.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="case-content">
+        <div className="case-image image-hero image-screen fade-in-section">
+          <img
+            src="/assets/images/projects/expert-workspace/ew-sidecar-guidance.jpg"
+            alt="In-call workspace: live transcript on the left, AI guidance on the right suggesting what to say and the next action to take"
+          />
+        </div>
+      </div>
+      <div className="case-content">
+        <div className="feature-block reverse fade-in-section">
+          <div className="feature-image has-image image-screen">
+            <img
+              src="/assets/images/projects/expert-workspace/ew-sidecar-sales.jpg"
+              alt="Sidecar sales step: an eligible protection plan with a suggested line to read and a one-tap rebuttal"
+            />
+          </div>
+          <div className="feature-text">
+            <p className="feature-label">During the Call</p>
+            <h4 className="feature-title">Sidecar</h4>
+            <p className="feature-description">
+              A live transcript sits next to AI guidance that follows the conversation as it
+              happens. It suggests what to say, what to do next, and when an offer fits. A pacing
+              bar across the top shows how the call is tracking. Agents don't have to write prompts,
+              search, or switch between tools.
+            </p>
+          </div>
+        </div>
+        <div className="feature-block fade-in-section">
+          <div className="feature-image has-image image-screen">
+            <img
+              src="/assets/images/projects/expert-workspace/ew-pit-stop.jpg"
+              alt="Pit Stop: a call summary with sentiment, call length and sales results, each marked on track or behind"
+            />
+          </div>
+          <div className="feature-text">
+            <p className="feature-label">After the Call</p>
+            <h4 className="feature-title">Pit Stop</h4>
+            <p className="feature-description">
+              Each call ends with a short recap: what went well, what ran long, and one thing to
+              tighten next time. Notes are sent to the client automatically, so after-call work
+              shrinks instead of piling up.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="case-content-narrow">
+        <section className="case-section fade-in-section">
+          <p className="case-section-title">Prototyping in Code</p>
+          <h3>A working demo beats a strategy doc</h3>
+          <p>
+            I prototype in code. The screens above come from a working React and Next.js prototype
+            I built with Cursor. It plays a full call from start to finish, with a live transcript,
+            AI guidance, real interactions, and motion. Static frames can't show how guidance
+            should arrive mid-conversation or how a timer should feel under pressure. A clickable
+            prototype can.
+          </p>
+          <p>
+            The prototype became our best tool for getting people aligned. The most productive
+            conversations with product, engineering, and operations leaders happened around a demo
+            they could click through.
+          </p>
+        </section>
+      </div>
+      <div className="case-content">
+        <div className="impact-section fade-in-section">
+          <p className="case-section-title">Results</p>
+          <h3>Early launches are already moving the numbers</h3>
+          <p style={{ color: "var(--text-secondary)", maxWidth: "600px" }}>
+            Visual Call Pacing, the pacing bar built into the workspace, was the first piece to be
+            measured at scale. Agents onboarded to Morning Paper reported faster call preparation,
+            and Sidecar pilots reduced reliance on outside knowledge tabs. We're measuring more as
+            the pilots scale.
+          </p>
+          <div className="impact-grid">
+            <div className="impact-card">
+              <p className="impact-value">−21 sec</p>
+              <p className="impact-label">Per call from the pacing redesign (A/B test)</p>
+            </div>
+            <div className="impact-card">
+              <p className="impact-value">170K+</p>
+              <p className="impact-label">Calls in the 50/50 test</p>
+            </div>
+            <div className="impact-card">
+              <p className="impact-value">500 hrs</p>
+              <p className="impact-label">Est. agent hours saved weekly at full rollout</p>
+            </div>
+          </div>
+          <p style={{ marginTop: "var(--space-lg)" }}>
+            <a className="about-leadership-link" href="/projects/case-study-call-pacing.html">
+              Read the Visual Call Pacing case study <span className="arrow">→</span>
+            </a>
+          </p>
+        </div>
+      </div>
+      <div className="case-content-narrow">
+        <section className="case-section fade-in-section">
           <p className="case-section-title">My Role</p>
           <h3>Defining the future of agent tools</h3>
           <p>
@@ -203,6 +328,11 @@ export default function ExpertWorkspacePage() {
             strategy, validate concepts with frontline agents, and ensure we're building tools that
             genuinely improve the customer experience—not just automate it.
           </p>
+          <p>
+            On the team side, I'm coaching our two designers to take on more visibility: leading
+            reviews with product and operations, and building their own prototypes with tools like
+            Cursor and v0 so they can test ideas sooner.
+          </p>
           <div className="role-list">
             <span className="role-tag">0→1 Design Leadership</span>{" "}
             <span className="role-tag">Team Building</span>{" "}
@@ -210,7 +340,8 @@ export default function ExpertWorkspacePage() {
             <span className="role-tag">User Research</span>{" "}
             <span className="role-tag">Design Systems</span>{" "}
             <span className="role-tag">Stakeholder Workshops</span>{" "}
-            <span className="role-tag">Strategy &amp; Vision</span>
+            <span className="role-tag">Strategy &amp; Vision</span>{" "}
+            <span className="role-tag">Prototyping in Code</span>
           </div>
         </section>
       </div>

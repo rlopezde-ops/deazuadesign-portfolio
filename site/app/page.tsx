@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { EmailLink } from "@/components/email-link";
 import { SiteNav } from "@/components/site-nav";
 
 export const metadata: Metadata = { title: "De Azua Design | Design Leader" };
@@ -385,7 +384,7 @@ export default function HomePage() {
               <h3 className="card-title">Next-Gen Portal</h3>
               <p className="card-description">
                 Rebuilding the core operating system for 680+ repair stores nationwide—transforming
-                how technicians check in customers, manage repairs, and run their business.
+                how technicians check in customers, take payments, manage repairs, and run their business.
               </p>
               <div className="card-meta">
                 <span className="card-role">Sr. Manager, Product Design</span>{" "}
@@ -463,8 +462,8 @@ export default function HomePage() {
                 efficiency by 25% across 5 parks.
               </p>
               <div className="card-meta">
-                <span className="card-role">Lead Product Designer</span>{" "}
-                <span className="card-year">2019–2020</span>
+                <span className="card-role">Senior UI/UX Designer</span>{" "}
+                <span className="card-year">May–Dec 2019</span>
               </div>
             </div>
           </a>{" "}
@@ -488,8 +487,8 @@ export default function HomePage() {
                 destinations across 270+ resorts worldwide.
               </p>
               <div className="card-meta">
-                <span className="card-role">Design Manager</span>{" "}
-                <span className="card-year">2020–2022</span>
+                <span className="card-role">Lead Product Designer</span>{" "}
+                <span className="card-year">Dec 2019 – Oct 2021</span>
               </div>
             </div>
           </a>{" "}
@@ -663,12 +662,12 @@ export default function HomePage() {
               </span>{" "}
               No Barriers to Entry
             </a>{" "}
-            <EmailLink className="connect-link">
+            <a className="connect-link" href="mailto:ricardo@deazuadesign.com">
               <span className="link-icon">
                 <i className="iconoir-mail"></i>
               </span>{" "}
               Email
-            </EmailLink>{" "}
+            </a>{" "}
             <a
               className="connect-link"
               href="/assets/images/resume/ricardo-deazua-resume-2026.pdf"

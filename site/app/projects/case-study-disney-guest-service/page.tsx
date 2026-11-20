@@ -39,11 +39,11 @@ export default function DisneyGuestServicePage() {
           <div className="case-meta">
             <div className="meta-item">
               <p className="meta-label">Role</p>
-              <p className="meta-value">Lead Product Designer</p>
+              <p className="meta-value">Senior UI/UX Designer</p>
             </div>
             <div className="meta-item">
               <p className="meta-label">Timeline</p>
-              <p className="meta-value">May 2019 – Dec 2020</p>
+              <p className="meta-value">May 2019 – Dec 2019</p>
             </div>
             <div className="meta-item">
               <p className="meta-label">Team</p>
@@ -241,15 +241,15 @@ export default function DisneyGuestServicePage() {
       <div className="case-content-narrow">
         <section className="case-section fade-in-section">
           <p className="case-section-title">My Role</p>
-          <h3>Lead Product Designer</h3>
+          <h3>Senior UI/UX Designer</h3>
           <p>
-            I was a lead product designer working on Disney's guest service application. I led
-            design on the Guest Interaction Tracking section, conducted user research with
-            front-line, guest services, and call center staff, and participated in sketch boarding
-            and user testing sessions. We started as 2 lead designers and grew the team to 4.
+            I was a senior UI/UX designer on Disney's guest service application. I led design on
+            the Guest Interaction Tracking section, conducted user research with front-line, guest
+            services, and call center staff, and participated in sketch boarding and user testing
+            sessions. The design team started with 2 designers and grew to 4.
           </p>
           <div className="role-list">
-            <span className="role-tag">Lead Product Designer</span>{" "}
+            <span className="role-tag">UI/UX Design</span>{" "}
             <span className="role-tag">User Research</span>{" "}
             <span className="role-tag">Interaction Design</span>{" "}
             <span className="role-tag">Responsive Design</span>{" "}

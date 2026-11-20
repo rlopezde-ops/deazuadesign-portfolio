@@ -1321,3 +1321,17 @@
     gap: var(--space-md);
   }
 }
+
+/* Full UI screenshots: size the frame to the screen instead of cropping it */
+.case-image.image-screen,
+.feature-image.image-screen {
+  height: auto;
+  aspect-ratio: 16 / 10;
+}
+
+.case-image.image-screen img,
+.feature-image.image-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
