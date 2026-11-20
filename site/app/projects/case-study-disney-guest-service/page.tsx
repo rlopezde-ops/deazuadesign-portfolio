@@ -43,7 +43,7 @@ export default function DisneyGuestServicePage() {
             </div>
             <div className="meta-item">
               <p className="meta-label">Timeline</p>
-              <p className="meta-value">May 2019 – Dec 2020</p>
+              <p className="meta-value">May 2019 – Dec 2019</p>
             </div>
             <div className="meta-item">
               <p className="meta-label">Team</p>

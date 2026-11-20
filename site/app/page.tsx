@@ -464,7 +464,7 @@ export default function HomePage() {
               </p>
               <div className="card-meta">
                 <span className="card-role">Lead Product Designer</span>{" "}
-                <span className="card-year">2019–2020</span>
+                <span className="card-year">2019</span>
               </div>
             </div>
           </a>{" "}
@@ -489,7 +489,7 @@ export default function HomePage() {
               </p>
               <div className="card-meta">
                 <span className="card-role">Design Manager</span>{" "}
-                <span className="card-year">2020–2022</span>
+                <span className="card-year">2019–2021</span>
               </div>
             </div>
           </a>{" "}

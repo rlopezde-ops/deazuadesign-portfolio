@@ -41,7 +41,7 @@ export default function VacationPlannerPage() {
             </div>
             <div className="meta-item">
               <p className="meta-label">Timeline</p>
-              <p className="meta-value">2020 – 2022</p>
+              <p className="meta-value">Dec 2019 – Oct 2021</p>
             </div>
             <div className="meta-item">
               <p className="meta-label">Team</p>
