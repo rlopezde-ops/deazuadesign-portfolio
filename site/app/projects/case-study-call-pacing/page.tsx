@@ -39,7 +39,7 @@ export default function CallPacingPage() {
           <div className="case-meta">
             <div className="meta-item">
               <p className="meta-label">Role</p>
-              <p className="meta-value">Sr. Manager, Product Design</p>
+              <p className="meta-value">Lead product designer</p>
             </div>
             <div className="meta-item">
               <p className="meta-label">Timeline</p>
@@ -58,13 +58,13 @@ export default function CallPacingPage() {
             <div className="meta-item">
               <p className="meta-label">My Focus</p>
               <p className="meta-value">
-                Design direction for pacing, from the first test through the V1.5 redesign
+                Shorter calls, so customers get answers faster and experts can help more of them, at a lower cost to Asurion
               </p>
             </div>
             <div className="meta-item">
               <p className="meta-label">Key Challenge</p>
               <p className="meta-value">
-                Shipping before it was pretty, then using what we learned to earn the redesign
+                Drive customer experience and cost impact without adding stress to an already stressful job
               </p>
             </div>
           </div>
@@ -264,6 +264,23 @@ export default function CallPacingPage() {
               over. It's still a concept, so ask me how it goes.
             </p>
           </div>
+        </div>
+      </div>
+      <div className="case-content">
+        <div className="case-image fade-in-section">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/assets/images/projects/call-pacing/call-pacing-hero-2200x900.png"
+            aria-label="The call bar filling and shifting from green to amber to red as a call passes its target time"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          >
+            <source src="/assets/images/projects/call-pacing/call-pacing-hero-loop.webm" type="video/webm" />
+            <source src="/assets/images/projects/call-pacing/call-pacing-hero-loop.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
       <div className="case-content-narrow">

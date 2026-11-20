@@ -40,7 +40,7 @@ export default function ExpertWorkspacePage() {
           <div className="case-meta">
             <div className="meta-item">
               <p className="meta-label">Role</p>
-              <p className="meta-value">Sr. Manager, Product Design</p>
+              <p className="meta-value">Lead product designer</p>
             </div>
             <div className="meta-item">
               <p className="meta-label">Timeline</p>
