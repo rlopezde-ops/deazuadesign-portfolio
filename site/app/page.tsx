@@ -362,7 +362,7 @@ export default function HomePage() {
                 simple, personal, and white-glove.
               </p>
               <div className="card-meta">
-                <span className="card-role">Sr. Manager, Product Design</span>{" "}
+                <span className="card-role">Lead product designer</span>{" "}
                 <span className="card-year">2025–Present</span>
               </div>
             </div>
@@ -413,7 +413,7 @@ export default function HomePage() {
                 learned what it got wrong, and the redesign cut another 21 seconds per call.
               </p>
               <div className="card-meta">
-                <span className="card-role">Sr. Manager, Product Design</span>{" "}
+                <span className="card-role">Lead product designer</span>{" "}
                 <span className="card-year">2026–Present</span>
               </div>
             </div>
